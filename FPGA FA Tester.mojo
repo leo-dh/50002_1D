@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="FGPA FA Tester" board="Mojo V3" language="Lucid">
+<project name="FPGA FA Tester" board="Mojo V3" language="Lucid">
   <files>
-    <src>decimal_counter.luc</src>
-    <src>multi_dec_ctr.luc</src>
     <src>seven_seg.luc</src>
     <src>delaycounter.luc</src>
     <src>multi_seven_seg.luc</src>
