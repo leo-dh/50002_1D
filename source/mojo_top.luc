@@ -1,0 +1,237 @@
+module mojo_top (
+    input clk,              // 50MHz clock
+    input rst_n,            // reset button (active low)
+    output led [8],         // 8 user controllable LEDs
+    input cclk,             // configuration clock, AVR ready when high
+    output spi_miso,        // AVR SPI MISO
+    input spi_ss,           // AVR SPI Slave Select
+    input spi_mosi,         // AVR SPI MOSI
+    input spi_sck,          // AVR SPI Clock
+    output spi_channel [4], // AVR general purpose pins (used by default to select ADC channel)
+    input avr_tx,           // AVR TX (FPGA RX)
+    output avr_rx,          // AVR RX (FPGA TX)
+    input avr_rx_busy,    // AVR RX buffer full
+    
+    
+    output io_led [3][8],   // LEDs on IO Shield
+    output io_seg [8],      // 7-segment LEDs on IO Shield
+    output io_sel [4],      // Digit select on IO Shield
+    input io_button [5],    // 5 buttons on IO Shield
+    input io_dip [3][8],     // DIP switches on IO Shield
+  
+    output a, // input a
+    output b, // input b
+    output c_i, // input carry_in
+    input s, // output sum
+    input c_o // output carry_out
+    
+    
+  )
+  {
+  sig rst;                  // reset signal
+  
+  .clk(clk) {
+    // The reset conditioner is used to synchronize the reset signal to the FPGA
+    // clock. This ensures the entire FPGA comes out of reset at the same time.
+    
+    reset_conditioner reset_cond;
+    .rst (rst) {
+      fsm state = {IDLE, STATE001, STATE010, STATE100, STATE011, STATE101, STATE110, STATE111, STATE000, FAIL, PASS};
+      delaycounter delay; // to provide a delay of around 1.34s during each state
+      multi_seven_seg seg;
+    }
+  }
+    
+  
+  
+  always {
+    
+    reset_cond.in = ~rst_n; // input raw inverted reset signal
+    rst = reset_cond.out;   // conditioned reset
+    
+    led = 8h00;             // turn LEDs off
+    spi_miso = bz;          // not using SPI
+    spi_channel = bzzzz;    // not using flags
+    avr_rx = bz;            // not using serial port
+    
+    
+    seg.values = {4h0, 4h0, 4h0, 4h0};
+    
+    io_seg = ~seg.seg; 
+    io_sel = ~seg.sel; 
+    io_led = io_dip;   
+    
+    // Switches for a, b and c_in for manual testing
+    
+    a = io_dip[0][7];
+    b = io_dip[1][7];
+    c_i = io_dip[2][7];
+    
+    
+    // FSM to test all combinations of a, b and c_in
+    // seg.values to display the current state using the seven segment display on the io shield
+    // io_led is used a form of progress bar
+    
+    case (state.q){
+    
+    state.IDLE:
+      seg.values = {4h1, 4h9, 4hd, 4hf};      
+      if (io_button[1]){
+        state.d = state.STATE001;
+      }
+    state.STATE001:
+      a = 1;
+      b = 0;
+      c_i = 0;
+      io_led[2][7] = 1;
+      seg.values = {4h0, 4h1, 4h0, 4h0};
+      if (delay.timepassed == 1){
+        if (s == 1 && c_o == 0){
+          state.d = state.STATE010;
+        }
+        else{
+          state.d = state.FAIL;
+        }
+      }
+      if (io_button[1]){
+        state.d = state.IDLE;
+      }
+    state.STATE010:
+      a = 0;
+      b = 1;
+      c_i = 0;
+      io_led[2][6] = 1;
+      seg.values = {4h0, 4h0, 4h1, 4h0};
+      if (delay.timepassed == 1){
+        if (s == 1 && c_o == 0){
+          state.d = state.STATE100;
+        }
+        else{
+          state.d = state.FAIL;
+        }
+      }
+      if (io_button[1]){
+        state.d = state.IDLE;
+      }
+    state.STATE100:
+      a = 0;
+      b = 0;
+      c_i = 1;
+      io_led[2][5] = 1;
+      seg.values = {4h0, 4h0, 4h0, 4h1};
+      if (delay.timepassed == 1){
+        if (s == 1 && c_o == 0){
+          state.d = state.STATE011;
+        }
+        else{
+          state.d = state.FAIL;
+        }
+      }
+      if (io_button[1]){
+        state.d = state.IDLE;
+      }
+    state.STATE011:
+      a = 1;
+      b = 1;
+      c_i = 0;
+      io_led[2][4] = 1;
+      seg.values = {4h0, 4h1, 4h1, 4h0};
+      if (delay.timepassed == 1){
+        if (s == 0 && c_o == 1){
+          state.d = state.STATE101;
+        }
+        else{
+        state.d = state.FAIL;
+        }
+      }
+      if (io_button[1]){
+        state.d = state.IDLE;
+      }
+    state.STATE101:
+      a = 1;
+      b = 0;
+      c_i = 1;
+      io_led[2][3] = 1;
+      seg.values = {4h0, 4h1, 4h0, 4h1};
+      if (delay.timepassed == 1){
+        if (s == 0 && c_o == 1){
+          state.d = state.STATE110;
+        }
+        else{
+        state.d = state.FAIL;
+        }
+      }
+      if (io_button[1]){
+        state.d = state.IDLE;
+      }
+    state.STATE110:
+      a = 0;
+      b = 1;
+      c_i = 1;
+      io_led[2][2] = 1;
+      seg.values = {4h0, 4h1, 4h1, 4h0};
+      if (delay.timepassed == 1){
+        if (s == 0 && c_o == 1){
+          state.d = state.STATE111;
+        }
+        else{
+        state.d = state.FAIL;
+        }
+      }
+      if (io_button[1]){
+        state.d = state.IDLE;
+      }
+    state.STATE111:
+      a = 1;
+      b = 1;
+      c_i = 1;
+      io_led[2][1] = 1;
+      seg.values = {4h0, 4h1, 4h1, 4h1};
+      if (delay.timepassed == 1){
+        if (s == 1 && c_o == 1){
+          state.d = state.STATE000;
+        }
+        else{
+        state.d = state.FAIL;
+        }
+      }
+      if (io_button[1]){
+        state.d = state.IDLE;
+      }
+    state.STATE000:
+      a = 0;
+      b = 0;
+      c_i = 0;
+      io_led[2][0] = 1;
+      seg.values = {4h0, 4h0, 4h0, 4h0};
+      if (delay.timepassed == 1){
+        if (s == 0 && c_o == 0){
+          state.d = state.PASS;
+        }
+        else{
+        state.d = state.FAIL;
+        }
+      }
+      if (io_button[1]){
+        state.d = state.IDLE;
+      }
+    state.PASS:
+      a = 0;
+      b = 0;
+      c_i = 0;
+      seg.values = {4he, 4hb, 4h5, 4h5};
+      if (io_button[1]){
+        state.d = state.IDLE;
+      }
+    state.FAIL:
+      a = 0;
+      b = 0;
+      c_i = 0;
+      seg.values = {4ha, 4hb, 4hc, 4hd};
+      if (io_button[1]){
+        state.d = state.IDLE;
+      }
+        
+    }
+  }
+}
