@@ -70,7 +70,7 @@ module mojo_top (
     
     // FSM to test all combinations of a, b and c_in
     // seg.values to display the current state using the seven segment display on the io shield
-    // io_led is used a form of progress bar
+    // io_led is used as a form of progress bar
     
     case (state.q){
     
