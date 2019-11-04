@@ -1,0 +1,18 @@
+module delaycounter (
+    input clk,  // clock
+    input rst,  // reset
+    output timepassed
+  ) {
+  .clk(clk){
+    .rst(rst){
+      dff counter[27];
+    }
+  }
+  always {
+    timepassed = counter.q[26];
+    counter.d = counter.q + 1;
+    if (counter.q[26] == 1 ){
+      counter.d[26] = 0;
+    }
+  }
+}

@@ -1,0 +1,308 @@
+module alufsmtester (
+    input clk,  // clock
+    input rst,  // reset
+    input io_button[5],
+    output io_led[3][8],
+    output io_seg[8],
+    output io_sel[4]
+  ) {
+  sig a[16];
+  sig b[16];
+  sig led[2][8];
+  alu alu;
+  .clk(clk) {
+    .rst (rst){
+      fsm state = {START,ADD1,ADD2,SUB1,SUB2,AND,OR,XOR,A,SHL,SHR,SRA,CMPEQ,CMPLT,CMPLE,CMPERR,MUL,DIV,PASS,FAIL};
+      delaycounter delay;
+      multi_seven_seg seg;
+      
+          }
+  }
+  always {
+    a = 16b0;
+    b = 16b0;
+    led = {8b0, 8b0};
+    io_led = {8b0,8b0,8b0};
+    seg.values = {5d0, 5d0, 5d0, 5d0};
+    io_seg = ~seg.seg; 
+    io_sel = ~seg.sel;
+    alu.alufn = 6b0;
+    alu.a = a;
+    alu.b = b;
+    
+    case (state.q){
+      
+      state.START:
+        if (io_button[1]){state.d = state.ADD1;}
+        
+      state.ADD1: // 12345 + 456
+        alu.a = 16b0011000000111001;
+        alu.b = 16b0000000111001000;
+        alu.alufn = 6b000000;
+
+        if (alu.s == 16b0011001000000001){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[0][0] = 1;
+          led[0][0] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.ADD2;
+        }
+        
+      state.ADD2: // 32767 + 1 
+        alu.a = 16b0111111111111111;
+        alu.b = 16b0000000000000001;
+        alu.alufn = 6b000000;
+        
+        if (alu.s == 16b1000000000000000 & alu.n == 1){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[0][1] = 1;
+          led[0][1] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.SUB1;
+        }
+        
+      state.SUB1: // 1 - 1
+        alu.a = 16b0000000000000001;
+        alu.b = 16b0000000000000001;
+        alu.alufn = 6b000001;
+        
+        if (alu.s == 16b0000000000000000 & alu.z == 1){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[0][2] = 1;
+          led[0][2] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.SUB2;
+        }
+        
+      state.SUB2: // 16384 - (-16385)
+        alu.a = 16b0100000000000000;
+        alu.b = 16b1011111111111111;
+        alu.alufn = 6b000001;
+        
+        if (alu.s == 16b0000000000000001 & alu.v == 1){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[0][3] = 1;
+          led[0][3] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.AND;
+        }
+        
+      state.AND:
+        alu.a = 16b0100000000000000;
+        alu.b = 16b1011111111111111;
+        alu.alufn = 6b011000;
+        
+        if (alu.s == 16b0000000000000000){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[0][4] = 1;
+          led[0][4] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.OR;
+        }
+        
+      state.OR:
+        alu.a = 16b0100000000000000;
+        alu.b = 16b1011111111111111;
+        alu.alufn = 6b011110;
+        
+        if (alu.s == 16b1111111111111111){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[0][5] = 1;
+          led[0][5] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.XOR;
+        }
+        
+      state.XOR:
+        alu.a = 16b0100000000000001;
+        alu.b = 16b1011111111111111;
+        alu.alufn = 6b010110;
+        
+        if (alu.s == 16b1111111111111110){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[0][6] = 1;
+          led[0][6] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.A;
+        }
+       
+      state.A:
+        alu.a = 16b0100000000000000;
+        alu.b = 16b1011111111111111;
+        alu.alufn = 6b011010;
+        
+        if (alu.s == 16b0100000000000000){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[0][7] = 1;
+          led[0][7] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.SHL;
+        }
+        
+      state.SHL:
+        alu.a = 16b0100000101001000; // 16712
+        alu.b = 16b11; // 3
+        alu.alufn = 6b100000;
+        
+        if (alu.s == 16b0000101001000000){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[1][0] = 1;
+          led[1][0] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.SHR;
+        }
+        
+      state.SHR:
+        alu.a = 16b0100000101001000; // 16712
+        alu.b = 16b11; // 3
+        alu.alufn = 6b100001;
+        
+        if (alu.s == 16b0000100000101001){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[1][1] = 1;
+          led[1][1] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.SRA;
+        }
+        
+     state.SRA:
+        alu.a = 16b1100000101001000; // -16056
+        alu.b = 16b110; // 6
+        alu.alufn = 6b100011;
+        
+        if (alu.s == 16b1111111100000101){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[1][2] = 1;
+          led[1][2] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.CMPEQ;
+        } 
+        
+      state.CMPEQ:
+        alu.a = 16b110;
+        alu.b = 16b110;
+        alu.alufn = 6b110011;
+        
+        if (alu.s == 16b1){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[1][3] = 1;
+          led[1][3] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.CMPLT;
+        }
+        
+      state.CMPLT:
+        alu.a = 16b110;
+        alu.b = 16b110;
+        alu.alufn = 6b110101;
+        
+        if (alu.s == 16b0){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[1][4] = 1;
+          led[1][4] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.CMPLE;
+        }
+        
+      state.CMPLE:
+        alu.a = 16b110;
+        alu.b = 16b110;
+        alu.alufn = 6b110111;
+        
+        if (alu.s == 16b1){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[1][5] = 1;
+          led[1][5] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.MUL;
+        }
+        
+      state.MUL:
+        alu.a = 16b10001010; // - 118
+        alu.b = 16b10001000; // - 120
+        alu.alufn = 6b000010; 
+        
+        if (alu.s == 16b0011011101010000){
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[1][6] = 1;
+          led[1][6] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          state.d = state.DIV;
+        }
+        
+      state.DIV:
+        alu.a = 16b0000000001111101; // 125
+        alu.b = 16b100; // 4
+        alu.alufn = 6b000011; 
+        
+        if (alu.s == 16b0000000000011111){ // 31
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          io_led[1][7] = 1;
+          led[1][7] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          seg.values = {5d0, 5d0, 5d0, 5d0};
+          if (&led == 1){state.d = state.PASS;}
+          else {state.d = state.FAIL;}
+        }
+      
+      state.PASS:
+        seg.values = {5d14, 5d11, 5d5, 5d5};
+        io_led[1:0] = {8b0, 8b0};
+        if (io_button[1]){state.d = state.START;}
+        
+      state.FAIL:
+        seg.values = {5d10, 5d11, 5d12, 5d13}; 
+        io_led[1:0] = ~led;
+        if (io_button[1]){state.d = state.START;}
+        
+              
+  }
+}
+}

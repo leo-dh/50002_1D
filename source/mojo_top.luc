@@ -1,0 +1,102 @@
+module mojo_top (
+    input clk,              // 50MHz clock
+    input rst_n,            // reset button (active low)
+    output led [8],         // 8 user controllable LEDs
+    input cclk,             // configuration clock, AVR ready when high
+    output spi_miso,        // AVR SPI MISO
+    input spi_ss,           // AVR SPI Slave Select
+    input spi_mosi,         // AVR SPI MOSI
+    input spi_sck,          // AVR SPI Clock
+    output spi_channel [4], // AVR general purpose pins (used by default to select ADC channel)
+    input avr_tx,           // AVR TX (FPGA RX)
+    output avr_rx,          // AVR RX (FPGA TX)
+    input avr_rx_busy,       // AVR RX buffer full
+        
+    output io_led [3][8],   // LEDs on IO Shield
+    output io_seg [8],      // 7-segment LEDs on IO Shield
+    output io_sel [4],      // Digit select on IO Shield
+    input io_button [5],    // 5 buttons on IO Shield
+    input io_dip [3][8]     // DIP switches on IO Shield
+  ) {
+  
+  sig rst;                  // reset signal
+  sig s[16];
+  sig a[16];
+  sig b[16];
+  sig alufn[6];
+  
+  alu alu;
+  .clk(clk) {
+    // The reset conditioner is used to synchronize the reset signal to the FPGA
+    // clock. This ensures the entire FPGA comes out of reset at the same time.
+    reset_conditioner reset_cond;
+    .rst(rst){
+      alufsmtester tester;
+      fsm state = {MANUAL,AUTO};
+      multi_seven_seg seg;
+      dff mem_a[16];
+      dff mem_b[16];
+      
+    }
+    
+  }
+  
+  always {
+    reset_cond.in = ~rst_n; // input raw inverted reset signal
+    rst = reset_cond.out;   // conditioned reset
+    
+    led = 8h00;             // turn LEDs off
+    spi_miso = bz;          // not using SPI
+    spi_channel = bzzzz;    // not using flags
+    avr_rx = bz;            // not using serial port
+    
+    a = 16b0;
+    b = 16b0;
+    s = alu.s;
+    
+    alufn = io_dip[0][5:0];
+    alu.alufn = alufn;
+    alu.a = a;
+    alu.b = b;
+    
+    
+    seg.values = {5d0, 5d0, 5d0, 5d0};
+    io_seg = ~seg.seg; 
+    io_sel = ~seg.sel; 
+    io_led = io_dip;
+    tester.io_button = io_button;
+    
+    case (state.q){
+    
+      state.MANUAL:
+        if (io_dip[0][6]){
+          a[7:0] = io_dip[1];
+          a[15:8] = io_dip[2];
+          if (io_button[1]){mem_a.d = a;}
+          }
+        else {
+          b[7:0] = io_dip[1];
+          b[15:8] = io_dip[2];
+          if (io_button[1]){mem_b.d = b;}
+          }
+        if (io_button[4]){
+          alu.a = mem_a.q;
+          alu.b = mem_b.q;
+          io_led[1] = alu.s[7:0];
+          io_led[2] = alu.s[15:8];
+          io_led[0][7] = alu.z;
+          io_led[0][6] = alu.v;
+          io_led[0][5] = alu.n;
+          }
+        if (io_button[2] & io_dip[0][7]){state.d = state.AUTO;}
+        
+      state.AUTO: 
+        io_led = tester.io_led;
+        io_sel = tester.io_sel;
+        io_seg = tester.io_seg;
+        if (io_button[2] & !io_dip[0][7]){state.d = state.MANUAL;}
+    
+    }
+    
+  }
+}

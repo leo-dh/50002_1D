@@ -1,0 +1,49 @@
+module adder (
+    input a[16],
+    input b[16],
+    input alufn[6],
+    
+    output add[16],
+    output z,
+    output v,
+    output n
+  ) {
+  
+  sig sum[17];
+  sig xb[16];
+  division division;
+  
+  always {
+    division.a = a;
+    division.b = b;
+    
+    case (alufn[1:0]){
+    
+      b00: // Addition
+        sum = a + b;
+        xb = b;
+      
+      b01: // Subtract
+        sum = a - b;
+        xb = ~b + 1; // Negation of Two's Complement
+      
+      b10: // Multiply
+        sum = a[7:0] * b[7:0];
+        xb = b;
+        
+      b11: // Quotient
+        sum = division.div;
+        xb = b;
+        
+      default:
+        sum = a + b;
+        xb = b;
+      
+    }
+    add = sum[15:0];
+    z = ~|sum; // Check if all outputs are 0
+    n = sum[15]; // Check if sum is negative
+    v = ( ((a[15])&(xb[15])&(~sum[15])) | ((~a[15])&(~xb[15])&(sum[15])) ); // Check for addition overflow
+
+  }
+}
