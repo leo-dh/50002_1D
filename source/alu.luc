@@ -34,10 +34,15 @@ module alu (
     boolean.b = b;
     boolean.alufn = alufn;
     
-    
+    z = 0;
+    v = 0;
+    n = 0;
     case (alufn[5:4]){
       b00:
         s = adder.add;
+        z = adder.z;
+        v = adder.v;
+        n = adder.n;
       b01:
         s = boolean.boole;
       b10:
@@ -46,11 +51,10 @@ module alu (
         s = compare.comp;      
       default:
         s = 16b0;
+        
     }    
     
-    z = adder.z;
-    v = adder.v;
-    n = adder.n;
+    
     
   }
 }

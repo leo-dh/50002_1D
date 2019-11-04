@@ -20,10 +20,9 @@ module mojo_top (
   ) {
   
   sig rst;                  // reset signal
-  sig s[16];
+  sig alufn[6];
   sig a[16];
   sig b[16];
-  sig alufn[6];
   
   alu alu;
   .clk(clk) {
@@ -32,11 +31,11 @@ module mojo_top (
     reset_conditioner reset_cond;
     .rst(rst){
       alufsmtester tester;
-      fsm state = {MANUAL,AUTO};
+      fsm state = {MANUAL,RESULT,AUTO};
       multi_seven_seg seg;
       dff mem_a[16];
       dff mem_b[16];
-      
+      dff mem_alufn[6];
     }
     
   }
@@ -52,19 +51,18 @@ module mojo_top (
     
     a = 16b0;
     b = 16b0;
-    s = alu.s;
-    
     alufn = io_dip[0][5:0];
     alu.alufn = alufn;
     alu.a = a;
     alu.b = b;
+        
     
-    
-    seg.values = {5d0, 5d0, 5d0, 5d0};
+    seg.values = {5d16, 5d16, 5d16, 5d16};
     io_seg = ~seg.seg; 
     io_sel = ~seg.sel; 
     io_led = io_dip;
     tester.io_button = io_button;
+    tester.io_dip = io_dip;
     
     case (state.q){
     
@@ -73,27 +71,46 @@ module mojo_top (
           a[7:0] = io_dip[1];
           a[15:8] = io_dip[2];
           if (io_button[1]){mem_a.d = a;}
+          seg.values = {5d16, 5d16, 5d16, 5d11};
           }
         else {
           b[7:0] = io_dip[1];
           b[15:8] = io_dip[2];
           if (io_button[1]){mem_b.d = b;}
+          seg.values = {5d16, 5d16, 5d16, 5d8};
           }
         if (io_button[4]){
-          alu.a = mem_a.q;
-          alu.b = mem_b.q;
-          io_led[1] = alu.s[7:0];
-          io_led[2] = alu.s[15:8];
-          io_led[0][7] = alu.z;
-          io_led[0][6] = alu.v;
-          io_led[0][5] = alu.n;
+          alufn = io_dip[0][5:0];
+          mem_alufn.d = alufn;
+          state.d = state.RESULT;
           }
+        if (io_button[2] & io_dip[0][7]){state.d = state.AUTO;}
+      
+      state.RESULT:
+        seg.values = {5d16, 5d16, 5d16, 5d9};
+        io_led[0] = 8d0;
+        alu.a = mem_a.q;
+        alu.b = mem_b.q;
+        alu.alufn = mem_alufn.q;
+        io_led[1] = alu.s[7:0];
+        io_led[2] = alu.s[15:8];
+        io_led[0][7] = alu.z;
+        io_led[0][6] = alu.v;
+        io_led[0][5] = alu.n;
+        if (io_button[4]){
+          io_led = io_dip;
+          seg.values = {5d16, 5d16, 5d16, 5d16};
+          state.d = state.MANUAL;
+          
+        }
         if (io_button[2] & io_dip[0][7]){state.d = state.AUTO;}
         
       state.AUTO: 
         io_led = tester.io_led;
         io_sel = tester.io_sel;
         io_seg = tester.io_seg;
+        tester.io_button = io_button;
+        tester.io_dip = io_dip;
         if (io_button[2] & !io_dip[0][7]){state.d = state.MANUAL;}
     
     }

@@ -8,34 +8,26 @@ module division (
   sig divisor[16];
   sig dividend[16];
   sig quo[16];
-  var i;
-  var x;
+
   
   always {
   
-    x = 0;
+
     divisor = b;
     dividend = a;
-    quo = 16b0;
-    
-    if (b[0] != 1){
-      for (i = 0;( i < 16 & x == 0); i++){
-        if (b[i] == 1){x = i;}
-        else{quo[i] = b0;}
-        }
-      divisor = b << x;
-      x = 16 - x - 1;
-    }
-    
-    for (i = x; i < 16; i++){
-      if (divisor <= dividend){
-        dividend = dividend - divisor;
-        quo[i] = b1;
-        }
-      else if (divisor > dividend){
-        quo[i] = b0;
+    if ((divisor == 16b0) || (dividend == 16b0)){quo = 16b0;}
+    else{
+      if ((divisor[15] == 1) ^ (dividend[15] == 1)){
+        quo = dividend/divisor;
+        quo = ~quo + 1;
       }
-      divisor = divisor >> 1;
+      else if((divisor[15] == 1) & (dividend[15] == 1)){
+        divisor = ~b + 1;
+        dividend = ~a + 1;
+        quo = dividend/divisor;
+      }
+      else{quo = dividend/divisor;}
+      
     }
     div = quo;
   }

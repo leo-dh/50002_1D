@@ -5,8 +5,10 @@ module shifter (
     output shift[16]
     
   ) {
-
+    division division;
   always {
+    division.a = a;
+    division.b = b;
     case (alufn[1:0]){
     
       b00: // shift left
@@ -17,6 +19,9 @@ module shifter (
         
       b11: // shift right with sign extension
         shift = $signed(a) >>> b[3:0];
+      
+      b10: // Quotient
+        shift = division.div;       
 
       default:
         shift = a;

@@ -11,11 +11,10 @@ module adder (
   
   sig sum[17];
   sig xb[16];
-  division division;
+  
   
   always {
-    division.a = a;
-    division.b = b;
+    
     
     case (alufn[1:0]){
     
@@ -28,16 +27,12 @@ module adder (
         xb = ~b + 1; // Negation of Two's Complement
       
       b10: // Multiply
-        sum = a[7:0] * b[7:0];
+        sum = $signed(a[7:0]) * $signed(b[7:0]);
         xb = b;
-        
-      b11: // Quotient
-        sum = division.div;
-        xb = b;
-        
+              
       default:
-        sum = a + b;
-        xb = b;
+        sum = a - b;
+        xb = ~b + 1;
       
     }
     add = sum[15:0];

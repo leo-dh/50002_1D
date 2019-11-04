@@ -2,27 +2,30 @@ module alufsmtester (
     input clk,  // clock
     input rst,  // reset
     input io_button[5],
+    input io_dip[3][8],
     output io_led[3][8],
     output io_seg[8],
     output io_sel[4]
   ) {
   sig a[16];
   sig b[16];
-  sig led[2][8];
+  sig s[16];
+  
   alu alu;
   .clk(clk) {
     .rst (rst){
-      fsm state = {START,ADD1,ADD2,SUB1,SUB2,AND,OR,XOR,A,SHL,SHR,SRA,CMPEQ,CMPLT,CMPLE,CMPERR,MUL,DIV,PASS,FAIL};
+      fsm state = {START,BUFFER,ADD1,ADD2,SUB1,SUB2,AND,OR,XOR,A,SHL,SHR,SRA,CMPEQ,CMPLT,CMPLE,CMPERR,MUL,DIV,PASS,FAIL};
       delaycounter delay;
       multi_seven_seg seg;
+      dff led[2][8];
       
           }
   }
   always {
     a = 16b0;
     b = 16b0;
-    led = {8b0, 8b0};
-    io_led = {8b0,8b0,8b0};
+    s = 16b0;
+    io_led[1:0] = led.q;
     seg.values = {5d0, 5d0, 5d0, 5d0};
     io_seg = ~seg.seg; 
     io_sel = ~seg.sel;
@@ -33,7 +36,12 @@ module alufsmtester (
     case (state.q){
       
       state.START:
-        if (io_button[1]){state.d = state.ADD1;}
+        led.d = {8b0, 8b0};
+        if (io_button[1]){state.d = state.BUFFER;}
+        
+      state.BUFFER:
+        led.d = {8b0, 8b0};
+        if (delay.timepassed == 1){state.d = state.ADD1;}
         
       state.ADD1: // 12345 + 456
         alu.a = 16b0011000000111001;
@@ -42,10 +50,9 @@ module alufsmtester (
 
         if (alu.s == 16b0011001000000001){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[0][0] = 1;
-          led[0][0] = 1;
+          led.d[0][0] = 1;          
         }
-        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}                
         if (delay.timepassed == 1){
           seg.values = {5d0, 5d0, 5d0, 5d0};
           state.d = state.ADD2;
@@ -55,11 +62,12 @@ module alufsmtester (
         alu.a = 16b0111111111111111;
         alu.b = 16b0000000000000001;
         alu.alufn = 6b000000;
-        
-        if (alu.s == 16b1000000000000000 & alu.n == 1){
+        s = alu.s;
+        if (io_dip[0][0] == 1){s = s + 1;}
+        if (s == 16b1000000000000000 & alu.n == 1){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[0][1] = 1;
-          led[0][1] = 1;
+          led.d[0][1] = 1;
+                
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -74,8 +82,8 @@ module alufsmtester (
         
         if (alu.s == 16b0000000000000000 & alu.z == 1){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[0][2] = 1;
-          led[0][2] = 1;
+          led.d[0][2] = 1;
+          
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -88,10 +96,10 @@ module alufsmtester (
         alu.b = 16b1011111111111111;
         alu.alufn = 6b000001;
         
-        if (alu.s == 16b0000000000000001 & alu.v == 1){
+        if (alu.s == 16b1000000000000001 & alu.v == 1){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[0][3] = 1;
-          led[0][3] = 1;
+          led.d[0][3] = 1;
+          
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -105,9 +113,8 @@ module alufsmtester (
         alu.alufn = 6b011000;
         
         if (alu.s == 16b0000000000000000){
-          seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[0][4] = 1;
-          led[0][4] = 1;
+          seg.values = {5d14, 5d11, 5d5, 5d5};          
+          led.d[0][4] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -122,8 +129,7 @@ module alufsmtester (
         
         if (alu.s == 16b1111111111111111){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[0][5] = 1;
-          led[0][5] = 1;
+          led.d[0][5] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -138,8 +144,7 @@ module alufsmtester (
         
         if (alu.s == 16b1111111111111110){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[0][6] = 1;
-          led[0][6] = 1;
+          led.d[0][6] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -154,8 +159,7 @@ module alufsmtester (
         
         if (alu.s == 16b0100000000000000){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[0][7] = 1;
-          led[0][7] = 1;
+          led.d[0][7] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -170,8 +174,7 @@ module alufsmtester (
         
         if (alu.s == 16b0000101001000000){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[1][0] = 1;
-          led[1][0] = 1;
+          led.d[1][0] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -186,8 +189,7 @@ module alufsmtester (
         
         if (alu.s == 16b0000100000101001){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[1][1] = 1;
-          led[1][1] = 1;
+          led.d[1][1] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -202,8 +204,7 @@ module alufsmtester (
         
         if (alu.s == 16b1111111100000101){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[1][2] = 1;
-          led[1][2] = 1;
+          led.d[1][2] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -218,8 +219,7 @@ module alufsmtester (
         
         if (alu.s == 16b1){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[1][3] = 1;
-          led[1][3] = 1;
+          led.d[1][3] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -234,8 +234,7 @@ module alufsmtester (
         
         if (alu.s == 16b0){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[1][4] = 1;
-          led[1][4] = 1;
+          led.d[1][4] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -250,8 +249,7 @@ module alufsmtester (
         
         if (alu.s == 16b1){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[1][5] = 1;
-          led[1][5] = 1;
+          led.d[1][5] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -266,8 +264,7 @@ module alufsmtester (
         
         if (alu.s == 16b0011011101010000){
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[1][6] = 1;
-          led[1][6] = 1;
+          led.d[1][6] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -278,28 +275,28 @@ module alufsmtester (
       state.DIV:
         alu.a = 16b0000000001111101; // 125
         alu.b = 16b100; // 4
-        alu.alufn = 6b000011; 
+        alu.alufn = 6b100010; 
         
         if (alu.s == 16b0000000000011111){ // 31
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          io_led[1][7] = 1;
-          led[1][7] = 1;
+          led.d[1][7] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
           seg.values = {5d0, 5d0, 5d0, 5d0};
-          if (&led == 1){state.d = state.PASS;}
+          if (&led.q == 1){state.d = state.PASS;}
           else {state.d = state.FAIL;}
         }
       
       state.PASS:
         seg.values = {5d14, 5d11, 5d5, 5d5};
         io_led[1:0] = {8b0, 8b0};
+        led.d = {8b0, 8b0};
         if (io_button[1]){state.d = state.START;}
         
       state.FAIL:
         seg.values = {5d10, 5d11, 5d12, 5d13}; 
-        io_led[1:0] = ~led;
+        io_led[1:0] = ~led.q;
         if (io_button[1]){state.d = state.START;}
         
               
