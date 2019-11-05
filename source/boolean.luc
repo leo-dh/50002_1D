@@ -16,6 +16,14 @@ module boolean (
         boole = a ^ b;
       b1010: // A
         boole = a;
+      b0111: // NAND
+        boole = ~(a & b);
+      b0001: // NOR
+        boole = ~(a | b);
+      b1001: // XNOR
+        boole = ~(a ^ b);
+      b0101: // B
+        boole = b;
       default:
         boole = 16b0;      
     }

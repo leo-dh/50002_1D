@@ -13,10 +13,10 @@ module alufsmtester (
   alu alu; // instantiate 16bit alu 
   .clk(clk) {
     .rst (rst){
-      fsm state = {START,BUFFER,ADD1,ADD2,SUB1,SUB2,AND,OR,XOR,A,SHL,SHR,SRA,CMPEQ,CMPLT,CMPLE,CMPERR,MUL,QUO,PASS,FAIL};
+      fsm state = {START,BUFFER,ADD1,ADD2,SUB1,SUB2,AND,OR,XOR,A,NAND,NOR,XNOR,B,SHL,SHR,SRA,CMPEQ,CMPLT,CMPLE,CMPERR,MUL,QUO,PASS,FAIL};
       delaycounter delay; // provides a delay of around 1.34s per state
       multi_seven_seg seg;
-      dff led[2][8]; // Used to store the pass/fail status for each state
+      dff led[3][8]; // Used to store the pass/fail status for each state
       
           }
   }
@@ -24,7 +24,7 @@ module alufsmtester (
     
     s = 16b0;
     
-    io_led[1:0] = led.q;
+    io_led = led.q;
     seg.values = {5d20, 5d20, 5d20, 5d20};
     io_seg = ~seg.seg; 
     io_sel = ~seg.sel;
@@ -40,12 +40,12 @@ module alufsmtester (
     case (state.q){
       
       state.START:
-        led.d = {8b0, 8b0};
+        led.d = {8b0, 8b0, 8b0};
         seg.values = {5d11, 5d20, 5d20, 5d20}; 
         if (io_button[1]){state.d = state.BUFFER;}
         
       state.BUFFER:
-        led.d = {8b0, 8b0};
+        led.d = {8b0, 8b0, 8b0};
         seg.values = {5d11, 5d20, 5d20, 5d20};
         if (delay.timepassed == 1){state.d = state.ADD1;}
         
@@ -159,6 +159,62 @@ module alufsmtester (
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
+          state.d = state.NAND;
+        }
+        
+      state.NAND:
+        alu.a = 16b0100000000000000; // 16384
+        alu.b = 16b1011111111111111; // -16385
+        alu.alufn = 6b010111; // OPCODE for NAND
+        
+        if (alu.s == 16b1111111111111111){ // Result in 1 for the ith bit
+          seg.values = {5d14, 5d11, 5d5, 5d5};          
+          led.d[1][0] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          state.d = state.NOR;
+        }
+      
+      state.NOR:
+        alu.a = 16b0100000000000000; // 16384
+        alu.b = 16b1011111111111111; // -16385
+        alu.alufn = 6b010001; // OPCODE for NOR
+        
+        if (alu.s == 16b0000000000000000){ // Result in 0 for the ith bit
+          seg.values = {5d14, 5d11, 5d5, 5d5};          
+          led.d[1][1] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          state.d = state.XNOR;
+        }
+      
+      state.XNOR:
+        alu.a = 16b0100000000000001; // 16385
+        alu.b = 16b1011111111111111; // -16385
+        alu.alufn = 6b011001; // OPCODE for XNOR
+        
+        if (alu.s == 16b0000000000000001){ // Result in 1 for the 0th bit since A[0] is the same as B[0]
+          seg.values = {5d14, 5d11, 5d5, 5d5};          
+          led.d[1][2] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
+          state.d = state.B;
+        }
+        
+      state.B:
+        alu.a = 16b0100000000000000; // 16384
+        alu.b = 16b1011111111111111; // -16385
+        alu.alufn = 6b010101; // OPCODE for "B"
+        
+        if (alu.s == 16b1011111111111111){ // Returns B
+          seg.values = {5d14, 5d11, 5d5, 5d5};
+          led.d[1][3] = 1;
+        }
+        else{seg.values = {5d10, 5d11, 5d12, 5d13};}
+        if (delay.timepassed == 1){
           state.d = state.SHL;
         }
         
@@ -169,7 +225,7 @@ module alufsmtester (
         
         if (alu.s == 16b0000101001000000){ // 2624; A is shifted to the left by 3 bits
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          led.d[1][0] = 1;
+          led.d[1][4] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -183,7 +239,7 @@ module alufsmtester (
         
         if (alu.s == 16b0000100000101001){ // 2089; A is shifted to the right by 3 bits
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          led.d[1][1] = 1;
+          led.d[1][5] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -197,7 +253,7 @@ module alufsmtester (
         
         if (alu.s == 16b1111111100000101){ // -251; A is shifted right by 6 bits with sign extension
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          led.d[1][2] = 1;
+          led.d[1][6] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -211,7 +267,7 @@ module alufsmtester (
         
         if (alu.s == 16b1){ // Output will be true since both values are the same
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          led.d[1][3] = 1;
+          led.d[1][7] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -225,7 +281,7 @@ module alufsmtester (
         
         if (alu.s == 16b0){ // Output will be false since b is not less than a
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          led.d[1][4] = 1;
+          led.d[2][0] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -239,7 +295,7 @@ module alufsmtester (
         
         if (alu.s == 16b1){ // Output will be true since b is less than or equals to a
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          led.d[1][5] = 1;
+          led.d[2][1] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -253,7 +309,7 @@ module alufsmtester (
         
         if (alu.s == 16b0011011101010000){ // 14160;
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          led.d[1][6] = 1;
+          led.d[2][2] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
@@ -267,22 +323,23 @@ module alufsmtester (
         
         if (alu.s == 16b0000000000011111){ // 31
           seg.values = {5d14, 5d11, 5d5, 5d5};
-          led.d[1][7] = 1;
+          led.d[2][3] = 1;
         }
         else{seg.values = {5d10, 5d11, 5d12, 5d13};}
         if (delay.timepassed == 1){
-          if (&led.q == 1){state.d = state.PASS;} // If all the leds are lit -> all states passed
+          if ((&led.q[1:0] == 1) & (&led.q[2][3:0] == 1)){state.d = state.PASS;} // If all the leds are lit -> all states passed
           else {state.d = state.FAIL;} // If some of the leds are not lit up -> some states failed
         }
       
       state.PASS:
         seg.values = {5d14, 5d11, 5d5, 5d5};
-        led.d = {8b0, 8b0};
+        led.d = {8b0, 8b0, 8b0};
         if (io_button[1]){state.d = state.START;} // Resets the state machine to the start
         
       state.FAIL:
         seg.values = {5d10, 5d11, 5d12, 5d13}; 
-        io_led[1:0] = ~led.q; // Whichever state that failed will be indicated by the led
+        io_led[1:0] = ~(led.q[1:0]); // Whichever state that failed will be indicated by the led
+        io_led[2][3:0] = ~(led.q[2][3:0]);
         if (io_button[1]){state.d = state.START;} // Resets the state machine to the start
         
               
