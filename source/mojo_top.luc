@@ -77,21 +77,21 @@ module mojo_top (
     
       state.MANUAL: // Input value of A and B
         if (!io_dip[0][6]){ // Awaits for input of A
-          a[7:0] = io_dip[1]; // Assigns the value of A to the dip switches
+          a[7:0] = io_dip[1]; // Assigns the value of A with the dip switches
           a[15:8] = io_dip[2];
           if (io_button[1]){mem_a.d = a;} // Stores the value of A using a d flip flop
           if (mem_a.q == a){seg.values = {5d18, 5d20, 5d20, 5d11};} // -A; indicates if the stored value is the same as the dip switches 
           else{seg.values = {5d20, 5d20, 5d20, 5d11};} // A; indicates whether the current input is A or B
           }
         else { // Awaits for input of B
-          b[7:0] = io_dip[1]; // Assigns the value of B to the dip switches
+          b[7:0] = io_dip[1]; // Assigns the value of B with the dip switches
           b[15:8] = io_dip[2];
           if (io_button[1]){mem_b.d = b;} // Stores the value of B using a d flip flop
           if (mem_b.q == b){seg.values = {5d18, 5d20, 5d20, 5d17};}// -b; indicates if the stored value is the same as the dip switches 
           else{seg.values = {5d20, 5d20, 5d20, 5d17};} // b; indicates whether the current input is A or B
           }
         if (button4press.out){
-          alufn = io_dip[0][5:0]; // Assigns the value of ALUFN to the dip switches
+          alufn = io_dip[0][5:0]; // Assigns the value of ALUFN with the dip switches
           mem_alufn.d = alufn; // Stores the value of ALUFN using a d flip flop
           state.d = state.RESULT;
           }
