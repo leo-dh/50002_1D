@@ -9,7 +9,7 @@ module adder (
     output n
   ) {
   
-  sig sum[17];
+  sig sum[17]; // Required since adding two 16bit nums will result in a 17bit 
   sig xb[16];
   
   
@@ -24,7 +24,7 @@ module adder (
       
       b01: // Subtract
         sum = a - b;
-        xb = ~b + 1; // Negation of Two's Complement
+        xb = ~b + 1; // Two's Complement Negation of b
       
       b10: // Multiply
         sum = $signed(a[7:0]) * $signed(b[7:0]);
@@ -35,10 +35,10 @@ module adder (
         xb = ~b + 1;
       
     }
-    add = sum[15:0];
+    add = sum[15:0]; // Ignores the 17th bit from the addition
     z = ~|sum; // Check if all outputs are 0
     n = sum[15]; // Check if sum is negative
-    v = ( ((a[15])&(xb[15])&(~sum[15])) | ((~a[15])&(~xb[15])&(sum[15])) ); // Check for addition overflow
+    v = ( ((a[15])&(xb[15])&(~sum[15])) | ((~a[15])&(~xb[15])&(sum[15])) ); // Check for overflow
 
   }
 }

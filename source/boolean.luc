@@ -5,32 +5,19 @@ module boolean (
     
     output boole[16]
   ) {
-  
-  var i;
-  var d;
-  
-  always {
-   for (i = 0; i < 16; i++){
     
-      d = c{b[i], a[i]};
-      
-      case (d){
-      
-        b00: 
-          boole[i] = alufn[0];
-          
-        b01:
-          boole[i] = alufn[1];
-          
-        b10:
-          boole[i] = alufn[2];
-          
-        b11:
-          boole[i] = alufn[3];
-          
-        default:
-          boole[i] = b0;
-        }    
+  always {
+     case (alufn[3:0]){
+      b1000: // AND
+        boole = a & b;
+      b1110: // OR 
+        boole = a | b;
+      b0110: // XOR
+        boole = a ^ b;
+      b1010: // A
+        boole = a;
+      default:
+        boole = 16b0;      
     }
   }
 }

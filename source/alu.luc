@@ -9,14 +9,15 @@ module alu (
     output n
     
   ) {
-  
+  // Instantiate the 4 required modules
   shifter shifter;
   compare compare;
   boolean boolean;
   adder adder;
 
   always {
-  
+    
+    // Assigning the inputs of the modules
     adder.a = a;
     adder.b = b;
     adder.alufn = alufn;
@@ -34,15 +35,11 @@ module alu (
     boolean.b = b;
     boolean.alufn = alufn;
     
-    z = 0;
-    v = 0;
-    n = 0;
+    
+    // Assigning output s of the alu based on the OPCODE
     case (alufn[5:4]){
       b00:
         s = adder.add;
-        z = adder.z;
-        v = adder.v;
-        n = adder.n;
       b01:
         s = boolean.boole;
       b10:
@@ -50,9 +47,13 @@ module alu (
       b11:
         s = compare.comp;      
       default:
-        s = 16b0;
-        
-    }    
+        s = 16b0;        
+    }
+    
+    // Assigning output z,v,n of the alu
+    z = adder.z;
+    v = adder.v;
+    n = adder.n;    
     
     
     
