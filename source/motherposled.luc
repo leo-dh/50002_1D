@@ -1,0 +1,30 @@
+module motherposled (
+    input position[16],
+    output led[8]
+  ) {
+
+  always {
+    case (position){    
+      d0:
+        led = 8b00000001;
+      d1:
+        led = 8b00000010;
+      d2:
+        led = 8b00000100;
+      d3:
+        led = 8b00001000;
+      d4:
+        led = 8b00010000;
+      d5:
+        led = 8b00100000;
+      d6:
+        led = 8b01000000;
+      d7:
+        led = 8b10000000;
+      d8:
+        led = 8b11111111;
+      default:
+        led = 8b0;
+    }
+  }
+}

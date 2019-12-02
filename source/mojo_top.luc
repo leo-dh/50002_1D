@@ -1,0 +1,212 @@
+module mojo_top (
+    input clk,              // 50MHz clock
+    input rst_n,            // reset button (active low)
+    output led [8],         // 8 user controllable LEDs
+    input cclk,             // configuration clock, AVR ready when high
+    output spi_miso,        // AVR SPI MISO
+    input spi_ss,           // AVR SPI Slave Select
+    input spi_mosi,         // AVR SPI MOSI
+    input spi_sck,          // AVR SPI Clock
+    output spi_channel [4], // AVR general purpose pins (used by default to select ADC channel)
+    input avr_tx,           // AVR TX (FPGA RX)
+    output avr_rx,          // AVR RX (FPGA TX)
+    input avr_rx_busy,    // AVR RX buffer full
+    input buttona,
+    input buttonb,
+    input buttonc,
+    input buttonadd,
+    input buttonsub,
+    input buttonmul,
+    input buttondiv,
+    
+    output operator1[4],
+    output operator2[4],
+    
+    output sevenseg_a[7],
+    output sevenseg_b[7],
+    output sevenseg_c[7],
+    output sevenseg_d[7],
+    output equalled,
+    output motherled[8],
+    output billyled[7]
+  ) {
+  
+  sig rst;
+  sig gameend;                  // reset signal
+
+  
+  .clk(clk) {
+    // The reset conditioner is used to synchronize the reset signal to the FPGA
+    // clock. This ensures the entire FPGA comes out of reset at the same time.
+    reset_conditioner reset_cond;
+    button_cond button_cond;
+    
+    dff counter[28];
+    dff timer[28];   
+    .rst(rst){
+      fsm state = {IDLE, SIMPLEMODE, HARDMODE};
+      simplemode simplemode;
+      hardmode hardmode;     
+    }
+  }
+  seven_seg seven_seg_a;
+  seven_seg seven_seg_b;
+  seven_seg seven_seg_c;
+  seven_seg seven_seg_d;
+  operatorled operator1led;
+  operatorled operator2led;
+  
+  motherposled motherposled;
+  billyposled billyposled;
+  alu alu;
+  always {
+    reset_cond.in = ~rst_n; // input raw inverted reset signal
+    rst = reset_cond.out;   // conditioned reset
+    
+    led = 8h00;             // turn LEDs off
+    spi_miso = bz;          // not using SPI
+    spi_channel = bzzzz;    // not using flags
+    avr_rx = bz;            // not using serial port
+    
+    operator1led.opcode = 6b111111;
+    operator2led.opcode = 6b111111;
+    
+    operator1 = operator1led.led;
+    operator2 = operator2led.led;
+    equalled = 0;
+    
+    gameend = 0;
+    
+    seven_seg_a.char = d20;
+    seven_seg_b.char = d20;
+    seven_seg_c.char = d20;
+    seven_seg_d.char = d20;
+    sevenseg_a = seven_seg_a.seg;
+    sevenseg_b = seven_seg_b.seg;
+    sevenseg_c = seven_seg_c.seg;
+    sevenseg_d = seven_seg_d.seg;
+    
+    motherposled.position = d9;
+    billyposled.position = d0;
+
+    button_cond.buttona = buttona;
+    button_cond.buttonb = buttonb;
+    button_cond.buttonc = buttonc;
+    button_cond.buttonadd = buttonadd;
+    button_cond.buttonsub = buttonsub;
+    button_cond.buttonmul = buttonmul;
+    button_cond.buttondiv = buttondiv;
+    
+    motherled = motherposled.led;
+    billyled = billyposled.led;
+    
+    simplemode.buttona = 0;
+    simplemode.buttonadd = 0;
+    simplemode.buttonsub = 0;
+    simplemode.buttonmul = 0;
+    simplemode.buttondiv = 0;
+    simplemode.aluout = 0;
+    
+    hardmode.buttona = 0;
+    hardmode.buttonb = 0;
+    hardmode.buttonc = 0;
+    hardmode.buttonadd = 0;
+    hardmode.buttonsub = 0;
+    hardmode.buttondiv = 0;
+    hardmode.buttonmul = 0;
+    hardmode.aluout = 0;
+    
+    counter.d = counter.q;
+    timer.d = timer.q + 1;
+    
+    alu.a = d0;
+    alu.b = d0;
+    alu.alufn = 6b000000;
+    
+    
+    case (state.q){
+      state.IDLE:
+        if (timer.q == d100000000){
+          counter.d = counter.q + 1;
+          timer.d = 0;
+        }
+        if (counter.q == d9){
+          counter.d = 0;
+        }
+        
+        seven_seg_a.char = counter.q;
+        seven_seg_b.char = counter.q;
+        seven_seg_c.char = counter.q;
+        seven_seg_d.char = counter.q;
+
+        simplemode.buttona = buttona;
+        hardmode.buttonc = buttonc;
+        if (button_cond.buttonaout == 1){
+          state.d = state.SIMPLEMODE;
+        }
+        if (button_cond.buttoncout == 1){
+          state.d = state.HARDMODE;
+        }
+        
+      state.SIMPLEMODE:
+        simplemode.buttona = button_cond.buttonaout;
+        simplemode.buttonadd = button_cond.buttonaddout;
+        simplemode.buttonsub = button_cond.buttonsubout;
+        simplemode.buttonmul = button_cond.buttonmulout;
+        simplemode.buttondiv = button_cond.buttondivout;
+        simplemode.aluout = alu.s;
+        alu.a = simplemode.alua;
+        alu.b = simplemode.alub;
+        alu.alufn = simplemode.alualufn;
+        
+        gameend = simplemode.gameend;
+        motherposled.position = simplemode.motherpos;
+        billyposled.position = simplemode.billypos;
+        seven_seg_a.char = simplemode.a_out;
+        seven_seg_b.char = simplemode.b_out;
+        seven_seg_c.char = simplemode.c_out;
+        seven_seg_d.char = simplemode.d_out;
+        
+        operator1led.opcode = simplemode.operator_sig;
+        
+        
+        
+        
+        if (gameend == 1){
+          state.d = state.IDLE;
+        }
+        
+      state.HARDMODE:
+        hardmode.buttona = button_cond.buttonaout;
+        hardmode.buttonb = button_cond.buttonbout;
+        hardmode.buttonc = button_cond.buttoncout;
+        hardmode.buttonadd = button_cond.buttonaddout;
+        hardmode.buttonsub = button_cond.buttonsubout;
+        hardmode.buttondiv = button_cond.buttondivout;
+        hardmode.buttonmul = button_cond.buttonmulout;
+        hardmode.aluout = alu.s;
+        alu.a = hardmode.alua;
+        alu.b = hardmode.alub;
+        alu.alufn = hardmode.alualufn;
+        
+        gameend = hardmode.gameend;
+        motherposled.position = hardmode.motherpos;
+        billyposled.position = hardmode.billypos;
+        seven_seg_a.char = hardmode.a_out;
+        seven_seg_b.char = hardmode.b_out;
+        seven_seg_c.char = hardmode.c_out;
+        seven_seg_d.char = hardmode.d_out;
+        operator1led.opcode = hardmode.operator1_out;
+        operator2led.opcode = hardmode.operator2_out;
+        
+        
+        
+        if (gameend == 1){
+          state.d = state.IDLE;
+    }
+
+  }
+  
+  
+}
+}

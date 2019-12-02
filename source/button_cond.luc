@@ -1,0 +1,57 @@
+module button_cond (
+    input clk,  // clock
+    input buttona,
+    input buttonb,
+    input buttonc,
+    input buttonadd,
+    input buttonsub,
+    input buttonmul,
+    input buttondiv,
+    
+    output buttonaout,
+    output buttonbout,
+    output buttoncout,
+    output buttonaddout,
+    output buttonsubout,
+    output buttonmulout,
+    output buttondivout
+  ) {
+  .clk (clk) {
+    edge_detector edge_detectora(#RISE(0),#FALL(1));
+    edge_detector edge_detectorb(#RISE(0),#FALL(1));
+    edge_detector edge_detectorc(#RISE(0),#FALL(1));
+    edge_detector edge_detectoradd(#RISE(0),#FALL(1));
+    edge_detector edge_detectorsub(#RISE(0),#FALL(1));
+    edge_detector edge_detectormul(#RISE(0),#FALL(1));
+    edge_detector edge_detectordiv(#RISE(0),#FALL(1));
+    
+    button_conditioner button_conda(.in(buttona));
+    button_conditioner button_condb(.in(buttonb));
+    button_conditioner button_condc(.in(buttonc));
+    button_conditioner button_condadd(.in(buttonadd));
+    button_conditioner button_condsub(.in(buttonsub));
+    button_conditioner button_condmul(.in(buttonmul));
+    button_conditioner button_conddiv(.in(buttondiv));
+    
+    
+  }
+  always {
+    edge_detectora.in = button_conda.out;
+    edge_detectorb.in = button_condb.out;
+    edge_detectorc.in = button_condc.out;
+    edge_detectoradd.in = button_condadd.out;
+    edge_detectorsub.in = button_condsub.out;
+    edge_detectormul.in = button_condmul.out;
+    edge_detectordiv.in = button_conddiv.out;
+    
+    buttonaout = edge_detectora.out;
+    buttonbout = edge_detectorb.out;
+    buttoncout = edge_detectorc.out;
+    buttonaddout = edge_detectoradd.out;
+    buttonsubout = edge_detectorsub.out;
+    buttonmulout = edge_detectormul.out;
+    buttondivout = edge_detectordiv.out;
+
+    
+  }
+}

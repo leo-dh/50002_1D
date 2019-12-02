@@ -1,0 +1,40 @@
+module mother (
+    input clk,  // clock
+    input rst,  // reset
+    input difficulty[2],
+    input writeenable,
+    input writevalue[16],
+    output pos[16]
+    
+  ) {
+  .clk (clk){
+    .rst (rst){
+    dff motherposition[16];
+    dff timer[30];
+    }
+  }
+  always {
+    
+    case (difficulty){
+      b01:
+        timer.d = timer.q + 1;
+        if (timer.q == d400000000){ // 8s delay
+          timer.d = 0;
+          motherposition.d = motherposition.q + 1;          
+        }
+      b10:
+        timer.d = timer.q + 1;
+        if (timer.q == d200000000){ // 4s delay
+          timer.d = 0;
+          motherposition.d = motherposition.q + 1;
+        }
+      default:
+        timer.d = 0;
+    }
+    if (writeenable == 1){
+      motherposition.d = writevalue;
+      timer.d = timer.q;
+    }    
+    pos = motherposition.q;
+  }
+}

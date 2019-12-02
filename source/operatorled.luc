@@ -1,0 +1,26 @@
+module operatorled (
+    input opcode[6],
+    output led[4]
+  ) {
+  const ADD = 6b000000;
+  const SUB = 6b000001;
+  const MUL = 6b000010;
+  const DIV = 6b100010;
+  
+  always {
+    case (opcode){
+      ADD:
+        led = 4b0001;
+      SUB:
+        led = 4b0010;      
+      MUL:
+        led = 4b0100;      
+      DIV:
+        led = 4b1000;
+      
+      default:
+        led = 4b0;
+      
+    }
+  }
+}

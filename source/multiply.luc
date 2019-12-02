@@ -1,0 +1,16 @@
+module multiply (
+    input a[16],
+    input b[16],
+    
+    
+    output mul[16]    
+  ) {
+  
+  
+
+  always {
+  
+    mul = $signed(a[7:0]) * $signed(b[7:0]);
+    
+  }
+}

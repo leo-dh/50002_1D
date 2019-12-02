@@ -1,0 +1,25 @@
+module compare (
+    input z,
+    input v,
+    input n,
+    input alufn[6],
+    
+    output comp[16]
+  ) {
+  sig cmp;
+  always {
+    case (alufn[2:1]){
+      b01: // CMPEQ
+        cmp = z;
+      b10: // CMPLT
+        cmp = n ^ v;
+      b11: // CMPLE
+        cmp = z | ( n ^ v );
+      default:
+        cmp = b0;
+      
+    }
+    comp[15:1] = 15b0;
+    comp[0] = cmp;
+  }
+}

@@ -1,0 +1,20 @@
+module seven_seg_tester (
+    input char[7],
+    output segs[7]
+  ) {
+
+  always {
+    case (char) {
+      7b0000001: segs = 7b0000001; // 0
+      7b0000010: segs = 7b0000010; // 1
+      7b0000100: segs = 7b0000100; // 2
+      7b0001000: segs = 7b0001000; // 3
+      7b0010000: segs = 7b0010000; // 4
+      7b0100000: segs = 7b0100000; // 5
+      7b1000000: segs = 7b1000000; // 6
+
+
+      default: segs = 7b1111111;
+    }
+  }
+}

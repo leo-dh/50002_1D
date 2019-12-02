@@ -1,0 +1,27 @@
+module registers #(
+    BITS=16
+    )(
+    input clk,  // clock
+    input rst,  // reset
+    input writeenable,
+    input writevalue[BITS],
+    output readvalue[BITS]
+    
+  ) {
+  .clk (clk){
+    .rst (rst){
+      dff reg[BITS];
+    }
+  }
+
+  always {
+    readvalue = reg.q;
+    if (writeenable == 1){
+      reg.d = writevalue;
+    }
+    else{
+      reg.d = reg.q;
+    }
+    
+  }
+}

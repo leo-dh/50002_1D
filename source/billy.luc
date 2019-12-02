@@ -1,0 +1,24 @@
+module billy (
+    input clk,  // clock
+    input rst,  // reset
+    input writeenable,
+    input writevalue[16],
+    output pos[16]
+  ) {
+  
+  .clk (clk){
+    .rst (rst){
+    dff billyposition[16];   
+    }
+  }
+
+  always {
+    if (writeenable == 1){
+      billyposition.d = writevalue;
+    }
+    else{
+      billyposition.d = billyposition.q;
+    }  
+    pos = billyposition.q;
+  }
+}
