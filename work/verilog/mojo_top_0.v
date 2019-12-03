@@ -304,7 +304,7 @@ module mojo_top_0 (
           M_counter_d = M_counter_q + 1'h1;
           M_timer_d = 1'h0;
         end
-        if (M_counter_q == 4'h9) begin
+        if (M_counter_q == 4'ha) begin
           M_counter_d = 1'h0;
         end
         M_seven_seg_a_char = M_counter_q;

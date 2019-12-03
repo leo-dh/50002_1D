@@ -18,7 +18,7 @@ module mother (
     case (difficulty){
       b01:
         timer.d = timer.q + 1;
-        if (timer.q == d400000000){ // 8s delay
+        if (timer.q == d350000000){ // 7s delay
           timer.d = 0;
           motherposition.d = motherposition.q + 1;          
         }

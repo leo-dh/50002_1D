@@ -18,6 +18,8 @@ module seven_seg (
       d9: segs = 7b1101111; // 9
       d10: segs = 7b0111000; // L
       d11: segs = 7b1111001; // E
+      d12: segs = 7b1110011; // P
+      d13: segs = 7b1110111; // A
 
       default: segs = 7b0000000;
     }

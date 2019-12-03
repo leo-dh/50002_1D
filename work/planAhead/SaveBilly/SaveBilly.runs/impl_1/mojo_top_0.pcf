@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Mon Dec 02 15:33:21 2019
+// Written by: Map P.20131013 on Tue Dec 03 20:09:06 2019
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -94,21 +94,20 @@ TIMEGRP clk = BEL "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
         "M_timer_q_25" BEL "M_timer_q_26" BEL "M_timer_q_27" BEL
         "M_state_q_FSM_FFd1_1" BEL "M_state_q_FSM_FFd1_2" BEL
         "M_state_q_FSM_FFd1_3" BEL "M_state_q_FSM_FFd1_4" BEL
-        "M_state_q_FSM_FFd1_5" BEL "M_state_q_FSM_FFd1_6" BEL
         "M_state_q_FSM_FFd2_1" BEL "M_state_q_FSM_FFd2_2" BEL
-        "M_state_q_FSM_FFd2_3" BEL "M_state_q_FSM_FFd2_4" BEL
-        "M_state_q_FSM_FFd2_5" BEL "M_counter_q_0" BEL "M_counter_q_1" BEL
-        "M_counter_q_2" BEL "M_counter_q_3" BEL "M_counter_q_4" BEL
-        "M_counter_q_5" BEL "M_counter_q_6" BEL "M_timer_q_0" BEL
-        "M_counter_q_7" BEL "M_timer_q_1" BEL "M_counter_q_8" BEL
-        "M_timer_q_2" BEL "M_counter_q_9" BEL "M_timer_q_3" BEL "M_timer_q_4"
-        BEL "M_timer_q_5" BEL "M_timer_q_6" BEL "M_timer_q_7" BEL
-        "button_cond/edge_detectordiv/M_last_q" BEL
+        "M_state_q_FSM_FFd2_3" BEL "M_state_q_FSM_FFd2_4" BEL "M_counter_q_0"
+        BEL "M_counter_q_1" BEL "M_counter_q_2" BEL "M_counter_q_3" BEL
+        "M_counter_q_4" BEL "M_counter_q_5" BEL "M_counter_q_6" BEL
+        "M_timer_q_0" BEL "M_counter_q_7" BEL "M_timer_q_1" BEL
+        "M_counter_q_8" BEL "M_timer_q_2" BEL "M_counter_q_9" BEL
+        "M_timer_q_3" BEL "M_timer_q_4" BEL "M_timer_q_5" BEL "M_timer_q_6"
+        BEL "M_timer_q_7" BEL "button_cond/edge_detectordiv/M_last_q" BEL
         "button_cond/edge_detectorsub/M_last_q" BEL
         "button_cond/edge_detectorb/M_last_q" BEL
         "button_cond/edge_detectorc/M_last_q" BEL
         "button_cond/edge_detectoradd/M_last_q" BEL
         "button_cond/edge_detectormul/M_last_q" BEL
+        "button_cond/button_condmul/M_ctr_q_20" BEL
         "button_cond/button_condmul/M_ctr_q_19" BEL
         "button_cond/button_condmul/M_ctr_q_18" BEL
         "button_cond/button_condmul/M_ctr_q_17" BEL
@@ -132,6 +131,7 @@ TIMEGRP clk = BEL "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
         "button_cond/button_condmul/sync/M_pipe_q_1" BEL
         "button_cond/button_condmul/sync/Mshreg_M_pipe_q_1" BEL
         "button_cond/edge_detectora/M_last_q" BEL
+        "button_cond/button_conddiv/M_ctr_q_20" BEL
         "button_cond/button_conddiv/M_ctr_q_19" BEL
         "button_cond/button_conddiv/M_ctr_q_18" BEL
         "button_cond/button_conddiv/M_ctr_q_17" BEL
@@ -154,6 +154,7 @@ TIMEGRP clk = BEL "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
         "button_cond/button_conddiv/M_ctr_q_0" BEL
         "button_cond/button_conddiv/sync/M_pipe_q_1" BEL
         "button_cond/button_conddiv/sync/Mshreg_M_pipe_q_1" BEL
+        "button_cond/button_condsub/M_ctr_q_20" BEL
         "button_cond/button_condsub/M_ctr_q_19" BEL
         "button_cond/button_condsub/M_ctr_q_18" BEL
         "button_cond/button_condsub/M_ctr_q_17" BEL
@@ -176,6 +177,7 @@ TIMEGRP clk = BEL "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
         "button_cond/button_condsub/M_ctr_q_0" BEL
         "button_cond/button_condsub/sync/M_pipe_q_1" BEL
         "button_cond/button_condsub/sync/Mshreg_M_pipe_q_1" BEL
+        "button_cond/button_condb/M_ctr_q_20" BEL
         "button_cond/button_condb/M_ctr_q_19" BEL
         "button_cond/button_condb/M_ctr_q_18" BEL
         "button_cond/button_condb/M_ctr_q_17" BEL
@@ -198,6 +200,7 @@ TIMEGRP clk = BEL "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
         "button_cond/button_condb/M_ctr_q_0" BEL
         "button_cond/button_condb/sync/M_pipe_q_1" BEL
         "button_cond/button_condb/sync/Mshreg_M_pipe_q_1" BEL
+        "button_cond/button_condc/M_ctr_q_20" BEL
         "button_cond/button_condc/M_ctr_q_19" BEL
         "button_cond/button_condc/M_ctr_q_18" BEL
         "button_cond/button_condc/M_ctr_q_17" BEL
@@ -220,6 +223,7 @@ TIMEGRP clk = BEL "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
         "button_cond/button_condc/M_ctr_q_0" BEL
         "button_cond/button_condc/sync/M_pipe_q_1" BEL
         "button_cond/button_condc/sync/Mshreg_M_pipe_q_1" BEL
+        "button_cond/button_condadd/M_ctr_q_20" BEL
         "button_cond/button_condadd/M_ctr_q_19" BEL
         "button_cond/button_condadd/M_ctr_q_18" BEL
         "button_cond/button_condadd/M_ctr_q_17" BEL
@@ -242,6 +246,7 @@ TIMEGRP clk = BEL "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
         "button_cond/button_condadd/M_ctr_q_0" BEL
         "button_cond/button_condadd/sync/M_pipe_q_1" BEL
         "button_cond/button_condadd/sync/Mshreg_M_pipe_q_1" BEL
+        "button_cond/button_conda/M_ctr_q_20" BEL
         "button_cond/button_conda/M_ctr_q_19" BEL
         "button_cond/button_conda/M_ctr_q_18" BEL
         "button_cond/button_conda/M_ctr_q_17" BEL
@@ -269,8 +274,8 @@ TIMEGRP clk = BEL "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
         "hardmode/M_timer_q_12" BEL "hardmode/M_timer_q_13" BEL
         "hardmode/M_timer_q_14" BEL "hardmode/M_timer_q_15" BEL
         "hardmode/M_timer_q_20" BEL "hardmode/M_timer_q_16" BEL
-        "hardmode/M_timer_q_21" BEL "hardmode/M_timer_q_22" BEL
-        "hardmode/M_timer_q_17" BEL "hardmode/M_timer_q_18" BEL
+        "hardmode/M_timer_q_21" BEL "hardmode/M_timer_q_17" BEL
+        "hardmode/M_timer_q_22" BEL "hardmode/M_timer_q_18" BEL
         "hardmode/M_timer_q_23" BEL "hardmode/M_timer_q_19" BEL
         "hardmode/M_timer_q_24" BEL "hardmode/M_timer_q_25" BEL
         "hardmode/M_timer_q_26" BEL "hardmode/M_timer_q_27" BEL
@@ -283,47 +288,52 @@ TIMEGRP clk = BEL "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
         "hardmode/c/M_reg_q_2" BEL "hardmode/c/M_reg_q_3" BEL
         "hardmode/d/M_reg_q_0" BEL "hardmode/d/M_reg_q_1" BEL
         "hardmode/d/M_reg_q_2" BEL "hardmode/d/M_reg_q_3" BEL
-        "hardmode/M_state_q_FSM_FFd1_1" BEL "hardmode/M_state_q_FSM_FFd1_2"
-        BEL "hardmode/M_state_q_FSM_FFd1_3" BEL
-        "hardmode/M_state_q_FSM_FFd2_1" BEL "hardmode/M_state_q_FSM_FFd2_2"
-        BEL "hardmode/M_state_q_FSM_FFd2_3" BEL
-        "hardmode/M_state_q_FSM_FFd3_1" BEL "hardmode/M_state_q_FSM_FFd3_2"
-        BEL "hardmode/M_state_q_FSM_FFd3_3" BEL
-        "hardmode/M_state_q_FSM_FFd3_4" BEL "hardmode/M_counter_q_0" BEL
-        "hardmode/M_counter_q_1" BEL "hardmode/M_timer_q_0" BEL
+        "hardmode/M_state_q_FSM_FFd10_1" BEL "hardmode/M_state_q_FSM_FFd10"
+        BEL "hardmode/M_counter_q_0" BEL "hardmode/M_state_q_FSM_FFd11" BEL
+        "hardmode/M_counter_q_1" BEL "hardmode/M_state_q_FSM_FFd12" BEL
+        "hardmode/M_state_q_FSM_FFd13" BEL "hardmode/M_state_q_FSM_FFd14" BEL
+        "hardmode/M_state_q_FSM_FFd15" BEL "hardmode/M_timer_q_0" BEL
         "hardmode/storedoperand/M_reg_q_0" BEL
         "hardmode/storedoperand/M_reg_q_1" BEL
         "hardmode/storedoperand/M_reg_q_2" BEL "hardmode/M_timer_q_1" BEL
         "hardmode/M_timer_q_2" BEL "hardmode/M_timer_q_3" BEL
-        "hardmode/M_state_q_FSM_FFd4_1" BEL "hardmode/M_timer_q_4" BEL
-        "hardmode/M_state_q_FSM_FFd4_2" BEL "hardmode/M_timer_q_5" BEL
-        "hardmode/M_state_q_FSM_FFd4_3" BEL "hardmode/M_timer_q_6" BEL
-        "hardmode/M_timer_q_7" BEL "hardmode/M_timer_q_8" BEL
-        "hardmode/M_timer_q_9" BEL "hardmode/M_state_q_FSM_FFd1" BEL
+        "hardmode/M_timer_q_4" BEL "hardmode/M_timer_q_5" BEL
+        "hardmode/M_timer_q_6" BEL "hardmode/M_timer_q_7" BEL
+        "hardmode/M_timer_q_8" BEL "hardmode/M_timer_q_9" BEL
+        "hardmode/M_state_q_FSM_FFd5_1" BEL "hardmode/M_state_q_FSM_FFd5_2"
+        BEL "hardmode/M_state_q_FSM_FFd5_3" BEL
+        "hardmode/M_state_q_FSM_FFd5_4" BEL "hardmode/M_state_q_FSM_FFd6_1"
+        BEL "hardmode/M_state_q_FSM_FFd6_2" BEL
+        "hardmode/M_state_q_FSM_FFd6_3" BEL "hardmode/M_state_q_FSM_FFd1" BEL
         "hardmode/M_state_q_FSM_FFd2" BEL "hardmode/M_state_q_FSM_FFd3" BEL
-        "hardmode/M_state_q_FSM_FFd4" BEL "hardmode/temp/M_reg_q_0" BEL
-        "hardmode/temp/M_reg_q_1" BEL "hardmode/temp/M_reg_q_2" BEL
-        "hardmode/temp/M_reg_q_3" BEL "hardmode/temp/M_reg_q_4" BEL
-        "hardmode/temp/M_reg_q_5" BEL "hardmode/temp/M_reg_q_6" BEL
-        "hardmode/temp/M_reg_q_7" BEL "hardmode/temp/M_reg_q_8" BEL
-        "hardmode/temp/M_reg_q_9" BEL "hardmode/temp/M_reg_q_10" BEL
-        "hardmode/temp/M_reg_q_11" BEL "hardmode/temp/M_reg_q_12" BEL
-        "hardmode/temp/M_reg_q_13" BEL "hardmode/temp/M_reg_q_14" BEL
-        "hardmode/temp/M_reg_q_15" BEL "hardmode/temp/M_reg_q_0_1" BEL
-        "hardmode/temp/M_reg_q_1_1" BEL "hardmode/temp/M_reg_q_2_1" BEL
+        "hardmode/M_state_q_FSM_FFd4" BEL "hardmode/M_state_q_FSM_FFd5" BEL
+        "hardmode/M_state_q_FSM_FFd6" BEL "hardmode/M_state_q_FSM_FFd7" BEL
+        "hardmode/M_state_q_FSM_FFd8" BEL "hardmode/M_state_q_FSM_FFd9" BEL
+        "hardmode/temp/M_reg_q_0" BEL "hardmode/temp/M_reg_q_1" BEL
+        "hardmode/temp/M_reg_q_2" BEL "hardmode/temp/M_reg_q_3" BEL
+        "hardmode/temp/M_reg_q_4" BEL "hardmode/temp/M_reg_q_5" BEL
+        "hardmode/temp/M_reg_q_6" BEL "hardmode/temp/M_reg_q_7" BEL
+        "hardmode/temp/M_reg_q_8" BEL "hardmode/temp/M_reg_q_9" BEL
+        "hardmode/temp/M_reg_q_10" BEL "hardmode/temp/M_reg_q_11" BEL
+        "hardmode/temp/M_reg_q_12" BEL "hardmode/temp/M_reg_q_13" BEL
+        "hardmode/temp/M_reg_q_14" BEL "hardmode/temp/M_reg_q_15" BEL
         "hardmode/temp/M_reg_q_4_1" BEL "hardmode/temp/M_reg_q_5_1" BEL
         "hardmode/temp/M_reg_q_6_1" BEL "hardmode/temp/M_reg_q_7_1" BEL
-        "hardmode/temp/M_reg_q_8_1" BEL "hardmode/temp/M_reg_q_9_1" BEL
-        "hardmode/temp/M_reg_q_10_1" BEL "hardmode/temp/M_reg_q_11_1" BEL
+        "hardmode/temp/M_reg_q_10_1" BEL "hardmode/temp/M_reg_q_15_1" BEL
         "hardmode/temp/M_reg_q_12_1" BEL "hardmode/temp/M_reg_q_13_1" BEL
-        "hardmode/temp/M_reg_q_14_1" BEL "hardmode/temp/M_reg_q_15_1" BEL
-        "hardmode/temp/M_reg_q_3_1" BEL "hardmode/temp/M_reg_q_0_2" BEL
-        "hardmode/temp/M_reg_q_1_2" BEL "hardmode/temp/M_reg_q_2_2" BEL
-        "hardmode/temp/M_reg_q_13_2" BEL "hardmode/operator1/M_reg_q_0" BEL
-        "hardmode/operator1/M_reg_q_1" BEL "hardmode/operator1/M_reg_q_2" BEL
+        "hardmode/temp/M_reg_q_14_1" BEL "hardmode/temp/M_reg_q_0_1" BEL
+        "hardmode/temp/M_reg_q_1_1" BEL "hardmode/temp/M_reg_q_2_1" BEL
+        "hardmode/temp/M_reg_q_11_1" BEL "hardmode/temp/M_reg_q_3_1" BEL
+        "hardmode/temp/M_reg_q_8_1" BEL "hardmode/temp/M_reg_q_9_1" BEL
+        "hardmode/temp/M_reg_q_0_2" BEL "hardmode/temp/M_reg_q_1_2" BEL
+        "hardmode/temp/M_reg_q_2_2" BEL "hardmode/M_state_q_FSM_FFd7_1" BEL
+        "hardmode/M_state_q_FSM_FFd7_2" BEL "hardmode/operator1/M_reg_q_0" BEL
+        "hardmode/operator1/M_reg_q_1" BEL "hardmode/operator1/M_reg_q_4" BEL
         "hardmode/operator1/M_reg_q_5" BEL "hardmode/operator2/M_reg_q_0" BEL
-        "hardmode/operator2/M_reg_q_1" BEL "hardmode/operator2/M_reg_q_2" BEL
-        "hardmode/operator2/M_reg_q_5" BEL
+        "hardmode/operator2/M_reg_q_1" BEL "hardmode/operator2/M_reg_q_4" BEL
+        "hardmode/operator2/M_reg_q_5" BEL "hardmode/operator2/M_reg_q_4_1"
+        BEL "hardmode/operator2/M_reg_q_0_1" BEL
+        "hardmode/operator2/M_reg_q_1_1" BEL
         "hardmode/billy/M_billyposition_q_0" BEL
         "hardmode/billy/M_billyposition_q_1" BEL
         "hardmode/billy/M_billyposition_q_2" BEL
@@ -461,30 +471,27 @@ TIMEGRP clk = BEL "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
         "hardmode/ctr/M_ctr_q_3" BEL "hardmode/ctr/M_ctr_q_2" BEL
         "hardmode/ctr/M_ctr_q_1" BEL "hardmode/ctr/M_ctr_q_0" PIN
         "simplemode/questiongenerator/Maddsub_randomnumber[7]_PWR_13_o_MuLt_1_OUT_pins<92>"
-        BEL "simplemode/M_state_q_FSM_FFd2_1" BEL
-        "simplemode/M_state_q_FSM_FFd2_2" BEL
-        "simplemode/M_state_q_FSM_FFd2_3" BEL "simplemode/M_timer_q_10" BEL
-        "simplemode/divoutput/M_reg_q_15" BEL "simplemode/divoutput/M_reg_q_3"
-        BEL "simplemode/divoutput/M_reg_q_2" BEL
-        "simplemode/divoutput/M_reg_q_1" BEL "simplemode/divoutput/M_reg_q_0"
-        BEL "simplemode/M_timer_q_11" BEL "simplemode/M_timer_q_12" BEL
-        "simplemode/M_timer_q_13" BEL "simplemode/M_timer_q_14" BEL
-        "simplemode/M_timer_q_20" BEL "simplemode/M_state_q_FSM_FFd3_1" BEL
-        "simplemode/M_timer_q_15" BEL "simplemode/M_timer_q_21" BEL
-        "simplemode/M_state_q_FSM_FFd3_2" BEL "simplemode/M_timer_q_16" BEL
-        "simplemode/M_state_q_FSM_FFd3_3" BEL "simplemode/M_counter_q_0" BEL
-        "simplemode/M_timer_q_17" BEL "simplemode/M_timer_q_22" BEL
-        "simplemode/M_timer_q_23" BEL "simplemode/M_counter_q_1" BEL
-        "simplemode/M_timer_q_18" BEL "simplemode/M_timer_q_19" BEL
-        "simplemode/M_timer_q_24" BEL "simplemode/M_timer_q_25" BEL
-        "simplemode/M_timer_q_26" BEL "simplemode/M_timer_q_27" BEL
-        "simplemode/M_state_q_FSM_FFd4_1" BEL "simplemode/a/M_reg_q_3" BEL
-        "simplemode/a/M_reg_q_2" BEL "simplemode/a/M_reg_q_1" BEL
-        "simplemode/a/M_reg_q_0" BEL "simplemode/b/M_reg_q_3" BEL
-        "simplemode/b/M_reg_q_2" BEL "simplemode/b/M_reg_q_1" BEL
-        "simplemode/b/M_reg_q_0" BEL "simplemode/b/M_reg_q_0_1" BEL
-        "simplemode/b/M_reg_q_1_1" BEL "simplemode/b/M_reg_q_2_1" BEL
-        "simplemode/b/M_reg_q_3_1" BEL "simplemode/b/M_reg_q_2_2" BEL
+        BEL "simplemode/M_state_q_FSM_FFd2_1" BEL "simplemode/M_timer_q_10"
+        BEL "simplemode/divoutput/M_reg_q_15" BEL
+        "simplemode/divoutput/M_reg_q_3" BEL "simplemode/divoutput/M_reg_q_2"
+        BEL "simplemode/divoutput/M_reg_q_1" BEL
+        "simplemode/divoutput/M_reg_q_0" BEL "simplemode/M_timer_q_11" BEL
+        "simplemode/M_timer_q_12" BEL "simplemode/M_timer_q_13" BEL
+        "simplemode/M_timer_q_14" BEL "simplemode/M_timer_q_20" BEL
+        "simplemode/M_state_q_FSM_FFd3_1" BEL "simplemode/M_timer_q_15" BEL
+        "simplemode/M_timer_q_21" BEL "simplemode/M_timer_q_16" BEL
+        "simplemode/M_counter_q_0" BEL "simplemode/M_timer_q_17" BEL
+        "simplemode/M_timer_q_22" BEL "simplemode/M_timer_q_23" BEL
+        "simplemode/M_counter_q_1" BEL "simplemode/M_timer_q_18" BEL
+        "simplemode/M_timer_q_19" BEL "simplemode/M_timer_q_24" BEL
+        "simplemode/M_timer_q_25" BEL "simplemode/M_timer_q_26" BEL
+        "simplemode/M_timer_q_27" BEL "simplemode/M_state_q_FSM_FFd4_1" BEL
+        "simplemode/a/M_reg_q_3" BEL "simplemode/a/M_reg_q_2" BEL
+        "simplemode/a/M_reg_q_1" BEL "simplemode/a/M_reg_q_0" BEL
+        "simplemode/b/M_reg_q_3" BEL "simplemode/b/M_reg_q_2" BEL
+        "simplemode/b/M_reg_q_1" BEL "simplemode/b/M_reg_q_0" BEL
+        "simplemode/b/M_reg_q_0_1" BEL "simplemode/b/M_reg_q_2_1" BEL
+        "simplemode/b/M_reg_q_3_1" BEL "simplemode/b/M_reg_q_1_1" BEL
         "simplemode/pn_gen/M_w_q_31" BEL "simplemode/pn_gen/M_w_q_30" BEL
         "simplemode/pn_gen/M_w_q_29" BEL "simplemode/pn_gen/M_w_q_28" BEL
         "simplemode/pn_gen/M_w_q_27" BEL "simplemode/pn_gen/M_w_q_26" BEL
@@ -621,9 +628,7 @@ TIMEGRP clk = BEL "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
         "simplemode/temp/M_reg_q_0" BEL "simplemode/operator/M_reg_q_0" BEL
         "simplemode/operator/M_reg_q_1" BEL "simplemode/operator/M_reg_q_4"
         BEL "simplemode/operator/M_reg_q_5" BEL
-        "simplemode/M_state_q_FSM_FFd1_1" BEL
-        "simplemode/M_state_q_FSM_FFd1_2" BEL
-        "simplemode/M_state_q_FSM_FFd1_3" BEL "M_counter_q_10" BEL
+        "simplemode/M_state_q_FSM_FFd1_1" BEL "M_counter_q_10" BEL
         "M_counter_q_11" BEL "M_counter_q_12" BEL "clk_BUFGP/BUFG" BEL
         "M_counter_q_13" BEL "M_counter_q_14" BEL "M_counter_q_20" BEL
         "M_counter_q_15" BEL "M_counter_q_21" BEL "M_counter_q_16" BEL

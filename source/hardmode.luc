@@ -27,7 +27,7 @@ module hardmode (
   ) {
   .clk (clk){
     .rst (rst){
-      fsm state = {IDLE,COUNTDOWN,GEN_QN,WAITINPUT,SWAPPEDINPUT1,SWAPPEDINPUT2,CALCULATE1,CALCULATE2,CALCULATE3,CHECKRESULT,CHECKMOTHERPOS,CHECKBILLYPOS,LOSE,WIN};
+      fsm state = {IDLE,COUNTDOWN,GEN_QN,WAITINPUT,SWAPPEDINPUT1,SWAPPEDINPUT2,CALCULATE1,CALCULATE2,CALCULATE3,CHECKRESULT,CHECKMOTHERPOS,CHECKBILLYPOS,DELAY,LOSE,WIN};
       dff timer[30];
       dff counter[2];
       counter ctr (#SIZE(1), #DIV(24));
@@ -118,8 +118,8 @@ module hardmode (
     c.writevalue = questiongenerator.c;
     d.writevalue = questiongenerator.d;
     temp.writevalue = temp.readvalue;
-    operator1.writevalue = operator1.readvalue;
-    operator2.writevalue = operator2.readvalue;
+    operator1.writevalue = 6b111111;
+    operator2.writevalue = 6b111111;
     storedoperand.writevalue = storedoperand.readvalue;
     tempa.writevalue = a.readvalue;
     tempb.writevalue = b.readvalue;
@@ -193,8 +193,17 @@ module hardmode (
           c.writevalue = questiongenerator.c;
           d.writevalue = questiongenerator.d;
           
+          
+        }
+        if (!(|buttonoperatorinput)){
+          operator1.writeenable = 1;
+          operator1.writevalue = 6b111111;
+          operator2.writeenable = 1;
+          operator2.writevalue = 6b111111; 
           state.d = state.WAITINPUT;
         }
+        
+        
       
       state.WAITINPUT:
         timer.d = timer.q + 1;
@@ -208,10 +217,7 @@ module hardmode (
         tempa.writevalue = questiongenerator.a;
         tempb.writevalue = questiongenerator.b;
         tempc.writevalue = questiongenerator.c;
-        operator1.writeenable = 1;
-        operator1.writevalue = 6b111111;
-        operator2.writeenable = 1;
-        operator2.writevalue = 6b111111;
+        
         
         if (mother.pos == billy.pos){
           state.d = state.CHECKMOTHERPOS;
@@ -222,6 +228,8 @@ module hardmode (
           state.d = state.SWAPPEDINPUT1;
         }
         if (^buttonoperatorinput){
+          operator1.writeenable = 1;
+          operator2.writeenable = 1;
           case (buttonoperatorinput){
             b1000:
               operator1.writevalue = DIV;
@@ -417,6 +425,14 @@ module hardmode (
           state.d = state.WIN;
         }
         else {
+          state.d = state.DELAY;
+        }
+      
+      state.DELAY:
+        timer.d = 0;
+        mother.writeenable = 1;
+        mother.difficulty = b11;
+        if (!(|buttonoperatorinput)){
           state.d = state.GEN_QN;
         }
       
@@ -432,10 +448,10 @@ module hardmode (
       state.WIN:
         timer.d = timer.q + 1;
         mother.writeenable = 1;
-        a_out = d8;
-        b_out = d8;
-        c_out = d8;
-        d_out = d8;
+        a_out = d12;
+        b_out = d13;
+        c_out = d5;
+        d_out = d5;
         
         // do something
         if (timer.q == d150000000){

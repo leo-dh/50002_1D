@@ -26,7 +26,7 @@ module mother_29 (
     case (difficulty)
       2'h1: begin
         M_timer_d = M_timer_q + 1'h1;
-        if (M_timer_q == 29'h17d78400) begin
+        if (M_timer_q == 29'h14dc9380) begin
           M_timer_d = 1'h0;
           M_motherposition_d = M_motherposition_q + 1'h1;
         end

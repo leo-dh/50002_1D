@@ -26,7 +26,7 @@ module simplemode (
     .rst (rst){
       fsm state = {IDLE,COUNTDOWN,GEN_QN,WAITINPUT,CHECKINPUT,CHECKINPUT2,CHECKMOTHERPOS,CHECKBILLYPOS,LOSE,WIN};
       dff timer[28];
-      dff counter[2];
+      dff counter[2];      
       pn_gen pn_gen;
       mother mother;
       billy billy;
@@ -49,7 +49,7 @@ module simplemode (
   const MUL = 6b000010;
   const DIV = 6b100010;
   const CMPEQ = 6b110011;
-  const WINCON = d14;
+  const WINCON = d7;
   
   always {
     gameend = 0;
@@ -253,10 +253,10 @@ module simplemode (
       state.WIN:
         timer.d = timer.q + 1;
         mother.writeenable = 1;
-        a_out = d8;
-        b_out = d8;
-        c_out = d8;
-        d_out = d8;
+        a_out = d12;
+        b_out = d13;
+        c_out = d5;
+        d_out = d5;
         
         // do something
         if (timer.q == d100000000){

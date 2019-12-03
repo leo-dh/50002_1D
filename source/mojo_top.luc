@@ -130,10 +130,10 @@ module mojo_top (
           counter.d = counter.q + 1;
           timer.d = 0;
         }
-        if (counter.q == d9){
+        if (counter.q == d10){
           counter.d = 0;
-        }
-        
+        } 
+       
         seven_seg_a.char = counter.q;
         seven_seg_b.char = counter.q;
         seven_seg_c.char = counter.q;

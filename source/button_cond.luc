@@ -25,13 +25,13 @@ module button_cond (
     edge_detector edge_detectormul(#RISE(0),#FALL(1));
     edge_detector edge_detectordiv(#RISE(0),#FALL(1));
     
-    button_conditioner button_conda(.in(buttona));
-    button_conditioner button_condb(.in(buttonb));
-    button_conditioner button_condc(.in(buttonc));
-    button_conditioner button_condadd(.in(buttonadd));
-    button_conditioner button_condsub(.in(buttonsub));
-    button_conditioner button_condmul(.in(buttonmul));
-    button_conditioner button_conddiv(.in(buttondiv));
+    button_conditioner button_conda(.in(buttona), #MIN_DELAY(40));
+    button_conditioner button_condb(.in(buttonb), #MIN_DELAY(40));
+    button_conditioner button_condc(.in(buttonc), #MIN_DELAY(40));
+    button_conditioner button_condadd(.in(buttonadd), #MIN_DELAY(40));
+    button_conditioner button_condsub(.in(buttonsub), #MIN_DELAY(40));
+    button_conditioner button_condmul(.in(buttonmul), #MIN_DELAY(40));
+    button_conditioner button_conddiv(.in(buttondiv), #MIN_DELAY(40));
     
     
   }

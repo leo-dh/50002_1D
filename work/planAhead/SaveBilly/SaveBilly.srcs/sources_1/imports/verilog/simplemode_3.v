@@ -162,7 +162,7 @@ module simplemode_3 (
   
   localparam CMPEQ = 6'h33;
   
-  localparam WINCON = 4'he;
+  localparam WINCON = 3'h7;
   
   always @* begin
     M_state_d = M_state_q;
@@ -339,7 +339,7 @@ module simplemode_3 (
           M_billy_writevalue = M_billy_pos + 1'h1;
           M_counter_d = 1'h0;
         end
-        if (M_billy_pos == 4'he) begin
+        if (M_billy_pos == 3'h7) begin
           M_state_d = WIN_state;
         end else begin
           M_state_d = GEN_QN_state;
@@ -359,10 +359,10 @@ module simplemode_3 (
       WIN_state: begin
         M_timer_d = M_timer_q + 1'h1;
         M_mother_writeenable = 1'h1;
-        a_out = 4'h8;
-        b_out = 4'h8;
-        c_out = 4'h8;
-        d_out = 4'h8;
+        a_out = 4'hc;
+        b_out = 4'hd;
+        c_out = 3'h5;
+        d_out = 3'h5;
         if (M_timer_q == 27'h5f5e100) begin
           gameend = 1'h1;
           M_state_d = IDLE_state;

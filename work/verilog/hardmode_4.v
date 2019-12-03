@@ -43,8 +43,9 @@ module hardmode_4 (
   localparam CHECKRESULT_state = 4'd9;
   localparam CHECKMOTHERPOS_state = 4'd10;
   localparam CHECKBILLYPOS_state = 4'd11;
-  localparam LOSE_state = 4'd12;
-  localparam WIN_state = 4'd13;
+  localparam DELAY_state = 4'd12;
+  localparam LOSE_state = 4'd13;
+  localparam WIN_state = 4'd14;
   
   reg [3:0] M_state_d, M_state_q = IDLE_state;
   reg [29:0] M_timer_d, M_timer_q = 1'h0;
@@ -296,8 +297,8 @@ module hardmode_4 (
     M_c_writevalue = M_questiongenerator_c;
     M_d_writevalue = M_questiongenerator_d;
     M_temp_writevalue = M_temp_readvalue;
-    M_operator1_writevalue = M_operator1_readvalue;
-    M_operator2_writevalue = M_operator2_readvalue;
+    M_operator1_writevalue = 6'h3f;
+    M_operator2_writevalue = 6'h3f;
     M_storedoperand_writevalue = M_storedoperand_readvalue;
     M_tempa_writevalue = M_a_readvalue;
     M_tempb_writevalue = M_b_readvalue;
@@ -368,6 +369,12 @@ module hardmode_4 (
           M_b_writevalue = M_questiongenerator_b;
           M_c_writevalue = M_questiongenerator_c;
           M_d_writevalue = M_questiongenerator_d;
+        end
+        if (!((|buttonoperatorinput))) begin
+          M_operator1_writeenable = 1'h1;
+          M_operator1_writevalue = 6'h3f;
+          M_operator2_writeenable = 1'h1;
+          M_operator2_writevalue = 6'h3f;
           M_state_d = WAITINPUT_state;
         end
       end
@@ -383,10 +390,6 @@ module hardmode_4 (
         M_tempa_writevalue = M_questiongenerator_a;
         M_tempb_writevalue = M_questiongenerator_b;
         M_tempc_writevalue = M_questiongenerator_c;
-        M_operator1_writeenable = 1'h1;
-        M_operator1_writevalue = 6'h3f;
-        M_operator2_writeenable = 1'h1;
-        M_operator2_writevalue = 6'h3f;
         if (M_mother_pos == M_billy_pos) begin
           M_state_d = CHECKMOTHERPOS_state;
         end
@@ -396,6 +399,8 @@ module hardmode_4 (
           M_state_d = SWAPPEDINPUT1_state;
         end
         if ((^buttonoperatorinput)) begin
+          M_operator1_writeenable = 1'h1;
+          M_operator2_writeenable = 1'h1;
           
           case (buttonoperatorinput)
             4'h8: begin
@@ -612,6 +617,14 @@ module hardmode_4 (
         if (M_billy_pos == 3'h7) begin
           M_state_d = WIN_state;
         end else begin
+          M_state_d = DELAY_state;
+        end
+      end
+      DELAY_state: begin
+        M_timer_d = 1'h0;
+        M_mother_writeenable = 1'h1;
+        M_mother_difficulty = 2'h3;
+        if (!((|buttonoperatorinput))) begin
           M_state_d = GEN_QN_state;
         end
       end
@@ -626,10 +639,10 @@ module hardmode_4 (
       WIN_state: begin
         M_timer_d = M_timer_q + 1'h1;
         M_mother_writeenable = 1'h1;
-        a_out = 4'h8;
-        b_out = 4'h8;
-        c_out = 4'h8;
-        d_out = 4'h8;
+        a_out = 4'hc;
+        b_out = 4'hd;
+        c_out = 3'h5;
+        d_out = 3'h5;
         if (M_timer_q == 28'h8f0d180) begin
           gameend = 1'h1;
           M_state_d = IDLE_state;
