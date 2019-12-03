@@ -89,7 +89,7 @@ module hardmode (
     mother.difficulty = b01;
     
     motherpos = mother.pos;
-    billypos = billy.pos;
+    billypos = billy.pos - d2;
     a_out = a.readvalue;
     b_out = b.readvalue;
     c_out = c.readvalue;

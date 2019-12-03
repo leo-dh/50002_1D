@@ -6,22 +6,18 @@ module billyposled (
   always {
     case (position){    
       d0:
-        led = 7b0000000;
-      d1:
-        led = 7b0000000;
-      d2:
         led = 7b0000001;
-      d3:
+      d1:
         led = 7b0000010;
-      d4:
+      d2:
         led = 7b0000100;
-      d5:
+      d3:
         led = 7b0001000;
-      d6:
+      d4:
         led = 7b0010000;
-      d7:
+      d5:
         led = 7b0100000;
-      d8:
+      d6:
         led = 7b1000000;
       default:
         led = 8b0;

@@ -1,4 +1,4 @@
-module simplemode (
+module testsimple (
     input clk,  // clock
     input rst,  // reset
     
@@ -7,6 +7,8 @@ module simplemode (
     input buttonmul,
     input buttondiv,
     input buttona,
+    input buttonb,
+    input buttonc,
     input aluout[16],
     
     output motherpos[16],
@@ -26,8 +28,8 @@ module simplemode (
     .rst (rst){
       fsm state = {IDLE,COUNTDOWN,GEN_QN,WAITINPUT,CHECKINPUT,CHECKINPUT2,CHECKMOTHERPOS,CHECKBILLYPOS,LOSE,WIN};
       dff timer[28];
-      dff counter[2];      
-      pn_gen pn_gen;
+      dff counter[2];
+      dff questioncounter[6];
       mother mother;
       billy billy;
       registers a(#BITS(16));
@@ -40,7 +42,7 @@ module simplemode (
     }
   }
   generatequestion_simple questiongenerator;
-
+  
   
   sig buttoninput[4];
   
@@ -49,14 +51,14 @@ module simplemode (
   const MUL = 6b000010;
   const DIV = 6b100010;
   const CMPEQ = 6b110011;
-  const WINCON = d7;
+  const WINCON = d63;
   
   always {
     gameend = 0;
     timer.d = timer.q + 1;
-    pn_gen.seed = timer.q;
-    pn_gen.next = 0;
-    questiongenerator.randomnumber = pn_gen.num;
+    questioncounter.d = questioncounter.q;
+    
+    questiongenerator.randomnumber = questioncounter.q;
     
     divoutput.writevalue = a.readvalue/b.readvalue;
     divoutput.writeenable = 1;
@@ -65,10 +67,10 @@ module simplemode (
     alua = 16b0;
     alub = 16b0;
     
-    mother.difficulty = b10;
+    mother.difficulty = b11;
     
     motherpos = mother.pos;
-    billypos = billy.pos - d2;
+    billypos = (billy.pos - d2) - (billy.pos - d2)/7 * 7;
     a_out = d20;
     b_out = a.readvalue;
     c_out = b.readvalue;
@@ -86,7 +88,7 @@ module simplemode (
     a.writevalue = questiongenerator.a;
     b.writevalue = questiongenerator.b;
     c.writevalue = questiongenerator.c;
-    temp.writevalue = 0;   
+    temp.writevalue = 0;
     
     operator_sig = operator.readvalue;
     operator.writeenable = 1;
@@ -94,81 +96,50 @@ module simplemode (
     
     counter.d = counter.q;
     
+    if (buttonb){
+      mother.writeenable = 1;
+      mother.writevalue = mother.pos + 1;
+    }
+    if (buttonc){
+      gameend = 1;
+    }
+    
     buttoninput = c{buttondiv, buttonmul, buttonsub, buttonadd};
     
     case (state.q){
       state.IDLE:
-        timer.d = timer.q + 1;
         mother.writeenable = 1;
         mother.writevalue = d0;
         operator.writeenable = 1;
         operator.writevalue = 6b111111;
-        mother.difficulty = b11; // keep mother timer at 0
         billy.writeenable = 1;
         billy.writevalue = d2; // billy position offset
-        if (buttona == 1){
-          timer.d = 0;
-          counter.d = 3;
+        if (buttonadd == 1){
           state.d = state.COUNTDOWN;
           
         }
-      
-      state.COUNTDOWN:
-        timer.d = timer.q + 1;
-        d_out = d20;
-        case (counter.q){
-          d3:
-            a_out = counter.q;
-            b_out = d20;
-            c_out = d20;
-                   
-          d2:
-            a_out = d20;
-            b_out = counter.q;
-            c_out = d20;
-          
-          d1:
-            a_out = d20;
-            b_out = d20;
-            c_out = counter.q;
-          
-          default:
-            a_out = d20;
-            b_out = d20;
-            c_out = d20;
-        }
         
-        mother.writeenable = 1;
-        mother.writevalue = d0;
-        operator.writeenable = 1;
-        operator.writevalue = 6b111111;
-        mother.difficulty = b11; // keep mother timer at 0
-        if (timer.q == d50000000){
-          timer.d = 0;
-          counter.d = counter.q - 1;
-        }
-        if (counter.q == d0){
-          counter.d = 0;
+      state.COUNTDOWN:
+        a_out = d13;
+        b_out = d11;
+        c_out = d5;
+        d_out = d13;
+      
+        if (buttona){
           state.d = state.GEN_QN;
         }
-        
+      
       
       state.GEN_QN:
-        timer.d = 0;
-        mother.writeenable = 1;  
-        operator.writevalue = 6b111111;
-        if (billy.pos >= d0){
-          pn_gen.next = 1;
-          a.writeenable = 1;
-          b.writeenable = 1;
-          c.writeenable = 1;
-          temp.writeenable = 1;
-          state.d = state.WAITINPUT;
-        }
+        questioncounter.d = questioncounter.q + 1;
+        a.writeenable = 1;
+        b.writeenable = 1;
+        c.writeenable = 1;
+        temp.writeenable = 1;
+        state.d = state.WAITINPUT;
+      
       
       state.WAITINPUT:
-        timer.d  = timer.q + 1;
-        operator.writevalue = 6b111111;
         if (mother.pos == billy.pos){
           state.d = state.CHECKMOTHERPOS;
         }
@@ -178,14 +149,14 @@ module simplemode (
             
             b0001:
               operator.writevalue = ADD;
-
+            
             b0010:
               operator.writevalue = SUB;
-
-            b0100:             
+            
+            b0100:
               operator.writevalue = MUL;
             
-            b1000:              
+            b1000:
               operator.writevalue = DIV;
           }
           timer.d = 0;
@@ -193,8 +164,6 @@ module simplemode (
         }
       
       state.CHECKINPUT:
-        mother.writeenable = 1;
-        timer.d = timer.q + 1;        
         alua = a.readvalue;
         alub = b.readvalue;
         alualufn = operator.readvalue;
@@ -207,10 +176,8 @@ module simplemode (
             temp.writevalue = aluout;
         }
         state.d = state.CHECKINPUT2;
-            
+      
       state.CHECKINPUT2:
-        mother.writeenable = 1;
-        timer.d = 0;
         alualufn = CMPEQ;
         alua = temp.readvalue;
         alub = c.readvalue;
@@ -220,17 +187,13 @@ module simplemode (
         else{
           state.d = state.CHECKMOTHERPOS;
         }
-        
+      
       
       state.CHECKBILLYPOS:
         timer.d = 0;
         mother.writeenable = 1;
         billy.writeenable = 1;
-        counter.d = counter.q + 1;
-        if (counter.q == d2){      
-          billy.writevalue = billy.pos + 1;
-          counter.d = 0;
-        }
+        billy.writevalue = billy.pos + 1;
         if (billy.pos == WINCON){
           state.d = state.WIN;
         }
@@ -239,7 +202,6 @@ module simplemode (
         }
       
       state.CHECKMOTHERPOS:
-        timer.d = 0;
         mother.writeenable = 1;
         operator.writeenable = 1;
         operator.writevalue = 6b111111;

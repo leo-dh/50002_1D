@@ -44,9 +44,10 @@ module mojo_top (
     dff counter[28];
     dff timer[28];   
     .rst(rst){
-      fsm state = {IDLE, SIMPLEMODE, HARDMODE};
+      fsm state = {IDLE, SIMPLEMODE, HARDMODE, TESTSIMPLE};
       simplemode simplemode;
-      hardmode hardmode;     
+      hardmode hardmode;   
+      testsimple testsimple;  
     }
   }
   seven_seg seven_seg_a;
@@ -116,6 +117,15 @@ module mojo_top (
     hardmode.buttonmul = 0;
     hardmode.aluout = 0;
     
+    testsimple.buttona = 0;
+    testsimple.buttonb = 0;
+    testsimple.buttonc = 0;
+    testsimple.buttonadd = 0;
+    testsimple.buttonsub = 0;
+    testsimple.buttonmul = 0;
+    testsimple.buttondiv = 0;
+    testsimple.aluout = 0;
+    
     counter.d = counter.q;
     timer.d = timer.q + 1;
     
@@ -147,6 +157,9 @@ module mojo_top (
         if (button_cond.buttoncout == 1){
           state.d = state.HARDMODE;
         }
+        if (button_cond.buttonaddout == 1){
+          state.d = state.TESTSIMPLE;
+        }
         
       state.SIMPLEMODE:
         simplemode.buttona = button_cond.buttonaout;
@@ -167,11 +180,7 @@ module mojo_top (
         seven_seg_c.char = simplemode.c_out;
         seven_seg_d.char = simplemode.d_out;
         
-        operator1led.opcode = simplemode.operator_sig;
-        
-        
-        
-        
+        operator1led.opcode = simplemode.operator_sig;       
         if (gameend == 1){
           state.d = state.IDLE;
         }
@@ -198,12 +207,28 @@ module mojo_top (
         seven_seg_d.char = hardmode.d_out;
         operator1led.opcode = hardmode.operator1_out;
         operator2led.opcode = hardmode.operator2_out;
+                
+        if (gameend == 1){
+          state.d = state.IDLE;
+        }
         
-        
+      state.TESTSIMPLE:
+        testsimple.buttona = button_cond.buttonaout;
+        testsimple.buttonb = button_cond.buttonbout;
+        testsimple.buttonc = button_cond.buttoncout;
+        testsimple.buttonadd = button_cond.buttonaddout;
+        testsimple.buttonsub = button_cond.buttonsubout;
+        testsimple.buttonmul = button_cond.buttonmulout;
+        testsimple.buttondiv = button_cond.buttondivout;
+        testsimple.aluout = alu.s;
+        alu.a = testsimple.alua;
+        alu.b = testsimple.alub;
+        alu.alufn = testsimple.alualufn;
         
         if (gameend == 1){
           state.d = state.IDLE;
-    }
+        }
+        
 
   }
   
