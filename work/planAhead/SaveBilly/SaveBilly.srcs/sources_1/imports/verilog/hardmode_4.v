@@ -51,7 +51,7 @@ module hardmode_4 (
   reg [29:0] M_timer_d, M_timer_q = 1'h0;
   reg [1:0] M_counter_d, M_counter_q = 1'h0;
   wire [1-1:0] M_ctr_value;
-  counter_38 ctr (
+  counter_40 ctr (
     .clk(clk),
     .rst(rst),
     .value(M_ctr_value)
@@ -59,7 +59,7 @@ module hardmode_4 (
   wire [32-1:0] M_pn_gen_num;
   reg [1-1:0] M_pn_gen_next;
   reg [32-1:0] M_pn_gen_seed;
-  pn_gen_28 pn_gen (
+  pn_gen_30 pn_gen (
     .clk(clk),
     .rst(rst),
     .next(M_pn_gen_next),
@@ -70,7 +70,7 @@ module hardmode_4 (
   reg [2-1:0] M_mother_difficulty;
   reg [1-1:0] M_mother_writeenable;
   reg [16-1:0] M_mother_writevalue;
-  mother_29 mother (
+  mother_31 mother (
     .clk(clk),
     .rst(rst),
     .difficulty(M_mother_difficulty),
@@ -81,7 +81,7 @@ module hardmode_4 (
   wire [16-1:0] M_billy_pos;
   reg [1-1:0] M_billy_writeenable;
   reg [16-1:0] M_billy_writevalue;
-  billy_30 billy (
+  billy_32 billy (
     .clk(clk),
     .rst(rst),
     .writeenable(M_billy_writeenable),
@@ -91,7 +91,7 @@ module hardmode_4 (
   wire [16-1:0] M_a_readvalue;
   reg [1-1:0] M_a_writeenable;
   reg [16-1:0] M_a_writevalue;
-  registers_31 a (
+  registers_33 a (
     .clk(clk),
     .rst(rst),
     .writeenable(M_a_writeenable),
@@ -101,7 +101,7 @@ module hardmode_4 (
   wire [16-1:0] M_b_readvalue;
   reg [1-1:0] M_b_writeenable;
   reg [16-1:0] M_b_writevalue;
-  registers_31 b (
+  registers_33 b (
     .clk(clk),
     .rst(rst),
     .writeenable(M_b_writeenable),
@@ -111,7 +111,7 @@ module hardmode_4 (
   wire [16-1:0] M_c_readvalue;
   reg [1-1:0] M_c_writeenable;
   reg [16-1:0] M_c_writevalue;
-  registers_31 c (
+  registers_33 c (
     .clk(clk),
     .rst(rst),
     .writeenable(M_c_writeenable),
@@ -121,7 +121,7 @@ module hardmode_4 (
   wire [16-1:0] M_d_readvalue;
   reg [1-1:0] M_d_writeenable;
   reg [16-1:0] M_d_writevalue;
-  registers_31 d (
+  registers_33 d (
     .clk(clk),
     .rst(rst),
     .writeenable(M_d_writeenable),
@@ -131,7 +131,7 @@ module hardmode_4 (
   wire [16-1:0] M_tempa_readvalue;
   reg [1-1:0] M_tempa_writeenable;
   reg [16-1:0] M_tempa_writevalue;
-  registers_31 tempa (
+  registers_33 tempa (
     .clk(clk),
     .rst(rst),
     .writeenable(M_tempa_writeenable),
@@ -141,7 +141,7 @@ module hardmode_4 (
   wire [16-1:0] M_tempb_readvalue;
   reg [1-1:0] M_tempb_writeenable;
   reg [16-1:0] M_tempb_writevalue;
-  registers_31 tempb (
+  registers_33 tempb (
     .clk(clk),
     .rst(rst),
     .writeenable(M_tempb_writeenable),
@@ -151,7 +151,7 @@ module hardmode_4 (
   wire [16-1:0] M_tempc_readvalue;
   reg [1-1:0] M_tempc_writeenable;
   reg [16-1:0] M_tempc_writevalue;
-  registers_31 tempc (
+  registers_33 tempc (
     .clk(clk),
     .rst(rst),
     .writeenable(M_tempc_writeenable),
@@ -161,7 +161,7 @@ module hardmode_4 (
   wire [16-1:0] M_temp_readvalue;
   reg [1-1:0] M_temp_writeenable;
   reg [16-1:0] M_temp_writevalue;
-  registers_31 temp (
+  registers_33 temp (
     .clk(clk),
     .rst(rst),
     .writeenable(M_temp_writeenable),
@@ -171,7 +171,7 @@ module hardmode_4 (
   wire [6-1:0] M_operator1_readvalue;
   reg [1-1:0] M_operator1_writeenable;
   reg [6-1:0] M_operator1_writevalue;
-  registers_35 operator1 (
+  registers_37 operator1 (
     .clk(clk),
     .rst(rst),
     .writeenable(M_operator1_writeenable),
@@ -181,7 +181,7 @@ module hardmode_4 (
   wire [6-1:0] M_operator2_readvalue;
   reg [1-1:0] M_operator2_writeenable;
   reg [6-1:0] M_operator2_writevalue;
-  registers_35 operator2 (
+  registers_37 operator2 (
     .clk(clk),
     .rst(rst),
     .writeenable(M_operator2_writeenable),
@@ -191,7 +191,7 @@ module hardmode_4 (
   wire [3-1:0] M_storedoperand_readvalue;
   reg [1-1:0] M_storedoperand_writeenable;
   reg [3-1:0] M_storedoperand_writevalue;
-  registers_52 storedoperand (
+  registers_54 storedoperand (
     .clk(clk),
     .rst(rst),
     .writeenable(M_storedoperand_writeenable),
@@ -201,7 +201,7 @@ module hardmode_4 (
   wire [16-1:0] M_divoutput2_readvalue;
   reg [1-1:0] M_divoutput2_writeenable;
   reg [16-1:0] M_divoutput2_writevalue;
-  registers_31 divoutput2 (
+  registers_33 divoutput2 (
     .clk(clk),
     .rst(rst),
     .writeenable(M_divoutput2_writeenable),
@@ -211,7 +211,7 @@ module hardmode_4 (
   wire [16-1:0] M_divoutput3_readvalue;
   reg [1-1:0] M_divoutput3_writeenable;
   reg [16-1:0] M_divoutput3_writevalue;
-  registers_31 divoutput3 (
+  registers_33 divoutput3 (
     .clk(clk),
     .rst(rst),
     .writeenable(M_divoutput3_writeenable),
@@ -224,7 +224,7 @@ module hardmode_4 (
   wire [16-1:0] M_questiongenerator_c;
   wire [16-1:0] M_questiongenerator_d;
   reg [6-1:0] M_questiongenerator_randomnumber;
-  generatequestion_hard_55 questiongenerator (
+  generatequestion_hard_57 questiongenerator (
     .randomnumber(M_questiongenerator_randomnumber),
     .a(M_questiongenerator_a),
     .b(M_questiongenerator_b),
@@ -270,7 +270,7 @@ module hardmode_4 (
     M_divoutput3_writevalue = M_a_readvalue / M_temp_readvalue;
     M_mother_difficulty = 2'h1;
     motherpos = M_mother_pos;
-    billypos = M_billy_pos;
+    billypos = M_billy_pos - 2'h2;
     a_out = M_a_readvalue;
     b_out = M_b_readvalue;
     c_out = M_c_readvalue;

@@ -13,6 +13,7 @@
     <src>mother.luc</src>
     <src>billyposled.luc</src>
     <src>simplemode.luc</src>
+    <src>testhard.luc</src>
     <src>compare.luc</src>
     <src>button_cond.luc</src>
     <src top="true">mojo_top.luc</src>

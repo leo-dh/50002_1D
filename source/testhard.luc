@@ -1,0 +1,469 @@
+module testhard (
+input clk,  // clock
+    input rst,  // reset
+    
+    input buttonadd,
+    input buttonsub,
+    input buttonmul,
+    input buttondiv,
+    input buttona,
+    input buttonb,
+    input buttonc,
+    input aluout[16],
+    
+    output motherpos[16],
+    output billypos[16],
+    output a_out[16],
+    output b_out[16],
+    output c_out[16],
+    output d_out[16],
+    output operator1_out[6],
+    output operator2_out[6],
+    output gameend,
+    output alua[16],
+    output alub[16],
+    output alualufn[6]
+    
+  ) {
+  .clk (clk){
+    .rst (rst){
+      fsm state = {IDLE,COUNTDOWN,GEN_QN,WAITINPUT,SWAPPEDINPUT1,SWAPPEDINPUT2,CALCULATE1,CALCULATE2,CALCULATE3,CHECKRESULT,CHECKMOTHERPOS,CHECKBILLYPOS,DELAY,LOSE,WIN};
+      dff timer[30];
+      dff counter[2];
+      counter ctr (#SIZE(1), #DIV(24));
+      mother mother;
+      billy billy;
+      registers a(#BITS(16));
+      registers b(#BITS(16));
+      registers c(#BITS(16));
+      registers d(#BITS(16));
+      registers tempa(#BITS(16));
+      registers tempb(#BITS(16));
+      registers tempc(#BITS(16));
+      registers temp(#BITS(16));
+      registers operator1(#BITS(6));
+      registers operator2(#BITS(6));
+      registers storedoperand(#BITS(3));
+      
+      dff questioncounter[6];
+
+      registers divoutput2(#BITS(16));
+      registers divoutput3(#BITS(16));
+      
+    }
+  }
+
+  generatequestion_hard questiongenerator;
+  
+  sig buttonoperatorinput[4];
+  sig buttonoperandinput[3];
+  
+  const ADD = 6b000000;
+  const SUB = 6b000001;
+  const MUL = 6b000010;
+  const DIV = 6b100010;
+  const CMPEQ = 6b110011;
+  const WINCON = d7;
+  
+  always {
+    gameend = 0;
+    
+    timer.d = timer.q + 1;
+    questioncounter.d = questioncounter.q;
+    
+    questiongenerator.randomnumber = questioncounter.q;
+    counter.d = counter.q;
+    
+    alua = 16b0;
+    alub = 16b0;
+    alualufn = 6b0;
+    buttonoperatorinput = c{buttondiv, buttonmul, buttonsub, buttonadd};
+    buttonoperandinput = c{buttona, buttonb, buttonc};
+    
+
+    divoutput2.writeenable = 1;
+    divoutput3.writeenable = 1;
+
+    divoutput2.writevalue = b.readvalue/c.readvalue;
+    divoutput3.writevalue = a.readvalue/temp.readvalue;
+    
+    mother.difficulty = b11;
+    
+    motherpos = mother.pos;
+    billypos = billy.pos - d2;
+    a_out = a.readvalue;
+    b_out = b.readvalue;
+    c_out = c.readvalue;
+    d_out = d.readvalue;
+    operator1_out = operator1.readvalue;
+    operator2_out = operator2.readvalue;
+    
+    mother.writeenable = 0;
+    billy.writeenable = 0;
+    a.writeenable = 0;
+    b.writeenable = 0;
+    c.writeenable = 0;
+    d.writeenable = 0;
+    temp.writeenable = 0;
+    operator1.writeenable = 0;
+    operator2.writeenable = 0;
+    storedoperand.writeenable = 0;
+    tempa.writeenable = 0;
+    tempb.writeenable = 0;
+    tempc.writeenable = 0;
+    
+    mother.writevalue = mother.pos;
+    billy.writevalue = billy.pos;
+    a.writevalue = questiongenerator.a;
+    b.writevalue = questiongenerator.b;
+    c.writevalue = questiongenerator.c;
+    d.writevalue = questiongenerator.d;
+    temp.writevalue = temp.readvalue;
+    operator1.writevalue = 6b111111;
+    operator2.writevalue = 6b111111;
+    storedoperand.writevalue = storedoperand.readvalue;
+    tempa.writevalue = a.readvalue;
+    tempb.writevalue = b.readvalue;
+    tempc.writevalue = c.readvalue;
+
+    
+    case (state.q){
+      
+      state.IDLE:
+        timer.d = timer.q + 1;
+        mother.writeenable = 1;
+        mother.difficulty = b11;
+        mother.writevalue = d0;
+        billy.writeenable = 1;
+        billy.writevalue = 2;
+        if (buttondiv == 1){          
+          timer.d = 0;
+          state.d = state.COUNTDOWN;
+        }
+        
+      state.COUNTDOWN:
+        timer.d = timer.q + 1;
+        
+        mother.writeenable = 1;
+        mother.writevalue = d0;
+        
+        a_out = d14;
+        b_out = d11;
+        c_out = d5;
+        d_out = d14;
+      
+        if (buttona){
+          state.d = state.GEN_QN;
+        }
+        
+        
+      
+      state.GEN_QN:
+        timer.d = 0;
+        mother.writeenable = 1;
+        if (billy.pos >= 0){
+          questioncounter.d = questioncounter.q + 1;
+          a.writeenable = 1;
+          b.writeenable = 1;
+          c.writeenable = 1;
+          d.writeenable = 1;
+          
+          a.writevalue = questiongenerator.a;
+          b.writevalue = questiongenerator.b;
+          c.writevalue = questiongenerator.c;
+          d.writevalue = questiongenerator.d;
+          
+          
+        }
+        if (!(|buttonoperatorinput)){
+          operator1.writeenable = 1;
+          operator1.writevalue = 6b111111;
+          operator2.writeenable = 1;
+          operator2.writevalue = 6b111111; 
+          state.d = state.WAITINPUT;
+        }
+        
+        
+      
+      state.WAITINPUT:
+        timer.d = timer.q + 1;
+        a.writeenable = 1;
+        b.writeenable = 1;
+        c.writeenable = 1;
+        d.writeenable = 1;
+        tempa.writeenable = 1;
+        tempb.writeenable = 1;
+        tempc.writeenable = 1;
+        tempa.writevalue = questiongenerator.a;
+        tempb.writevalue = questiongenerator.b;
+        tempc.writevalue = questiongenerator.c;
+        
+        
+        if (mother.pos == billy.pos){
+          state.d = state.CHECKMOTHERPOS;
+        }
+        if (^buttonoperandinput){
+          storedoperand.writeenable = 1;
+          storedoperand.writevalue = buttonoperandinput;
+          state.d = state.SWAPPEDINPUT1;
+        }
+        if (^buttonoperatorinput){
+          operator1.writeenable = 1;
+          operator2.writeenable = 1;
+          case (buttonoperatorinput){
+            b1000:
+              operator1.writevalue = DIV;
+            b0100:
+              operator1.writevalue = MUL;
+            b0010:
+              operator1.writevalue = SUB;
+            b0001:
+              operator1.writevalue = ADD;
+            default:
+              operator1.writevalue = 6b111111;
+          }
+          state.d = state.CALCULATE1;
+        }
+      
+      state.SWAPPEDINPUT1:
+        timer.d = timer.q + 1;
+        if (mother.pos == billy.pos){
+          state.d = state.CHECKMOTHERPOS;
+        }
+        if (ctr.value == d1){
+          case (storedoperand.readvalue){
+            b001:
+              c_out = d20;
+            b010:
+              b_out = d20;          
+            b100:
+              a_out = d20;
+          }
+        }
+        if (^buttonoperandinput){
+          alua = buttonoperandinput;
+          alub = storedoperand.readvalue;
+          alualufn = 6b010110; //XOR
+          case (aluout){
+            b000:
+              state.d = state.WAITINPUT;
+            b110:
+              a.writevalue = tempb.readvalue;
+              a.writeenable = 1;
+              b.writevalue = tempa.readvalue;
+              b.writeenable = 1;
+            b011:
+              b.writevalue = tempc.readvalue;
+              b.writeenable = 1;
+              c.writevalue = tempb.readvalue;
+              c.writeenable = 1;
+            b101:
+              a.writevalue = tempc.readvalue;
+              a.writeenable = 1;
+              c.writevalue = tempa.readvalue;
+              c.writeenable = 1;
+          }
+          storedoperand.writevalue = b000;
+          storedoperand.writeenable = 1;
+          state.d = state.SWAPPEDINPUT2;
+        }
+      
+      state.SWAPPEDINPUT2:
+        timer.d = timer.q + 1;
+        storedoperand.writeenable = 1;
+        storedoperand.writevalue = b000;
+        tempa.writeenable = 1;
+        tempb.writeenable = 1;
+        tempc.writeenable = 1;        
+        if (mother.pos == billy.pos){
+          state.d = state.CHECKMOTHERPOS;
+        }
+        if (^buttonoperandinput){
+          storedoperand.writevalue = buttonoperandinput;
+          state.d = state.SWAPPEDINPUT1;
+        }
+        if (^buttonoperatorinput){
+          operator1.writeenable = 1;
+          case (buttonoperatorinput){
+            b1000:
+              operator1.writevalue = DIV;
+            b0100:
+              operator1.writevalue = MUL;
+            b0010:
+              operator1.writevalue = SUB;
+            b0001:
+              operator1.writevalue = ADD;
+            default:
+              operator1.writevalue = 6b111111;
+          }
+          state.d = state.CALCULATE1;
+        }
+      
+      state.CALCULATE1:
+        timer.d = timer.q + 1;
+        if (mother.pos == billy.pos){
+          state.d = state.CHECKMOTHERPOS;
+        }
+        if (^buttonoperatorinput){
+          operator2.writeenable = 1;
+          case (buttonoperatorinput){
+            b1000:
+              operator2.writevalue = DIV;
+            b0100:
+              operator2.writevalue = MUL;
+            b0010:
+              operator2.writevalue = SUB;
+            b0001:
+              operator2.writevalue = ADD;
+            default:
+              operator2.writevalue = 6b111111;
+          }
+          state.d = state.CALCULATE2;
+        }
+      
+      state.CALCULATE2:
+        timer.d = timer.q;
+        mother.writeenable = 1;
+        temp.writeenable = 1;
+        case (operator2.readvalue){
+          
+          MUL:
+            alua = b.readvalue;
+            alub = c.readvalue;
+            alualufn = operator2.readvalue;
+            temp.writevalue = aluout;
+          
+          DIV:
+            alua = b.readvalue;
+            alub = c.readvalue;
+            alualufn = operator2.readvalue;
+            temp.writevalue = divoutput2.readvalue;
+          
+          default:
+            alua = a.readvalue;
+            alub = b.readvalue;
+            alualufn = operator1.readvalue;
+            temp.writevalue = aluout;
+          
+        }
+              
+        state.d = state.CALCULATE3;
+      
+      state.CALCULATE3:
+        timer.d = timer.q;
+        mother.writeenable = 1;
+        temp.writeenable = 1;
+        
+        case (operator2.readvalue){
+          
+          MUL:
+            alua = a.readvalue;
+            alub = temp.readvalue;
+            alualufn = operator1.readvalue;
+            temp.writevalue = aluout;
+          
+          DIV:
+            alua = a.readvalue;
+            alub = temp.readvalue;
+            alualufn = operator1.readvalue;
+            temp.writevalue = divoutput3.readvalue;
+          
+          default:
+            alua = temp.readvalue;
+            alub = c.readvalue;
+            alualufn = operator2.readvalue;
+            temp.writevalue = aluout;
+          
+        }
+           
+        
+        state.d = state.CHECKRESULT;
+      
+      state.CHECKRESULT:
+        timer.d = timer.q;
+        alua = temp.readvalue;
+        alub = d.readvalue;
+        mother.writeenable = 1;
+        alualufn = CMPEQ;
+        operator1.writeenable = 1;
+        operator1.writevalue = 6b111111;
+        operator2.writeenable = 1;
+        operator2.writevalue = 6b111111;
+        if (aluout == 1){
+          state.d = state.CHECKBILLYPOS;
+        }
+        else {
+          state.d = state.CHECKMOTHERPOS;
+        }
+      
+      state.CHECKBILLYPOS:
+        timer.d = 0;
+        mother.writeenable = 1;
+        billy.writeenable = 1;
+        billy.writevalue = billy.pos + 1;
+        if (billy.pos == WINCON){
+          state.d = state.WIN;
+        }
+        else {
+          state.d = state.DELAY;
+        }
+      
+      state.DELAY:
+        timer.d = 0;
+        mother.writeenable = 1;
+        mother.difficulty = b11;
+        if (!(|buttonoperatorinput)){
+          state.d = state.GEN_QN;
+        }
+      
+      state.CHECKMOTHERPOS:
+        timer.d = 0;
+        if (mother.pos == billy.pos){
+          state.d = state.LOSE;
+        }
+        else{
+          state.d = state.SWAPPEDINPUT2;
+        }
+      
+      state.WIN:
+        timer.d = timer.q + 1;
+        mother.writeenable = 1;
+        a_out = d12;
+        b_out = d13;
+        c_out = d5;
+        d_out = d5;
+        
+        // do something
+        if (timer.q == d150000000){
+          gameend = 1;
+          state.d = state.IDLE;
+        }
+      
+      state.LOSE:
+        timer.d = timer.q + 1;
+        mother.writeenable = 1;
+        a_out = d10;
+        b_out = d0;
+        c_out = d5;
+        d_out = d11;
+        
+        // do something
+        if (timer.q == d150000000){
+          gameend = 1;
+          state.d = state.IDLE;
+        }
+      
+      
+      
+      
+      
+      
+      
+    }
+    
+    
+    
+    
+    
+  }
+}

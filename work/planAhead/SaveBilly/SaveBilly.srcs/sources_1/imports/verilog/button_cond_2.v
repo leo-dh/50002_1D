@@ -26,91 +26,91 @@ module button_cond_2 (
   
   wire [1-1:0] M_edge_detectora_out;
   reg [1-1:0] M_edge_detectora_in;
-  edge_detector_14 edge_detectora (
+  edge_detector_16 edge_detectora (
     .clk(clk),
     .in(M_edge_detectora_in),
     .out(M_edge_detectora_out)
   );
   wire [1-1:0] M_edge_detectorb_out;
   reg [1-1:0] M_edge_detectorb_in;
-  edge_detector_14 edge_detectorb (
+  edge_detector_16 edge_detectorb (
     .clk(clk),
     .in(M_edge_detectorb_in),
     .out(M_edge_detectorb_out)
   );
   wire [1-1:0] M_edge_detectorc_out;
   reg [1-1:0] M_edge_detectorc_in;
-  edge_detector_14 edge_detectorc (
+  edge_detector_16 edge_detectorc (
     .clk(clk),
     .in(M_edge_detectorc_in),
     .out(M_edge_detectorc_out)
   );
   wire [1-1:0] M_edge_detectoradd_out;
   reg [1-1:0] M_edge_detectoradd_in;
-  edge_detector_14 edge_detectoradd (
+  edge_detector_16 edge_detectoradd (
     .clk(clk),
     .in(M_edge_detectoradd_in),
     .out(M_edge_detectoradd_out)
   );
   wire [1-1:0] M_edge_detectorsub_out;
   reg [1-1:0] M_edge_detectorsub_in;
-  edge_detector_14 edge_detectorsub (
+  edge_detector_16 edge_detectorsub (
     .clk(clk),
     .in(M_edge_detectorsub_in),
     .out(M_edge_detectorsub_out)
   );
   wire [1-1:0] M_edge_detectormul_out;
   reg [1-1:0] M_edge_detectormul_in;
-  edge_detector_14 edge_detectormul (
+  edge_detector_16 edge_detectormul (
     .clk(clk),
     .in(M_edge_detectormul_in),
     .out(M_edge_detectormul_out)
   );
   wire [1-1:0] M_edge_detectordiv_out;
   reg [1-1:0] M_edge_detectordiv_in;
-  edge_detector_14 edge_detectordiv (
+  edge_detector_16 edge_detectordiv (
     .clk(clk),
     .in(M_edge_detectordiv_in),
     .out(M_edge_detectordiv_out)
   );
   wire [1-1:0] M_button_conda_out;
-  button_conditioner_21 button_conda (
+  button_conditioner_23 button_conda (
     .clk(clk),
     .in(buttona),
     .out(M_button_conda_out)
   );
   wire [1-1:0] M_button_condb_out;
-  button_conditioner_21 button_condb (
+  button_conditioner_23 button_condb (
     .clk(clk),
     .in(buttonb),
     .out(M_button_condb_out)
   );
   wire [1-1:0] M_button_condc_out;
-  button_conditioner_21 button_condc (
+  button_conditioner_23 button_condc (
     .clk(clk),
     .in(buttonc),
     .out(M_button_condc_out)
   );
   wire [1-1:0] M_button_condadd_out;
-  button_conditioner_21 button_condadd (
+  button_conditioner_23 button_condadd (
     .clk(clk),
     .in(buttonadd),
     .out(M_button_condadd_out)
   );
   wire [1-1:0] M_button_condsub_out;
-  button_conditioner_21 button_condsub (
+  button_conditioner_23 button_condsub (
     .clk(clk),
     .in(buttonsub),
     .out(M_button_condsub_out)
   );
   wire [1-1:0] M_button_condmul_out;
-  button_conditioner_21 button_condmul (
+  button_conditioner_23 button_condmul (
     .clk(clk),
     .in(buttonmul),
     .out(M_button_condmul_out)
   );
   wire [1-1:0] M_button_conddiv_out;
-  button_conditioner_21 button_conddiv (
+  button_conditioner_23 button_conddiv (
     .clk(clk),
     .in(buttondiv),
     .out(M_button_conddiv_out)

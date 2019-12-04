@@ -45,7 +45,7 @@ module simplemode_3 (
   wire [32-1:0] M_pn_gen_num;
   reg [1-1:0] M_pn_gen_next;
   reg [32-1:0] M_pn_gen_seed;
-  pn_gen_28 pn_gen (
+  pn_gen_30 pn_gen (
     .clk(clk),
     .rst(rst),
     .next(M_pn_gen_next),
@@ -56,7 +56,7 @@ module simplemode_3 (
   reg [2-1:0] M_mother_difficulty;
   reg [1-1:0] M_mother_writeenable;
   reg [16-1:0] M_mother_writevalue;
-  mother_29 mother (
+  mother_31 mother (
     .clk(clk),
     .rst(rst),
     .difficulty(M_mother_difficulty),
@@ -67,7 +67,7 @@ module simplemode_3 (
   wire [16-1:0] M_billy_pos;
   reg [1-1:0] M_billy_writeenable;
   reg [16-1:0] M_billy_writevalue;
-  billy_30 billy (
+  billy_32 billy (
     .clk(clk),
     .rst(rst),
     .writeenable(M_billy_writeenable),
@@ -77,7 +77,7 @@ module simplemode_3 (
   wire [16-1:0] M_a_readvalue;
   reg [1-1:0] M_a_writeenable;
   reg [16-1:0] M_a_writevalue;
-  registers_31 a (
+  registers_33 a (
     .clk(clk),
     .rst(rst),
     .writeenable(M_a_writeenable),
@@ -87,7 +87,7 @@ module simplemode_3 (
   wire [16-1:0] M_b_readvalue;
   reg [1-1:0] M_b_writeenable;
   reg [16-1:0] M_b_writevalue;
-  registers_31 b (
+  registers_33 b (
     .clk(clk),
     .rst(rst),
     .writeenable(M_b_writeenable),
@@ -97,7 +97,7 @@ module simplemode_3 (
   wire [16-1:0] M_c_readvalue;
   reg [1-1:0] M_c_writeenable;
   reg [16-1:0] M_c_writevalue;
-  registers_31 c (
+  registers_33 c (
     .clk(clk),
     .rst(rst),
     .writeenable(M_c_writeenable),
@@ -107,7 +107,7 @@ module simplemode_3 (
   wire [16-1:0] M_temp_readvalue;
   reg [1-1:0] M_temp_writeenable;
   reg [16-1:0] M_temp_writevalue;
-  registers_31 temp (
+  registers_33 temp (
     .clk(clk),
     .rst(rst),
     .writeenable(M_temp_writeenable),
@@ -117,7 +117,7 @@ module simplemode_3 (
   wire [6-1:0] M_operator_readvalue;
   reg [1-1:0] M_operator_writeenable;
   reg [6-1:0] M_operator_writevalue;
-  registers_35 operator (
+  registers_37 operator (
     .clk(clk),
     .rst(rst),
     .writeenable(M_operator_writeenable),
@@ -127,7 +127,7 @@ module simplemode_3 (
   wire [16-1:0] M_divoutput_readvalue;
   reg [1-1:0] M_divoutput_writeenable;
   reg [16-1:0] M_divoutput_writevalue;
-  registers_31 divoutput (
+  registers_33 divoutput (
     .clk(clk),
     .rst(rst),
     .writeenable(M_divoutput_writeenable),
@@ -138,16 +138,12 @@ module simplemode_3 (
   wire [16-1:0] M_questiongenerator_a;
   wire [16-1:0] M_questiongenerator_b;
   wire [16-1:0] M_questiongenerator_c;
-  wire [16-1:0] M_questiongenerator_ans1;
-  wire [16-1:0] M_questiongenerator_ans2;
-  reg [8-1:0] M_questiongenerator_randomnumber;
-  generatequestion_simple_37 questiongenerator (
+  reg [6-1:0] M_questiongenerator_randomnumber;
+  generatequestion_simple_39 questiongenerator (
     .randomnumber(M_questiongenerator_randomnumber),
     .a(M_questiongenerator_a),
     .b(M_questiongenerator_b),
-    .c(M_questiongenerator_c),
-    .ans1(M_questiongenerator_ans1),
-    .ans2(M_questiongenerator_ans2)
+    .c(M_questiongenerator_c)
   );
   
   reg [3:0] buttoninput;
@@ -181,7 +177,7 @@ module simplemode_3 (
     alub = 16'h0000;
     M_mother_difficulty = 2'h2;
     motherpos = M_mother_pos;
-    billypos = M_billy_pos;
+    billypos = M_billy_pos - 2'h2;
     a_out = 5'h14;
     b_out = M_a_readvalue;
     c_out = M_b_readvalue;

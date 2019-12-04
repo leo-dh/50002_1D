@@ -16,15 +16,15 @@ module mother (
   always {
     
     case (difficulty){
-      b01:
+      b01: // Hard
         timer.d = timer.q + 1;
-        if (timer.q == d350000000){ // 7s delay
+        if (timer.q == d250000000){ // 5s delay
           timer.d = 0;
           motherposition.d = motherposition.q + 1;          
         }
-      b10:
+      b10: // Simple
         timer.d = timer.q + 1;
-        if (timer.q == d200000000){ // 4s delay
+        if (timer.q == d300000000){ // 6s delay
           timer.d = 0;
           motherposition.d = motherposition.q + 1;
         }

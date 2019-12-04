@@ -44,10 +44,11 @@ module mojo_top (
     dff counter[28];
     dff timer[28];   
     .rst(rst){
-      fsm state = {IDLE, SIMPLEMODE, HARDMODE, TESTSIMPLE};
+      fsm state = {IDLE, SIMPLEMODE, HARDMODE, TESTSIMPLE, TESTHARD};
       simplemode simplemode;
       hardmode hardmode;   
-      testsimple testsimple;  
+      testsimple testsimple; 
+      testhard testhard; 
     }
   }
   seven_seg seven_seg_a;
@@ -126,6 +127,15 @@ module mojo_top (
     testsimple.buttondiv = 0;
     testsimple.aluout = 0;
     
+    testhard.buttona = 0;
+    testhard.buttonb = 0;
+    testhard.buttonc = 0;
+    testhard.buttonadd = 0;
+    testhard.buttonsub = 0;
+    testhard.buttonmul = 0;
+    testhard.buttondiv = 0;
+    testhard.aluout = 0;
+    
     counter.d = counter.q;
     timer.d = timer.q + 1;
     
@@ -149,8 +159,10 @@ module mojo_top (
         seven_seg_c.char = counter.q;
         seven_seg_d.char = counter.q;
 
-        simplemode.buttona = buttona;
-        hardmode.buttonc = buttonc;
+        simplemode.buttona = button_cond.buttonaout;
+        hardmode.buttonc = button_cond.buttoncout;
+        testsimple.buttonadd = button_cond.buttonaddout;
+        testhard.buttondiv = button_cond.buttondivout;
         if (button_cond.buttonaout == 1){
           state.d = state.SIMPLEMODE;
         }
@@ -159,6 +171,9 @@ module mojo_top (
         }
         if (button_cond.buttonaddout == 1){
           state.d = state.TESTSIMPLE;
+        }
+        if (button_cond.buttondivout == 1){
+          state.d = state.TESTHARD;
         }
         
       state.SIMPLEMODE:
@@ -180,7 +195,8 @@ module mojo_top (
         seven_seg_c.char = simplemode.c_out;
         seven_seg_d.char = simplemode.d_out;
         
-        operator1led.opcode = simplemode.operator_sig;       
+        operator1led.opcode = simplemode.operator_sig;
+        equalled = 1;      
         if (gameend == 1){
           state.d = state.IDLE;
         }
@@ -207,6 +223,7 @@ module mojo_top (
         seven_seg_d.char = hardmode.d_out;
         operator1led.opcode = hardmode.operator1_out;
         operator2led.opcode = hardmode.operator2_out;
+        equalled = 1;
                 
         if (gameend == 1){
           state.d = state.IDLE;
@@ -224,10 +241,51 @@ module mojo_top (
         alu.a = testsimple.alua;
         alu.b = testsimple.alub;
         alu.alufn = testsimple.alualufn;
+        gameend = testsimple.gameend;
+        
+        motherposled.position = testsimple.motherpos;
+        billyposled.position = testsimple.billypos;
+        seven_seg_a.char = testsimple.a_out;
+        seven_seg_b.char = testsimple.b_out;
+        seven_seg_c.char = testsimple.c_out;
+        seven_seg_d.char = testsimple.d_out;
+        
+        operator1led.opcode = testsimple.operator_sig;   
+        equalled = 1; 
         
         if (gameend == 1){
           state.d = state.IDLE;
         }
+        
+      state.TESTHARD:
+      
+        testhard.buttona = button_cond.buttonaout;
+        testhard.buttonb = button_cond.buttonbout;
+        testhard.buttonc = button_cond.buttoncout;
+        testhard.buttonadd = button_cond.buttonaddout;
+        testhard.buttonsub = button_cond.buttonsubout;
+        testhard.buttonmul = button_cond.buttonmulout;
+        testhard.buttondiv = button_cond.buttondivout;
+        testhard.aluout = alu.s;
+        alu.a = testhard.alua;
+        alu.b = testhard.alub;
+        alu.alufn = testhard.alualufn;
+        
+        gameend = testhard.gameend;
+        motherposled.position = testhard.motherpos;
+        billyposled.position = testhard.billypos;
+        seven_seg_a.char = testhard.a_out;
+        seven_seg_b.char = testhard.b_out;
+        seven_seg_c.char = testhard.c_out;
+        seven_seg_d.char = testhard.d_out;
+        operator1led.opcode = testhard.operator1_out;
+        operator2led.opcode = testhard.operator2_out;
+        equalled = 1;
+                
+        if (gameend == 1){
+          state.d = state.IDLE;
+        }
+        
         
 
   }

@@ -101,6 +101,7 @@ module testsimple (
       mother.writevalue = mother.pos + 1;
     }
     if (buttonc){
+      state.d = state.IDLE;
       gameend = 1;
     }
     
@@ -120,10 +121,10 @@ module testsimple (
         }
         
       state.COUNTDOWN:
-        a_out = d13;
+        a_out = d14;
         b_out = d11;
         c_out = d5;
-        d_out = d13;
+        d_out = d14;
       
         if (buttona){
           state.d = state.GEN_QN;
