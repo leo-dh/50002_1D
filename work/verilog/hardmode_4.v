@@ -198,6 +198,16 @@ module hardmode_4 (
     .writevalue(M_storedoperand_writevalue),
     .readvalue(M_storedoperand_readvalue)
   );
+  wire [16-1:0] M_divoutput1_readvalue;
+  reg [1-1:0] M_divoutput1_writeenable;
+  reg [16-1:0] M_divoutput1_writevalue;
+  registers_33 divoutput1 (
+    .clk(clk),
+    .rst(rst),
+    .writeenable(M_divoutput1_writeenable),
+    .writevalue(M_divoutput1_writevalue),
+    .readvalue(M_divoutput1_readvalue)
+  );
   wire [16-1:0] M_divoutput2_readvalue;
   reg [1-1:0] M_divoutput2_writeenable;
   reg [16-1:0] M_divoutput2_writevalue;
@@ -224,7 +234,7 @@ module hardmode_4 (
   wire [16-1:0] M_questiongenerator_c;
   wire [16-1:0] M_questiongenerator_d;
   reg [6-1:0] M_questiongenerator_randomnumber;
-  generatequestion_hard_57 questiongenerator (
+  generatequestion_hard_58 questiongenerator (
     .randomnumber(M_questiongenerator_randomnumber),
     .a(M_questiongenerator_a),
     .b(M_questiongenerator_b),
@@ -264,10 +274,12 @@ module hardmode_4 (
     alualufn = 6'h00;
     buttonoperatorinput = {buttondiv, buttonmul, buttonsub, buttonadd};
     buttonoperandinput = {buttona, buttonb, buttonc};
+    M_divoutput1_writeenable = 1'h1;
     M_divoutput2_writeenable = 1'h1;
     M_divoutput3_writeenable = 1'h1;
+    M_divoutput1_writevalue = M_a_readvalue / M_b_readvalue;
     M_divoutput2_writevalue = M_b_readvalue / M_c_readvalue;
-    M_divoutput3_writevalue = M_a_readvalue / M_temp_readvalue;
+    M_divoutput3_writevalue = M_temp_readvalue / M_c_readvalue;
     M_mother_difficulty = 2'h1;
     motherpos = M_mother_pos;
     billypos = M_billy_pos - 2'h2;
@@ -544,24 +556,41 @@ module hardmode_4 (
         M_mother_writeenable = 1'h1;
         M_temp_writeenable = 1'h1;
         
-        case (M_operator2_readvalue)
+        case (M_operator1_readvalue)
           6'h02: begin
-            alua = M_b_readvalue;
-            alub = M_c_readvalue;
-            alualufn = M_operator2_readvalue;
-            M_temp_writevalue = aluout;
-          end
-          6'h22: begin
-            alua = M_b_readvalue;
-            alub = M_c_readvalue;
-            alualufn = M_operator2_readvalue;
-            M_temp_writevalue = M_divoutput2_readvalue;
-          end
-          default: begin
             alua = M_a_readvalue;
             alub = M_b_readvalue;
             alualufn = M_operator1_readvalue;
             M_temp_writevalue = aluout;
+          end
+          6'h22: begin
+            alua = M_a_readvalue;
+            alub = M_b_readvalue;
+            alualufn = M_operator1_readvalue;
+            M_temp_writevalue = M_divoutput1_readvalue;
+          end
+          default: begin
+            
+            case (M_operator2_readvalue)
+              6'h02: begin
+                alua = M_b_readvalue;
+                alub = M_c_readvalue;
+                alualufn = M_operator2_readvalue;
+                M_temp_writevalue = aluout;
+              end
+              6'h22: begin
+                alua = M_b_readvalue;
+                alub = M_c_readvalue;
+                alualufn = M_operator2_readvalue;
+                M_temp_writevalue = M_divoutput2_readvalue;
+              end
+              default: begin
+                alua = M_a_readvalue;
+                alub = M_b_readvalue;
+                alualufn = M_operator1_readvalue;
+                M_temp_writevalue = aluout;
+              end
+            endcase
           end
         endcase
         M_state_d = CALCULATE3_state;
@@ -571,24 +600,75 @@ module hardmode_4 (
         M_mother_writeenable = 1'h1;
         M_temp_writeenable = 1'h1;
         
-        case (M_operator2_readvalue)
+        case (M_operator1_readvalue)
           6'h02: begin
-            alua = M_a_readvalue;
-            alub = M_temp_readvalue;
-            alualufn = M_operator1_readvalue;
-            M_temp_writevalue = aluout;
+            
+            case (M_operator2_readvalue)
+              6'h02: begin
+                alua = M_temp_readvalue;
+                alub = M_c_readvalue;
+                alualufn = M_operator2_readvalue;
+                M_temp_writevalue = aluout;
+              end
+              6'h22: begin
+                alua = M_temp_readvalue;
+                alub = M_c_readvalue;
+                alualufn = M_operator2_readvalue;
+                M_temp_writevalue = M_divoutput3_readvalue;
+              end
+              default: begin
+                alua = M_temp_readvalue;
+                alub = M_c_readvalue;
+                alualufn = M_operator2_readvalue;
+                M_temp_writevalue = aluout;
+              end
+            endcase
           end
           6'h22: begin
-            alua = M_a_readvalue;
-            alub = M_temp_readvalue;
-            alualufn = M_operator1_readvalue;
-            M_temp_writevalue = M_divoutput3_readvalue;
+            
+            case (M_operator2_readvalue)
+              6'h02: begin
+                alua = M_temp_readvalue;
+                alub = M_c_readvalue;
+                alualufn = M_operator2_readvalue;
+                M_temp_writevalue = aluout;
+              end
+              6'h22: begin
+                alua = M_temp_readvalue;
+                alub = M_c_readvalue;
+                alualufn = M_operator2_readvalue;
+                M_temp_writevalue = M_divoutput3_readvalue;
+              end
+              default: begin
+                alua = M_temp_readvalue;
+                alub = M_c_readvalue;
+                alualufn = M_operator2_readvalue;
+                M_temp_writevalue = aluout;
+              end
+            endcase
           end
           default: begin
-            alua = M_temp_readvalue;
-            alub = M_c_readvalue;
-            alualufn = M_operator2_readvalue;
-            M_temp_writevalue = aluout;
+            
+            case (M_operator2_readvalue)
+              6'h02: begin
+                alua = M_temp_readvalue;
+                alub = M_a_readvalue;
+                alualufn = M_operator1_readvalue;
+                M_temp_writevalue = aluout;
+              end
+              6'h22: begin
+                alua = M_temp_readvalue;
+                alub = M_a_readvalue;
+                alualufn = M_operator1_readvalue;
+                M_temp_writevalue = aluout;
+              end
+              default: begin
+                alua = M_temp_readvalue;
+                alub = M_c_readvalue;
+                alualufn = M_operator2_readvalue;
+                M_temp_writevalue = aluout;
+              end
+            endcase
           end
         endcase
         M_state_d = CHECKRESULT_state;

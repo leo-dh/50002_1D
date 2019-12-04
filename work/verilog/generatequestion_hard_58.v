@@ -4,7 +4,7 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module generatequestion_hard_57 (
+module generatequestion_hard_58 (
     input [5:0] randomnumber,
     output reg [15:0] a,
     output reg [15:0] b,

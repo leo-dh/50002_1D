@@ -215,7 +215,7 @@ module testhard_6 (
   wire [16-1:0] M_questiongenerator_c;
   wire [16-1:0] M_questiongenerator_d;
   reg [6-1:0] M_questiongenerator_randomnumber;
-  generatequestion_hard_57 questiongenerator (
+  generatequestion_hard_58 questiongenerator (
     .randomnumber(M_questiongenerator_randomnumber),
     .a(M_questiongenerator_a),
     .b(M_questiongenerator_b),

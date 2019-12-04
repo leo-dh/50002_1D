@@ -4,30 +4,35 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module shifter_84 (
+module compare_86 (
+    input z,
+    input v,
+    input n,
     input [5:0] alufn,
-    input [15:0] a,
-    input [15:0] b,
-    output reg [15:0] shift
+    output reg [15:0] comp
   );
   
   
   
+  reg cmp;
+  
   always @* begin
     
-    case (alufn[0+1-:2])
-      2'h0: begin
-        shift = a << b[0+3-:4];
-      end
+    case (alufn[1+1-:2])
       2'h1: begin
-        shift = a >> b[0+3-:4];
+        cmp = z;
+      end
+      2'h2: begin
+        cmp = n ^ v;
       end
       2'h3: begin
-        shift = $signed(a) >>> b[0+3-:4];
+        cmp = z | (n ^ v);
       end
       default: begin
-        shift = a;
+        cmp = 1'h0;
       end
     endcase
+    comp[1+14-:15] = 15'h0000;
+    comp[0+0-:1] = cmp;
   end
 endmodule

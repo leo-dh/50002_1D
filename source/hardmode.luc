@@ -45,13 +45,14 @@ module hardmode (
       registers operator1(#BITS(6));
       registers operator2(#BITS(6));
       registers storedoperand(#BITS(3));
-
+      
+      registers divoutput1(#BITS(16));
       registers divoutput2(#BITS(16));
       registers divoutput3(#BITS(16));
       
     }
   }
-
+  
   generatequestion_hard questiongenerator;
   
   sig buttonoperatorinput[4];
@@ -79,12 +80,14 @@ module hardmode (
     buttonoperatorinput = c{buttondiv, buttonmul, buttonsub, buttonadd};
     buttonoperandinput = c{buttona, buttonb, buttonc};
     
-
+    divoutput1.writeenable = 1;
     divoutput2.writeenable = 1;
     divoutput3.writeenable = 1;
-
+    
+    
+    divoutput1.writevalue = a.readvalue/b.readvalue;
     divoutput2.writevalue = b.readvalue/c.readvalue;
-    divoutput3.writevalue = a.readvalue/temp.readvalue;
+    divoutput3.writevalue = temp.readvalue/c.readvalue;
     
     mother.difficulty = b01;
     
@@ -124,7 +127,7 @@ module hardmode (
     tempa.writevalue = a.readvalue;
     tempb.writevalue = b.readvalue;
     tempc.writevalue = c.readvalue;
-
+    
     
     case (state.q){
       
@@ -140,7 +143,7 @@ module hardmode (
           timer.d = 0;
           state.d = state.COUNTDOWN;
         }
-        
+      
       state.COUNTDOWN:
         timer.d = timer.q + 1;
         d_out = d20;
@@ -149,7 +152,7 @@ module hardmode (
             a_out = counter.q;
             b_out = d20;
             c_out = d20;
-                   
+          
           d2:
             a_out = d20;
             b_out = counter.q;
@@ -176,7 +179,7 @@ module hardmode (
           counter.d = 0;
           state.d = state.GEN_QN;
         }
-        
+      
       
       state.GEN_QN:
         timer.d = 0;
@@ -199,11 +202,11 @@ module hardmode (
           operator1.writeenable = 1;
           operator1.writevalue = 6b111111;
           operator2.writeenable = 1;
-          operator2.writevalue = 6b111111; 
+          operator2.writevalue = 6b111111;
           state.d = state.WAITINPUT;
         }
-        
-        
+      
+      
       
       state.WAITINPUT:
         timer.d = timer.q + 1;
@@ -255,7 +258,7 @@ module hardmode (
             b001:
               c_out = d20;
             b010:
-              b_out = d20;          
+              b_out = d20;
             b100:
               a_out = d20;
           }
@@ -294,7 +297,7 @@ module hardmode (
         storedoperand.writevalue = b000;
         tempa.writeenable = 1;
         tempb.writeenable = 1;
-        tempc.writeenable = 1;        
+        tempc.writeenable = 1;
         if (mother.pos == billy.pos){
           state.d = state.CHECKMOTHERPOS;
         }
@@ -345,28 +348,43 @@ module hardmode (
         timer.d = timer.q;
         mother.writeenable = 1;
         temp.writeenable = 1;
-        case (operator2.readvalue){
+        case (operator1.readvalue){
           
           MUL:
-            alua = b.readvalue;
-            alub = c.readvalue;
-            alualufn = operator2.readvalue;
-            temp.writevalue = aluout;
-          
-          DIV:
-            alua = b.readvalue;
-            alub = c.readvalue;
-            alualufn = operator2.readvalue;
-            temp.writevalue = divoutput2.readvalue;
-          
-          default:
             alua = a.readvalue;
             alub = b.readvalue;
             alualufn = operator1.readvalue;
             temp.writevalue = aluout;
           
-        }
+          DIV:
+            alua = a.readvalue;
+            alub = b.readvalue;
+            alualufn = operator1.readvalue;
+            temp.writevalue = divoutput1.readvalue;
+          
+          default:
+            case (operator2.readvalue){
+              MUL:
+                alua = b.readvalue;
+                alub = c.readvalue;
+                alualufn = operator2.readvalue;
+                temp.writevalue = aluout;
               
+              DIV:
+                alua = b.readvalue;
+                alub = c.readvalue;
+                alualufn = operator2.readvalue;
+                temp.writevalue = divoutput2.readvalue;
+              
+              default:
+                alua = a.readvalue;
+                alub = b.readvalue;
+                alualufn = operator1.readvalue;
+                temp.writevalue = aluout;
+            }
+          
+        }
+        
         state.d = state.CALCULATE3;
       
       state.CALCULATE3:
@@ -374,28 +392,69 @@ module hardmode (
         mother.writeenable = 1;
         temp.writeenable = 1;
         
-        case (operator2.readvalue){
+        case (operator1.readvalue){
           
           MUL:
-            alua = a.readvalue;
-            alub = temp.readvalue;
-            alualufn = operator1.readvalue;
-            temp.writevalue = aluout;
+            case(operator2.readvalue){
+              MUL:
+                alua = temp.readvalue;
+                alub = c.readvalue;
+                alualufn = operator2.readvalue;
+                temp.writevalue = aluout;
+              DIV:
+                alua = temp.readvalue;
+                alub = c.readvalue;
+                alualufn = operator2.readvalue;
+                temp.writevalue = divoutput3.readvalue;
+              default:
+                alua = temp.readvalue;
+                alub = c.readvalue;
+                alualufn = operator2.readvalue;
+                temp.writevalue = aluout;
+            }
           
           DIV:
-            alua = a.readvalue;
-            alub = temp.readvalue;
-            alualufn = operator1.readvalue;
-            temp.writevalue = divoutput3.readvalue;
+            case(operator2.readvalue){
+              MUL:
+                alua = temp.readvalue;
+                alub = c.readvalue;
+                alualufn = operator2.readvalue;
+                temp.writevalue = aluout;
+              DIV:
+                alua = temp.readvalue;
+                alub = c.readvalue;
+                alualufn = operator2.readvalue;
+                temp.writevalue = divoutput3.readvalue;
+              default:
+                alua = temp.readvalue;
+                alub = c.readvalue;
+                alualufn = operator2.readvalue;
+                temp.writevalue = aluout;
+            }
           
           default:
-            alua = temp.readvalue;
-            alub = c.readvalue;
-            alualufn = operator2.readvalue;
-            temp.writevalue = aluout;
+            case (operator2.readvalue){
+              MUL:
+                alua = temp.readvalue;
+                alub = a.readvalue;
+                alualufn = operator1.readvalue;
+                temp.writevalue = aluout;
+              
+              DIV:
+                alua = temp.readvalue;
+                alub = a.readvalue;
+                alualufn = operator1.readvalue;
+                temp.writevalue = aluout;
+              
+              default:
+                alua = temp.readvalue;
+                alub = c.readvalue;
+                alualufn = operator2.readvalue;
+                temp.writevalue = aluout;
+            }
           
         }
-           
+        
         
         state.d = state.CHECKRESULT;
       

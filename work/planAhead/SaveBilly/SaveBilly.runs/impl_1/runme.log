@@ -34,8 +34,8 @@ NGDBUILD Design Results Summary:
   Number of warnings:   0
 
 Writing NGD file "mojo_top_0.ngd" ...
-Total REAL time to NGDBUILD completion:  23 sec
-Total CPU time to NGDBUILD completion:   7 sec
+Total REAL time to NGDBUILD completion:  15 sec
+Total CPU time to NGDBUILD completion:   4 sec
 
 Writing NGDBUILD log file "mojo_top_0.bld"...
 
@@ -67,373 +67,1504 @@ Updating timing models...
 INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
    (.mrp).
 Running timing-driven placement...
-Total REAL time at the beginning of Placer: 15 secs 
-Total CPU  time at the beginning of Placer: 14 secs 
+Total REAL time at the beginning of Placer: 9 secs 
+Total CPU  time at the beginning of Placer: 9 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:12987c6b) REAL time: 16 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:feb62b29) REAL time: 10 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:12987c6b) REAL time: 16 secs 
+Phase 2.7  Design Feasibility Check (Checksum:feb62b29) REAL time: 10 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:12987c6b) REAL time: 16 secs 
+Phase 3.31  Local Placement Optimization (Checksum:feb62b29) REAL time: 10 secs 
 
 Phase 4.2  Initial Placement for Architecture Specific Features
 
 Phase 4.2  Initial Placement for Architecture Specific Features
-(Checksum:ef4b578b) REAL time: 24 secs 
+(Checksum:87bc6539) REAL time: 14 secs 
 
 Phase 5.36  Local Placement Optimization
-Phase 5.36  Local Placement Optimization (Checksum:ef4b578b) REAL time: 24 secs 
+Phase 5.36  Local Placement Optimization (Checksum:87bc6539) REAL time: 14 secs 
 
 Phase 6.30  Global Clock Region Assignment
-Phase 6.30  Global Clock Region Assignment (Checksum:ef4b578b) REAL time: 24 secs 
+Phase 6.30  Global Clock Region Assignment (Checksum:87bc6539) REAL time: 14 secs 
 
 Phase 7.3  Local Placement Optimization
-Phase 7.3  Local Placement Optimization (Checksum:ef4b578b) REAL time: 24 secs 
+Phase 7.3  Local Placement Optimization (Checksum:87bc6539) REAL time: 14 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:ef4b578b) REAL time: 25 secs 
+Phase 8.5  Local Placement Optimization (Checksum:87bc6539) REAL time: 15 secs 
 
 Phase 9.8  Global Placement
-..............................
-........................................
-..................................................................................................................................................................................................................................................
-...........................................................................................................................................................................................................................
-.......................................................................................................
-Phase 9.8  Global Placement (Checksum:22c11932) REAL time: 1 mins 7 secs 
+..........................
+..........................................................
+.........................................................................................................................................................................................................................................................
+................................................................................................................................................................................................................................................
+........................................................................................................
+ERROR:Place:543 - This design does not fit into the number of slices available
+   in this device due to the complexity of the design and/or constraints.
 
-Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:22c11932) REAL time: 1 mins 7 secs 
+   Unplaced instances by type:
 
-Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:63b79aad) REAL time: 1 mins 26 secs 
+     FF    3 (0.3)
+     LUTL    252 (4.7)
 
-Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:63b79aad) REAL time: 1 mins 26 secs 
+   Please evaluate the following:
 
-Phase 13.34  Placement Validation
-Phase 13.34  Placement Validation (Checksum:f1deda8c) REAL time: 1 mins 26 secs 
+   - If there are user-defined constraints or area groups:
+     Please look at the "User-defined constraints" section below to determine
+     what constraints might be impacting the fitting of this design.
+     Evaluate if they can be moved, removed or resized to allow for fitting.
+     Verify that they do not overlap or conflict with clock region restrictions.
+     See the clock region reports in the MAP log file (*map) for more details
+     on clock region usage.
 
-Total REAL time to Placer completion: 1 mins 27 secs 
-Total CPU  time to Placer completion: 1 mins 33 secs 
-Running post-placement packing...
-Writing output files...
+   - If there is difficulty in placing LUTs:
+     Try using the MAP LUT Combining Option (map lc area|auto|off).
 
-Design Summary:
-Number of errors:      0
-Number of warnings:    6
-Slice Logic Utilization:
-  Number of Slice Registers:                 1,140 out of  11,440    9%
-    Number used as Flip Flops:               1,140
-    Number used as Latches:                      0
-    Number used as Latch-thrus:                  0
-    Number used as AND/OR logics:                0
-  Number of Slice LUTs:                      5,023 out of   5,720   87%
-    Number used as logic:                    4,995 out of   5,720   87%
-      Number using O6 output only:           3,420
-      Number using O5 output only:             515
-      Number using O5 and O6:                1,060
-      Number used as ROM:                        0
-    Number used as Memory:                       4 out of   1,440    1%
-      Number used as Dual Port RAM:              0
-      Number used as Single Port RAM:            0
-      Number used as Shift Register:             4
-        Number using O6 output only:             1
-        Number using O5 output only:             0
-        Number using O5 and O6:                  3
-    Number used exclusively as route-thrus:     24
-      Number with same-slice register load:      1
-      Number with same-slice carry load:        23
-      Number with other load:                    0
+   - If there is difficulty in placing FFs:
+     Evaluate the number and configuration of the control sets in your design.
 
-Slice Logic Distribution:
-  Number of occupied Slices:                 1,392 out of   1,430   97%
-  Number of MUXCYs used:                     2,572 out of   2,860   89%
-  Number of LUT Flip Flop pairs used:        5,036
-    Number with an unused Flip Flop:         4,084 out of   5,036   81%
-    Number with an unused LUT:                  13 out of   5,036    1%
-    Number of fully used LUT-FF pairs:         939 out of   5,036   18%
-    Number of unique control sets:              51
-    Number of slice register sites lost
-      to control set restrictions:             141 out of  11,440    1%
+   The following instances are the last set of instances that failed to place:
 
-  A LUT Flip Flop pair for this architecture represents one LUT paired with
-  one Flip Flop within a slice.  A control set is a unique combination of
-  clock, reset, set, and enable signals for a registered element.
-  The Slice Logic Distribution report is not meaningful if the design is
-  over-mapped for a non-slice resource or if Placement fails.
+   0. Placer RPM "carry chain" (size: 12)
+      LUTL simplemode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_45_o_cy[3]
+      LUTL simplemode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_45_o_lut<3>
+      LUTL simplemode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_45_o_cy[3]
+      LUTL simplemode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_45_o_lut<2>
+      LUTL simplemode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_45_o_cy[3]
+      LUTL simplemode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_45_o_lut<1>
+      LUTL simplemode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_45_o_cy[3]
+      LUTL simplemode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_45_o_lut<0>
+      LUTL simplemode/M_testhard_motherpos[0]_32.B5LUT
+      LUTL simplemode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_45_o_lut<5>
+      LUTL simplemode/M_mother_pos[15]_M_billy_pos[15]_equal_45_o
+      LUTL simplemode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_45_o_lut<4>
+   1. Placer RPM "carry chain" (size: 12)
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<3>
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<2>
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<1>
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<0>
+      LUTL hardmode/M_testhard_motherpos[0]_53.B5LUT
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<5>
+      LUTL hardmode/M_mother_pos[15]_M_billy_pos[15]_equal_141_o
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<4>
+   2. Placer RPM "carry chain" (size: 10)
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0].D5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<3>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lutdi2
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<2>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lutdi1
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<1>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lutdi
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<0>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_2.A5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<4>
+   3. Placer RPM "carry chain" (size: 10)
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_10.D5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<3>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lutdi2
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<2>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lutdi1
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<1>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lutdi
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<0>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_11.A5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<4>
+   4. Placer RPM "carry chain" (size: 10)
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_5.D5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<3>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_4.C5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<2>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lutdi1
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<1>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lutdi
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<0>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_6.A5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<4>_INV_0
+   5. Placer RPM "carry chain" (size: 12)
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_cy[3]
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_5.D6L
+   UT
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lutdi21
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut<2>1
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lutdi1
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut<1>
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lutdi
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut<0>
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/M_testhard_motherpos[0]_11
+   .B5LUT
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/GND_14_o_b[15]_add_13_OUT[
+   10]_rt
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/a[10]_GND_14_o_MUX_568_o
+      LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_6.A6L
+   UT
+   6. Placer RPM "carry chain" (size: 12)
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_cy[3]
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_lut[3]_5.D6L
+   UT
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_lutdi21
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_lut<2>1
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_lutdi1
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_lut<1>
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_lutdi
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_lut<0>
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/M_testhard_motherpos[0]_11
+   .B5LUT
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/GND_14_o_b[15]_add_13_OUT[
+   10]_rt
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/a[10]_GND_14_o_MUX_568_o
+      LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_lut[3]_6.A6L
+   UT
+   7. Placer RPM "carry chain" (size: 12)
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_cy[3]
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_5.D6L
+   UT
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lutdi21
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut<2>1
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lutdi1
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut<1>
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lutdi
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut<0>
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/M_testhard_motherpos[0]_11
+   .B5LUT
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/GND_14_o_b[15]_add_13_OUT[
+   10]_rt
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[10]_GND_14_o_MUX_568_o
+      LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_6.A6L
+   UT
+   8. Placer RPM "carry chain" (size: 11)
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_5.
+   D6LUT
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lutdi21
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut<2>1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lutdi1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut<1>
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lutdi
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut<0>
+      LUTL M_reg_q_10_0
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_6.
+   A6LUT
+      FF hardmode/divoutput3/M_reg_q_10
+   9. Placer RPM "carry chain" (size: 11)
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_34
+   .D6LUT
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lut<2>1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lutdi1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lut<1>
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lutdi
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lut<0>
+      LUTL hardmode/M_divoutput3_readvalue[11]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_35
+   .A6LUT
+      FF hardmode/divoutput3/M_reg_q_11
+   10. Placer RPM "carry chain" (size: 11)
+       LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_cy[3]
+       LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_14
+   .D6LUT
+       LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_cy[3]
+       LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_13
+   .C6LUT
+       LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lutdi1
+       LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lut<1>
+       LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lutdi
+       LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lut<0>
+       LUTL M_reg_q_12_0
+       LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_15
+   .A6LUT
+       FF hardmode/divoutput3/M_reg_q_12
+   11. Placer RPM "carry chain" (size: 10)
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _3.D5LUT
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<3>
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lutdi2
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<2>
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lutdi1
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<1>
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lutdi
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<0>
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _4.A5LUT
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<4>
+   12. Placer RPM "carry chain" (size: 10)
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _19.D5LUT
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<3>
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lutdi2
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<2>
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lutdi1
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<1>
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lutdi
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<0>
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _20.A5LUT
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<4>
+   13. Placer RPM "carry chain" (size: 10)
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _10.D5LUT
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<3>
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _9.C5LUT
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<2>
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _8.B5LUT
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<1>1
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _7.A5LUT
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<0>1
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _11.A5LUT
+       LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<4>_IN
+   V_0
+   14. Placer RPM "carry chain" (size: 12)
+       LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<12>_cy[3]
+       LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_lut[3]_15.D6
+   LUT
+       LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<12>_cy[3]
+       LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_lut[3]_14.C6
+   LUT
+       LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/M_testhard_motherpos[0]_9.
+   B5LUT
+       LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<12>_lut<1>1
+       LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/M_testhard_motherpos[0]_8.
+   A5LUT
+       LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<12>_lut<0>1
+       LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/M_testhard_motherpos[0]_18
+   .B5LUT
+       LUTL M_reg_q_0_9_rt.1
+       LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/a[12]_GND_14_o_MUX_460_o
+       LUTL
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mcompar_o<10>_lut[3]_16.A6
+   LUT
+   15. Placer RPM "carry chain" (size: 10)
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_2.D5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<3>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lutdi2
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<2>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lutdi1
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<1>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lutdi
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<0>
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_3.A5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<4>
+   16. Placer RPM "carry chain" (size: 12)
+       LUTL
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_15.
+   D6LUT
+       LUTL
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_14.
+   C6LUT
+       LUTL
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/M_testhard_motherpos[0]_
+   9.B5LUT
+       LUTL
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_lut<1>1_IN
+   V_0
+       LUTL
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/M_testhard_motherpos[0]_
+   8.A5LUT
+       LUTL
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_lut<0>1
+       LUTL
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/M_testhard_motherpos[0]_
+   18.B5LUT
+       LUTL M_reg_q_0_15_rt.1
+       LUTL
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_460_o
+       LUTL
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_16.
+   A6LUT
+   17. Placer RPM "carry chain" (size: 12)
+       LUTL
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_15.
+   D6LUT
+       LUTL
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_14.
+   C6LUT
+       LUTL
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/M_testhard_motherpos[0]_
+   9.B5LUT
+       LUTL
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_lut<1>1_IN
+   V_0
+       LUTL
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/M_testhard_motherpos[0]_
+   8.A5LUT
+       LUTL
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_lut<0>1
+       LUTL
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/M_testhard_motherpos[0]_
+   18.B5LUT
+       LUTL M_reg_q_0_2_rt.1
+       LUTL
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_460_o
+       LUTL
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_16.
+   A6LUT
+   18. Placer RPM "carry chain" (size: 12)
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_15.D6
+   LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_14.C6
+   LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/M_testhard_motherpos[0]_9.
+   B5LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_lut<1>1
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/M_testhard_motherpos[0]_8.
+   A5LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_lut<0>1
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/M_testhard_motherpos[0]_18
+   .B5LUT
+       LUTL M_reg_q_0_23_rt.1
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/a[12]_GND_14_o_MUX_460_o
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_16.A6
+   LUT
+   19. Placer RPM "carry chain" (size: 12)
+       LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_15.D6
+   LUT
+       LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_14.C6
+   LUT
+       LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/M_testhard_motherpos[0]_9.
+   B5LUT
+       LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_lut<1>1
+       LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/M_testhard_motherpos[0]_8.
+   A5LUT
+       LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<12>_lut<0>1
+       LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/M_testhard_motherpos[0]_18
+   .B5LUT
+       LUTL M_reg_q_0_10_rt.1
+       LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_460_o
+       LUTL
+   hardmode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_16.A6
+   LUT
+   20. Placer RPM "carry chain" (size: 10)
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_11.D5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<3>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lutdi2
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<2>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lutdi1
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<1>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lutdi
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<0>
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_12.A5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<4>
+   21. Placer RPM "carry chain" (size: 10)
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_6.D5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<3>
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_5.C5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<2>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lutdi1
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<1>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lutdi
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<0>
+       LUTL alu/a[15]_b[15]_div_14_OUT[12]
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<4>
+   22. Placer RPM "carry chain" (size: 12)
+       LUTL testsimple/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_34_o_cy[3]
+       LUTL
+   testsimple/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_34_o_lut<3>
+       LUTL testsimple/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_34_o_cy[3]
+       LUTL
+   testsimple/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_34_o_lut<2>
+       LUTL testsimple/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_34_o_cy[3]
+       LUTL
+   testsimple/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_34_o_lut<1>
+       LUTL testsimple/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_34_o_cy[3]
+       LUTL
+   testsimple/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_34_o_lut<0>
+       LUTL testsimple/M_testhard_motherpos[0]_216.B5LUT
+       LUTL
+   testsimple/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_34_o_lut<5>
+       LUTL testsimple/M_mother_pos[15]_M_billy_pos[15]_equal_34_o
+       LUTL
+   testsimple/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_34_o_lut<4>
+Phase 9.8  Global Placement (Checksum:de365589) REAL time: 56 secs 
 
-IO Utilization:
-  Number of bonded IOBs:                        75 out of     102   73%
-    Number of LOCed IOBs:                       75 out of      75  100%
+Phase 10.8  Global Placement
+..
+....................................................................................................................................................................
+...............................................................................
+...............................................................................................
+ERROR:Place:543 - This design does not fit into the number of slices available
+   in this device due to the complexity of the design and/or constraints.
 
-Specific Feature Utilization:
-  Number of RAMB16BWERs:                         0 out of      32    0%
-  Number of RAMB8BWERs:                          0 out of      64    0%
-  Number of BUFIO2/BUFIO2_2CLKs:                 0 out of      32    0%
-  Number of BUFIO2FB/BUFIO2FB_2CLKs:             0 out of      32    0%
-  Number of BUFG/BUFGMUXs:                       1 out of      16    6%
-    Number used as BUFGs:                        1
-    Number used as BUFGMUX:                      0
-  Number of DCM/DCM_CLKGENs:                     0 out of       4    0%
-  Number of ILOGIC2/ISERDES2s:                   0 out of     200    0%
-  Number of IODELAY2/IODRP2/IODRP2_MCBs:         0 out of     200    0%
-  Number of OLOGIC2/OSERDES2s:                   0 out of     200    0%
-  Number of BSCANs:                              0 out of       4    0%
-  Number of BUFHs:                               0 out of     128    0%
-  Number of BUFPLLs:                             0 out of       8    0%
-  Number of BUFPLL_MCBs:                         0 out of       4    0%
-  Number of DSP48A1s:                            3 out of      16   18%
-  Number of ICAPs:                               0 out of       1    0%
-  Number of MCBs:                                0 out of       2    0%
-  Number of PCILOGICSEs:                         0 out of       2    0%
-  Number of PLL_ADVs:                            0 out of       2    0%
-  Number of PMVs:                                0 out of       1    0%
-  Number of STARTUPs:                            0 out of       1    0%
-  Number of SUSPEND_SYNCs:                       0 out of       1    0%
+   Unplaced instances by type:
 
-Average Fanout of Non-Clock Nets:                4.56
+     LUT    88 (1.6)
+     FF    5 (0.4)
+     LUTL    144 (2.7)
 
-Peak Memory Usage:  4630 MB
-Total REAL time to MAP completion:  1 mins 30 secs 
-Total CPU time to MAP completion (all processors):   1 mins 36 secs 
+   Please evaluate the following:
+
+   - If there are user-defined constraints or area groups:
+     Please look at the "User-defined constraints" section below to determine
+     what constraints might be impacting the fitting of this design.
+     Evaluate if they can be moved, removed or resized to allow for fitting.
+     Verify that they do not overlap or conflict with clock region restrictions.
+     See the clock region reports in the MAP log file (*map) for more details
+     on clock region usage.
+
+   - If there is difficulty in placing LUTs:
+     Try using the MAP LUT Combining Option (map lc area|auto|off).
+
+   - If there is difficulty in placing FFs:
+     Evaluate the number and configuration of the control sets in your design.
+
+   The following instances are the last set of instances that failed to place:
+
+   0. Placer RPM "carry chain" (size: 12)
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<3>
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<2>
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<1>
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<0>
+      LUTL hardmode/M_testhard_motherpos[0]_53.B5LUT
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<5>
+      LUTL hardmode/M_mother_pos[15]_M_billy_pos[15]_equal_141_o
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<4>
+   1. Placer RPM "carry chain" (size: 10)
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0].D5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<3>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lutdi2
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<2>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lutdi1
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<1>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lutdi
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<0>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_2.A5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<4>
+   2. Placer RPM "carry chain" (size: 10)
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_10.D5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<3>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lutdi2
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<2>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lutdi1
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<1>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lutdi
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<0>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_11.A5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<4>
+   3. Placer RPM "carry chain" (size: 10)
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_5.D5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<3>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_4.C5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<2>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lutdi1
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<1>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lutdi
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<0>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_6.A5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<4>_INV_0
+   4. Placer RPM "carry chain" (size: 11)
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_5.
+   D6LUT
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lutdi21
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut<2>1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lutdi1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut<1>
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lutdi
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut<0>
+      LUTL M_reg_q_10_0
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_6.
+   A6LUT
+      FF hardmode/divoutput3/M_reg_q_10
+   5. Placer RPM "carry chain" (size: 11)
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_34
+   .D6LUT
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lut<2>1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lutdi1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lut<1>
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lutdi
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lut<0>
+      LUTL hardmode/M_divoutput3_readvalue[11]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_35
+   .A6LUT
+      FF hardmode/divoutput3/M_reg_q_11
+   6. Placer RPM "carry chain" (size: 11)
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_14
+   .D6LUT
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_13
+   .C6LUT
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lutdi1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lut<1>
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lutdi
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lut<0>
+      LUTL M_reg_q_12_0
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_15
+   .A6LUT
+      FF hardmode/divoutput3/M_reg_q_12
+   7. Placer RPM "carry chain" (size: 10)
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _3.D5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<3>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lutdi2
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<2>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lutdi1
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<1>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lutdi
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<0>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _4.A5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<4>
+   8. Placer RPM "carry chain" (size: 10)
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _19.D5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<3>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lutdi2
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<2>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lutdi1
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<1>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lutdi
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<0>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _20.A5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<4>
+   9. Placer RPM "carry chain" (size: 10)
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _10.D5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<3>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _9.C5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<2>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _8.B5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<1>1
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _7.A5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<0>1
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _11.A5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<4>_IN
+   V_0
+   10. Placer RPM "carry chain" (size: 10)
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_2.D5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<3>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lutdi2
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<2>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lutdi1
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<1>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lutdi
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<0>
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_3.A5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<4>
+   11. Placer RPM "carry chain" (size: 12)
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_15.D6
+   LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_14.C6
+   LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/M_testhard_motherpos[0]_9.
+   B5LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_lut<1>1
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/M_testhard_motherpos[0]_8.
+   A5LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_lut<0>1
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/M_testhard_motherpos[0]_18
+   .B5LUT
+       LUTL M_reg_q_0_23_rt.1
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/a[12]_GND_14_o_MUX_460_o
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_16.A6
+   LUT
+   12. Placer RPM "carry chain" (size: 10)
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_11.D5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<3>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lutdi2
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<2>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lutdi1
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<1>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lutdi
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<0>
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_12.A5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<4>
+   13. Placer RPM "carry chain" (size: 10)
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_6.D5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<3>
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_5.C5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<2>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lutdi1
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<1>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lutdi
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<0>
+       LUTL alu/a[15]_b[15]_div_14_OUT[12]
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<4>
+   14. testsimple/M_a_writeenable (size: 2)
+       LUT testsimple/M_state_q_FSM_FFd2-In1
+       LUT testsimple/M_state_q_FSM_FFd3-In11
+   15. testsimple/M_billy_pos[14] (size: 3)
+       LUT testsimple/M_billy_pos[14]
+       LUT testsimple/Mmux_M_billy_writevalue61
+       FF testsimple/billy/M_billyposition_q_14
+   16. M_reg_q_1 (size: 3)
+       LUT M_reg_q_1
+       LUT simplemode/Mmux_M_temp_writevalue81
+       FF simplemode/temp/M_reg_q_1
+   17.
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+   (size: 4)
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   08_o131
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   48_o131
+   18.
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+   (size: 4)
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   08_o131
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   48_o131
+   19.
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[14]_GND_14_o_MUX_794_o
+   (size: 4)
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[14]_GND_14_o_MUX_794_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   08_o151
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[14]_GND_14_o_MUX_794_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   86_o151
+   20.
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/a[13]_GND_14_o_MUX_753_o
+   (size: 4)
+       LUT
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/a[13]_GND_14_o_MUX_753_o
+       LUT
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mmux_a[0]_GND_14_o_MUX_766
+   _o141
+       LUT
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/a[13]_GND_14_o_MUX_753_o
+       LUT
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mmux_a[0]_GND_14_o_MUX_676
+   _o141
+   21. Mmux_M_seven_seg_b_char1 (size: 4)
+       LUT Mmux_M_seven_seg_b_char1
+       LUT Mmux_M_seven_seg_b_char11
+       LUT Mmux_M_seven_seg_b_char1
+       LUT Mmux_M_seven_seg_b_char12
+   22. Mmux_M_seven_seg_b_char12 (size: 4)
+       LUT Mmux_M_seven_seg_b_char12
+       LUT Mmux_M_seven_seg_b_char13
+       LUT Mmux_M_seven_seg_b_char12
+       LUT Mmux_M_seven_seg_b_char16
+   23.
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[11]_GND_14_o_MUX_837_o
+   (size: 4)
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[11]_GND_14_o_MUX_837_o
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   48_o121
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[11]_GND_14_o_MUX_837_o
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   86_o121
+   24. alu/division/a[15]_b[15]_div_13/a[11]_GND_14_o_MUX_837_o (size: 4)
+       LUT alu/division/a[15]_b[15]_div_13/a[11]_GND_14_o_MUX_837_o
+       LUT alu/division/a[15]_b[15]_div_13/Mmux_a[0]_GND_14_o_MUX_848_o121
+       LUT alu/division/a[15]_b[15]_div_13/a[11]_GND_14_o_MUX_837_o
+       LUT alu/division/a[15]_b[15]_div_13/Mmux_a[0]_GND_14_o_MUX_922_o121
+   25. alu/division/a[15]_b[15]_div_14/a[15]_GND_14_o_MUX_871_o (size: 4)
+       LUT alu/division/a[15]_b[15]_div_14/a[15]_GND_14_o_MUX_871_o
+       LUT alu/division/a[15]_b[15]_div_14/Mmux_a[0]_GND_14_o_MUX_886_o161
+       LUT alu/division/a[15]_b[15]_div_14/a[15]_GND_14_o_MUX_871_o
+       LUT alu/division/a[15]_b[15]_div_14/Mmux_n095071
+   26.
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/a[8]_GND_14_o_MUX_800_o
+   (size: 4)
+       LUT
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/a[8]_GND_14_o_MUX_800_o
+       LUT
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mmux_a[0]_GND_14_o_MUX_
+   808_o1141
+       LUT
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/a[8]_GND_14_o_MUX_800_o
+       LUT
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mmux_a[0]_GND_14_o_MUX_
+   722_o1141
+   27. testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<2>1514 (size: 4)
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<2>1514
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<2>15141
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<2>1514
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<5>1
+   28. alu/division/a[15]_b[15]_div_13/a[5]_GND_14_o_MUX_917_o (size: 4)
+       LUT alu/division/a[15]_b[15]_div_13/a[5]_GND_14_o_MUX_917_o
+       LUT alu/division/a[15]_b[15]_div_13/Mmux_a[0]_GND_14_o_MUX_922_o1111
+       LUT alu/division/a[15]_b[15]_div_13/a[5]_GND_14_o_MUX_917_o
+       LUT alu/division/a[15]_b[15]_div_13/Mmux_a[0]_GND_14_o_MUX_848_o1111
+   29.
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[5]_GND_14_o_MUX_917_o
+   (size: 4)
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[5]_GND_14_o_MUX_917_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_9
+   22_o1111
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[5]_GND_14_o_MUX_917_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   48_o1111
+   30.
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[6]_GND_14_o_MUX_916_o
+   (size: 4)
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[6]_GND_14_o_MUX_916_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_9
+   22_o1121
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[6]_GND_14_o_MUX_916_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   48_o1121
+   31. alu/division/a[15]_b[15]_div_14/a[4]_GND_14_o_MUX_882_o (size: 4)
+       LUT alu/division/a[15]_b[15]_div_14/a[4]_GND_14_o_MUX_882_o
+       LUT alu/division/a[15]_b[15]_div_14/Mmux_a[0]_GND_14_o_MUX_886_o1101
+       LUT alu/division/a[15]_b[15]_div_14/a[4]_GND_14_o_MUX_882_o
+       LUT alu/division/a[15]_b[15]_div_14/Mmux_n0950111
+   32. _n0255 (size: 4)
+       LUT _n0255
+       LUT simplemode/_n0255<3>1
+       LUT _n0255
+       LUT Mmux_M_alu_a113
+   33. testsimple/n0751[3] (size: 4)
+       LUT testsimple/n0751[3]
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4/Mmux_n0751101
+       LUT testsimple/n0751[3]
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<3>26
+   34. testhard/M_timer_q[29]_GND_22_o_equal_115_o<29>4 (size: 4)
+       LUT testhard/M_timer_q[29]_GND_22_o_equal_115_o<29>4
+       LUT testhard/M_timer_q[29]_GND_22_o_equal_115_o<29>5
+       LUT testhard/M_timer_q[29]_GND_22_o_equal_115_o<29>4
+       LUT testhard/M_timer_q[29]_GND_22_o_equal_115_o<29>6
+   35. testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT[10] (size: 4)
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT[10]
+       LUT
+   testsimple/M_billy_pos[15]_PWR_21_o_div_4/Madd_a[15]_GND_20_o_add_13_OUT_cy<1
+   4>1
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT[10]
+       LUT
+   testsimple/M_billy_pos[15]_PWR_21_o_div_4/Mmux_a[0]_a[15]_MUX_1176_o141
+   36. testsimple/a[15]_a[15]_MUX_1257_o (size: 4)
+       LUT testsimple/a[15]_a[15]_MUX_1257_o
+       LUT
+   testsimple/M_billy_pos[15]_PWR_21_o_div_4/Mmux_a[0]_a[15]_MUX_1272_o161
+       LUT testsimple/a[15]_a[15]_MUX_1257_o
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<4>1
+   37. M_state_q_FSM_FFd1-In (size: 2)
+       LUT M_state_q_FSM_FFd1-In
+       LUT M_state_q_FSM_FFd1-In1
+Phase 10.8  Global Placement (Checksum:7d4e40) REAL time: 1 mins 35 secs 
+
+Phase 11.9  Local Placement Optimization
+ERROR:Place:543 - This design does not fit into the number of slices available
+   in this device due to the complexity of the design and/or constraints.
+
+   Unplaced instances by type:
+
+     LUT    80 (1.4)
+     FF    3 (0.3)
+     LUTL    144 (2.7)
+
+   Please evaluate the following:
+
+   - If there are user-defined constraints or area groups:
+     Please look at the "User-defined constraints" section below to determine
+     what constraints might be impacting the fitting of this design.
+     Evaluate if they can be moved, removed or resized to allow for fitting.
+     Verify that they do not overlap or conflict with clock region restrictions.
+     See the clock region reports in the MAP log file (*map) for more details
+     on clock region usage.
+
+   - If there is difficulty in placing LUTs:
+     Try using the MAP LUT Combining Option (map lc area|auto|off).
+
+   - If there is difficulty in placing FFs:
+     Evaluate the number and configuration of the control sets in your design.
+
+   The following instances are the last set of instances that failed to place:
+
+   0. Placer RPM "carry chain" (size: 12)
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<3>
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<2>
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<1>
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_cy[3]
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<0>
+      LUTL hardmode/M_testhard_motherpos[0]_53.B5LUT
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<5>
+      LUTL hardmode/M_mother_pos[15]_M_billy_pos[15]_equal_141_o
+      LUTL hardmode/Mcompar_M_mother_pos[15]_M_billy_pos[15]_equal_141_o_lut<4>
+   1. Placer RPM "carry chain" (size: 10)
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0].D5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<3>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lutdi2
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<2>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lutdi1
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<1>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lutdi
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<0>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_2.A5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<10>_lut<4>
+   2. Placer RPM "carry chain" (size: 10)
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_10.D5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<3>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lutdi2
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<2>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lutdi1
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<1>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lutdi
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<0>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_11.A5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<11>_lut<4>
+   3. Placer RPM "carry chain" (size: 10)
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_5.D5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<3>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_4.C5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<2>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lutdi1
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<1>
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lutdi
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<0>
+      LUTL alu/division/a[15]_b[15]_div_13/M_testhard_motherpos[0]_6.A5LUT
+      LUTL alu/division/a[15]_b[15]_div_13/Mcompar_o<12>_lut<4>_INV_0
+   4. Placer RPM "carry chain" (size: 11)
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_5.
+   D6LUT
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lutdi21
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut<2>1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lutdi1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut<1>
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lutdi
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut<0>
+      LUTL M_reg_q_10_0
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_6.
+   A6LUT
+      FF hardmode/divoutput3/M_reg_q_10
+   5. Placer RPM "carry chain" (size: 11)
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_34
+   .D6LUT
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lut<2>1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lutdi1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lut<1>
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lutdi
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<11>_lut<0>
+      LUTL hardmode/M_divoutput3_readvalue[11]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_35
+   .A6LUT
+      FF hardmode/divoutput3/M_reg_q_11
+   6. Placer RPM "carry chain" (size: 11)
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_14
+   .D6LUT
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_cy[3]
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_13
+   .C6LUT
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lutdi1
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lut<1>
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lutdi
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<12>_lut<0>
+      LUTL M_reg_q_12_0
+      LUTL
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mcompar_o<10>_lut[3]_15
+   .A6LUT
+      FF hardmode/divoutput3/M_reg_q_12
+   7. Placer RPM "carry chain" (size: 10)
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _3.D5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<3>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lutdi2
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<2>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lutdi1
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<1>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lutdi
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<0>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _4.A5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<10>_lut<4>
+   8. Placer RPM "carry chain" (size: 10)
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _19.D5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<3>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lutdi2
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<2>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lutdi1
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<1>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lutdi
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<0>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _20.A5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<11>_lut<4>
+   9. Placer RPM "carry chain" (size: 10)
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _10.D5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<3>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _9.C5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<2>
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _8.B5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<1>1
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _7.A5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<0>1
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/M_testhard_motherpos[0]
+   _11.A5LUT
+      LUTL
+   testhard/M_a_readvalue[15]_M_temp_readvalue[15]_div_2/Mcompar_o<12>_lut<4>_IN
+   V_0
+   10. Placer RPM "carry chain" (size: 10)
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_2.D5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<3>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lutdi2
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<2>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lutdi1
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<1>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lutdi
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<0>
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_3.A5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<10>_lut<4>
+   11. Placer RPM "carry chain" (size: 12)
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_15.D6
+   LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_cy[3]
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_14.C6
+   LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/M_testhard_motherpos[0]_9.
+   B5LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_lut<1>1
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/M_testhard_motherpos[0]_8.
+   A5LUT
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<12>_lut<0>1
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/M_testhard_motherpos[0]_18
+   .B5LUT
+       LUTL M_reg_q_0_23_rt.1
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/a[12]_GND_14_o_MUX_460_o
+       LUTL
+   testhard/M_b_readvalue[15]_M_c_readvalue[15]_div_1/Mcompar_o<10>_lut[3]_16.A6
+   LUT
+   12. Placer RPM "carry chain" (size: 10)
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_11.D5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<3>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lutdi2
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<2>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lutdi1
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<1>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lutdi
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<0>
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_12.A5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<11>_lut<4>
+   13. Placer RPM "carry chain" (size: 10)
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_6.D5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<3>
+       LUTL alu/division/a[15]_b[15]_div_14/M_testhard_motherpos[0]_5.C5LUT
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<2>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lutdi1
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<1>
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lutdi
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<0>
+       LUTL alu/a[15]_b[15]_div_14_OUT[12]
+       LUTL alu/division/a[15]_b[15]_div_14/Mcompar_o<12>_lut<4>
+   14.
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+   (size: 4)
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   08_o131
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   48_o131
+   15.
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+   (size: 4)
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   08_o131
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[12]_GND_14_o_MUX_796_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   48_o131
+   16.
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[14]_GND_14_o_MUX_794_o
+   (size: 4)
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[14]_GND_14_o_MUX_794_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   08_o151
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[14]_GND_14_o_MUX_794_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   86_o151
+   17.
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/a[13]_GND_14_o_MUX_753_o
+   (size: 4)
+       LUT
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/a[13]_GND_14_o_MUX_753_o
+       LUT
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mmux_a[0]_GND_14_o_MUX_766
+   _o141
+       LUT
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/a[13]_GND_14_o_MUX_753_o
+       LUT
+   hardmode/M_b_readvalue[15]_M_c_readvalue[15]_div_2/Mmux_a[0]_GND_14_o_MUX_676
+   _o141
+   18. Mmux_M_seven_seg_b_char1 (size: 4)
+       LUT Mmux_M_seven_seg_b_char1
+       LUT Mmux_M_seven_seg_b_char11
+       LUT Mmux_M_seven_seg_b_char1
+       LUT Mmux_M_seven_seg_b_char12
+   19. Mmux_M_seven_seg_b_char12 (size: 4)
+       LUT Mmux_M_seven_seg_b_char12
+       LUT Mmux_M_seven_seg_b_char13
+       LUT Mmux_M_seven_seg_b_char12
+       LUT Mmux_M_seven_seg_b_char16
+   20.
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[11]_GND_14_o_MUX_837_o
+   (size: 4)
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[11]_GND_14_o_MUX_837_o
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   48_o121
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[11]_GND_14_o_MUX_837_o
+       LUT
+   testsimple/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   86_o121
+   21. alu/division/a[15]_b[15]_div_13/a[11]_GND_14_o_MUX_837_o (size: 4)
+       LUT alu/division/a[15]_b[15]_div_13/a[11]_GND_14_o_MUX_837_o
+       LUT alu/division/a[15]_b[15]_div_13/Mmux_a[0]_GND_14_o_MUX_848_o121
+       LUT alu/division/a[15]_b[15]_div_13/a[11]_GND_14_o_MUX_837_o
+       LUT alu/division/a[15]_b[15]_div_13/Mmux_a[0]_GND_14_o_MUX_922_o121
+   22. alu/division/a[15]_b[15]_div_14/a[15]_GND_14_o_MUX_871_o (size: 4)
+       LUT alu/division/a[15]_b[15]_div_14/a[15]_GND_14_o_MUX_871_o
+       LUT alu/division/a[15]_b[15]_div_14/Mmux_a[0]_GND_14_o_MUX_886_o161
+       LUT alu/division/a[15]_b[15]_div_14/a[15]_GND_14_o_MUX_871_o
+       LUT alu/division/a[15]_b[15]_div_14/Mmux_n095071
+   23.
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/a[8]_GND_14_o_MUX_800_o
+   (size: 4)
+       LUT
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/a[8]_GND_14_o_MUX_800_o
+       LUT
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mmux_a[0]_GND_14_o_MUX_
+   808_o1141
+       LUT
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/a[8]_GND_14_o_MUX_800_o
+       LUT
+   hardmode/M_temp_readvalue[15]_M_c_readvalue[15]_div_3/Mmux_a[0]_GND_14_o_MUX_
+   722_o1141
+   24. testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<2>1514 (size: 4)
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<2>1514
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<2>15141
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<2>1514
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<5>1
+   25. alu/division/a[15]_b[15]_div_13/a[5]_GND_14_o_MUX_917_o (size: 4)
+       LUT alu/division/a[15]_b[15]_div_13/a[5]_GND_14_o_MUX_917_o
+       LUT alu/division/a[15]_b[15]_div_13/Mmux_a[0]_GND_14_o_MUX_922_o1111
+       LUT alu/division/a[15]_b[15]_div_13/a[5]_GND_14_o_MUX_917_o
+       LUT alu/division/a[15]_b[15]_div_13/Mmux_a[0]_GND_14_o_MUX_848_o1111
+   26.
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[5]_GND_14_o_MUX_917_o
+   (size: 4)
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[5]_GND_14_o_MUX_917_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_9
+   22_o1111
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[5]_GND_14_o_MUX_917_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   48_o1111
+   27.
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[6]_GND_14_o_MUX_916_o
+   (size: 4)
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[6]_GND_14_o_MUX_916_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_9
+   22_o1121
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/a[6]_GND_14_o_MUX_916_o
+       LUT
+   simplemode/M_a_readvalue[15]_M_b_readvalue[15]_div_1/Mmux_a[0]_GND_14_o_MUX_8
+   48_o1121
+   28. alu/division/a[15]_b[15]_div_14/a[4]_GND_14_o_MUX_882_o (size: 4)
+       LUT alu/division/a[15]_b[15]_div_14/a[4]_GND_14_o_MUX_882_o
+       LUT alu/division/a[15]_b[15]_div_14/Mmux_a[0]_GND_14_o_MUX_886_o1101
+       LUT alu/division/a[15]_b[15]_div_14/a[4]_GND_14_o_MUX_882_o
+       LUT alu/division/a[15]_b[15]_div_14/Mmux_n0950111
+   29. _n0255 (size: 4)
+       LUT _n0255
+       LUT simplemode/_n0255<3>1
+       LUT _n0255
+       LUT Mmux_M_alu_a113
+   30. testsimple/n0751[3] (size: 4)
+       LUT testsimple/n0751[3]
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4/Mmux_n0751101
+       LUT testsimple/n0751[3]
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<3>26
+   31. testhard/M_timer_q[29]_GND_22_o_equal_115_o<29>4 (size: 4)
+       LUT testhard/M_timer_q[29]_GND_22_o_equal_115_o<29>4
+       LUT testhard/M_timer_q[29]_GND_22_o_equal_115_o<29>5
+       LUT testhard/M_timer_q[29]_GND_22_o_equal_115_o<29>4
+       LUT testhard/M_timer_q[29]_GND_22_o_equal_115_o<29>6
+   32. testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT[10] (size: 4)
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT[10]
+       LUT
+   testsimple/M_billy_pos[15]_PWR_21_o_div_4/Madd_a[15]_GND_20_o_add_13_OUT_cy<1
+   4>1
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT[10]
+       LUT
+   testsimple/M_billy_pos[15]_PWR_21_o_div_4/Mmux_a[0]_a[15]_MUX_1176_o141
+   33. testsimple/a[15]_a[15]_MUX_1257_o (size: 4)
+       LUT testsimple/a[15]_a[15]_MUX_1257_o
+       LUT
+   testsimple/M_billy_pos[15]_PWR_21_o_div_4/Mmux_a[0]_a[15]_MUX_1272_o161
+       LUT testsimple/a[15]_a[15]_MUX_1257_o
+       LUT testsimple/M_billy_pos[15]_PWR_21_o_div_4_OUT<4>1
+ERROR:Place:120 - There were not enough sites to place all selected components.
+   Some of these failures can be circumvented by using an alternate algorithm
+   (though it may take longer run time). If you would like to enable this
+   algorithm please set the environment variable XIL_PAR_ENABLE_LEGALIZER to 1
+   and try again 
+
+
+Phase 11.9  Local Placement Optimization (Checksum:d039d539) REAL time: 1 mins 35 secs 
+
+Total REAL time to Placer completion: 1 mins 35 secs 
+Total CPU  time to Placer completion: 1 mins 46 secs 
+ERROR:Pack:1654 - The timing-driven placement phase encountered an error.
 
 Mapping completed.
 See MAP report file "mojo_top_0.mrp" for details.
+Problem encountered during the packing phase.
+
+Design Summary
+--------------
+Number of errors   :   5
+Number of warnings :   6
 
 *** Running par
     with args -intstyle pa "mojo_top_0.ncd" -w "mojo_top_0_routed.ncd" -mt on
 
 
 
-
-Constraints file: mojo_top_0.pcf.
-Loading device for application Rf_Device from file '6slx9.nph' in environment C:\Xilinx\14.7\ISE_DS\ISE\.
-   "mojo_top_0" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -2
-
-Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
-Initializing voltage to 1.140 Volts. (default - Range: 1.140 to 1.260 Volts)
-
-
-Device speed data version:  "PRODUCTION 1.23 2013-10-13".
-
-
-
-Device Utilization Summary:
-
-Slice Logic Utilization:
-  Number of Slice Registers:                 1,140 out of  11,440    9%
-    Number used as Flip Flops:               1,140
-    Number used as Latches:                      0
-    Number used as Latch-thrus:                  0
-    Number used as AND/OR logics:                0
-  Number of Slice LUTs:                      5,023 out of   5,720   87%
-    Number used as logic:                    4,995 out of   5,720   87%
-      Number using O6 output only:           3,420
-      Number using O5 output only:             515
-      Number using O5 and O6:                1,060
-      Number used as ROM:                        0
-    Number used as Memory:                       4 out of   1,440    1%
-      Number used as Dual Port RAM:              0
-      Number used as Single Port RAM:            0
-      Number used as Shift Register:             4
-        Number using O6 output only:             1
-        Number using O5 output only:             0
-        Number using O5 and O6:                  3
-    Number used exclusively as route-thrus:     24
-      Number with same-slice register load:      1
-      Number with same-slice carry load:        23
-      Number with other load:                    0
-
-Slice Logic Distribution:
-  Number of occupied Slices:                 1,392 out of   1,430   97%
-  Number of MUXCYs used:                     2,572 out of   2,860   89%
-  Number of LUT Flip Flop pairs used:        5,036
-    Number with an unused Flip Flop:         4,084 out of   5,036   81%
-    Number with an unused LUT:                  13 out of   5,036    1%
-    Number of fully used LUT-FF pairs:         939 out of   5,036   18%
-    Number of slice register sites lost
-      to control set restrictions:               0 out of  11,440    0%
-
-  A LUT Flip Flop pair for this architecture represents one LUT paired with
-  one Flip Flop within a slice.  A control set is a unique combination of
-  clock, reset, set, and enable signals for a registered element.
-  The Slice Logic Distribution report is not meaningful if the design is
-  over-mapped for a non-slice resource or if Placement fails.
-
-IO Utilization:
-  Number of bonded IOBs:                        75 out of     102   73%
-    Number of LOCed IOBs:                       75 out of      75  100%
-
-Specific Feature Utilization:
-  Number of RAMB16BWERs:                         0 out of      32    0%
-  Number of RAMB8BWERs:                          0 out of      64    0%
-  Number of BUFIO2/BUFIO2_2CLKs:                 0 out of      32    0%
-  Number of BUFIO2FB/BUFIO2FB_2CLKs:             0 out of      32    0%
-  Number of BUFG/BUFGMUXs:                       1 out of      16    6%
-    Number used as BUFGs:                        1
-    Number used as BUFGMUX:                      0
-  Number of DCM/DCM_CLKGENs:                     0 out of       4    0%
-  Number of ILOGIC2/ISERDES2s:                   0 out of     200    0%
-  Number of IODELAY2/IODRP2/IODRP2_MCBs:         0 out of     200    0%
-  Number of OLOGIC2/OSERDES2s:                   0 out of     200    0%
-  Number of BSCANs:                              0 out of       4    0%
-  Number of BUFHs:                               0 out of     128    0%
-  Number of BUFPLLs:                             0 out of       8    0%
-  Number of BUFPLL_MCBs:                         0 out of       4    0%
-  Number of DSP48A1s:                            3 out of      16   18%
-  Number of ICAPs:                               0 out of       1    0%
-  Number of MCBs:                                0 out of       2    0%
-  Number of PCILOGICSEs:                         0 out of       2    0%
-  Number of PLL_ADVs:                            0 out of       2    0%
-  Number of PMVs:                                0 out of       1    0%
-  Number of STARTUPs:                            0 out of       1    0%
-  Number of SUSPEND_SYNCs:                       0 out of       1    0%
-
-
-Overall effort level (-ol):   Standard 
-Router effort level (-rl):    High 
-
-PAR will use up to 2 processors
-WARNING:Par:288 - The signal cclk_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal spi_sck_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal avr_rx_busy_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal avr_tx_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal spi_ss_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal spi_mosi_IBUF has no load.  PAR will not attempt to route this signal.
-Starting Multi-threaded Router
-
-
-Phase  1  : 25795 unrouted;      REAL time: 8 secs 
-
-Phase  2  : 23399 unrouted;      REAL time: 9 secs 
-
-Phase  3  : 9181 unrouted;      REAL time: 16 secs 
-
-Phase  4  : 11100 unrouted; (Setup:15355201, Hold:0, Component Switching Limit:0)     REAL time: 27 secs 
-
-Phase  5  : 0 unrouted; (Setup:17365393, Hold:0, Component Switching Limit:0)     REAL time: 50 secs 
-
-Phase  6  : 0 unrouted; (Setup:17365393, Hold:0, Component Switching Limit:0)     REAL time: 50 secs 
-
-Phase  7  : 0 unrouted; (Setup:17365393, Hold:0, Component Switching Limit:0)     REAL time: 50 secs 
-
-Phase  8  : 0 unrouted; (Setup:17365393, Hold:0, Component Switching Limit:0)     REAL time: 50 secs 
-
-Phase  9  : 0 unrouted; (Setup:17365393, Hold:0, Component Switching Limit:0)     REAL time: 50 secs 
-
-Phase 10  : 0 unrouted; (Setup:17032933, Hold:0, Component Switching Limit:0)     REAL time: 51 secs 
-Total REAL time to Router completion: 51 secs 
-Total CPU time to Router completion (all processors): 1 mins 9 secs 
-
-Generating "PAR" statistics.
-
-**************************
-Generating Clock Report
-**************************
-
-+---------------------+--------------+------+------+------------+-------------+
-|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
-+---------------------+--------------+------+------+------------+-------------+
-|           clk_BUFGP | BUFGMUX_X2Y11| No   |  415 |  0.120     |  1.511      |
-+---------------------+--------------+------+------+------------+-------------+
-
-* Net Skew is the difference between the minimum and maximum routing
-only delays for the net. Note this is different from Clock Skew which
-is reported in TRCE timing report. Clock Skew is the difference between
-the minimum and maximum path delays which includes logic delays.
-
-* The fanout is the number of component pins not the individual BEL loads,
-for example SLICE loads not FF loads.
-
-Timing Score: 17032933 (Setup: 17032933, Hold: 0, Component Switching Limit: 0)
-
-WARNING:Par:468 - Your design did not meet timing.  The following are some suggestions to assist you to meet timing in your design.
-
-   Review the timing report using Timing Analyzer (In ISE select "Post-Place &
-   Route Static Timing Report"). Go to the failing constraint(s) and evaluate the failing paths for each constraint.
-
-   Try the Design Goal and Strategies for Timing Performance(In ISE select Project -> Design Goals & Strategies) to ensure the best options
-   are set in the tools for timing closure.
-
-   Increase the PAR Effort Level setting to "high"
-
-   Use the Xilinx "SmartXplorer" script to try special combinations of
-   options known to produce very good results.
-
-   Visit the Xilinx technical support web at http://support.xilinx.com and go to
-   either "Troubleshoot->Tech Tips->Timing & Constraints" or "
-   TechXclusives->Timing Closure" for tips and suggestions for meeting timing
-   in your design.
-
-Asterisk (*) preceding a constraint indicates it was not met.
-   This may be due to a setup or hold violation.
-
-----------------------------------------------------------------------------------------------------------
-  Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
-                                            |             |    Slack   | Achievable | Errors |    Score   
-----------------------------------------------------------------------------------------------------------
-* TS_clk = PERIOD TIMEGRP "clk" 50 MHz HIGH | SETUP       |   -42.347ns|    62.347ns|     591|    17032933
-   50%                                      | HOLD        |     0.434ns|            |       0|           0
-----------------------------------------------------------------------------------------------------------
-
-
-1 constraint not met.
-
-
-Generating Pad Report.
-
-All signals are completely routed.
-
-WARNING:Par:283 - There are 6 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
-
-Total REAL time to PAR completion: 55 secs 
-Total CPU time to PAR completion (all processors): 1 mins 13 secs 
-
-Peak Memory Usage:  4621 MB
-
-Placer: Placement generated during map.
-Routing: Completed - No errors found.
-Timing: Completed - 591 errors found.
-
-Number of error messages: 0
-Number of warning messages: 9
-Number of info messages: 0
-
-Writing design to file mojo_top_0_routed.ncd
-
-
-
-PAR done!
-
-*** Running trce
-    with args -intstyle ise -o "mojo_top_0.twr" -v 30 -l 30 "mojo_top_0_routed.ncd" "mojo_top_0.pcf"
-
-Loading device for application Rf_Device from file '6slx9.nph' in environment
-C:\Xilinx\14.7\ISE_DS\ISE\.
-   "mojo_top_0" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -2
-
-Analysis completed Wed Dec 04 11:31:36 2019
---------------------------------------------------------------------------------
-
-Generating Report ...
-
-Number of warnings: 0
-Total time: 14 secs 
-
-*** Running xdl
-    with args -secure -ncd2xdl -nopips "mojo_top_0_routed.ncd" "mojo_top_0_routed.xdl"
-
-Release 14.7 - xdl P.20131013 (nt64)
-Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
-
-WARNING:XDL:213 - The resulting xdl output will not have LUT equation strings or RAM INIT strings.
-Loading device for application Rf_Device from file '6slx9.nph' in environment C:\Xilinx\14.7\ISE_DS\ISE\.
-   "mojo_top_0" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -2
-Successfully converted design 'mojo_top_0_routed.ncd' to 'mojo_top_0_routed.xdl'.
-
-*** Running bitgen
-    with args "mojo_top_0_routed.ncd" "mojo_top_0.bit" "mojo_top_0.pcf" -g Binary:Yes -g Compress -w -intstyle pa
-
+ERROR:Par:73 - Cannot find Input file "mojo_top_0.ncd".  Please verify that your paths and permissions are properly set
+   for this file. 

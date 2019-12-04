@@ -20,7 +20,7 @@ module alu_15 (
   reg [6-1:0] M_shifter_alufn;
   reg [16-1:0] M_shifter_a;
   reg [16-1:0] M_shifter_b;
-  shifter_84 shifter (
+  shifter_85 shifter (
     .alufn(M_shifter_alufn),
     .a(M_shifter_a),
     .b(M_shifter_b),
@@ -32,7 +32,7 @@ module alu_15 (
   reg [1-1:0] M_compare_v;
   reg [1-1:0] M_compare_n;
   reg [6-1:0] M_compare_alufn;
-  compare_85 compare (
+  compare_86 compare (
     .z(M_compare_z),
     .v(M_compare_v),
     .n(M_compare_n),
@@ -44,7 +44,7 @@ module alu_15 (
   reg [16-1:0] M_boolean_a;
   reg [16-1:0] M_boolean_b;
   reg [6-1:0] M_boolean_alufn;
-  boolean_86 boolean (
+  boolean_87 boolean (
     .a(M_boolean_a),
     .b(M_boolean_b),
     .alufn(M_boolean_alufn),
@@ -58,7 +58,7 @@ module alu_15 (
   reg [16-1:0] M_adder_a;
   reg [16-1:0] M_adder_b;
   reg [6-1:0] M_adder_alufn;
-  adder_87 adder (
+  adder_88 adder (
     .a(M_adder_a),
     .b(M_adder_b),
     .alufn(M_adder_alufn),
@@ -71,7 +71,7 @@ module alu_15 (
   wire [16-1:0] M_multiply_mul;
   reg [16-1:0] M_multiply_a;
   reg [16-1:0] M_multiply_b;
-  multiply_88 multiply (
+  multiply_89 multiply (
     .a(M_multiply_a),
     .b(M_multiply_b),
     .mul(M_multiply_mul)
@@ -80,7 +80,7 @@ module alu_15 (
   wire [16-1:0] M_division_div;
   reg [16-1:0] M_division_a;
   reg [16-1:0] M_division_b;
-  division_89 division (
+  division_90 division (
     .a(M_division_a),
     .b(M_division_b),
     .div(M_division_div)
