@@ -7,6 +7,8 @@ module simplemode (
     input buttonmul,
     input buttondiv,
     input buttona,
+    input buttonb,
+    input buttonc,
     input aluout[16],
     
     output motherpos[16],
@@ -24,9 +26,10 @@ module simplemode (
   ) {
   .clk (clk){
     .rst (rst){
-      fsm state = {IDLE,COUNTDOWN,GEN_QN,WAITINPUT,CHECKINPUT,CHECKINPUT2,CHECKMOTHERPOS,CHECKBILLYPOS,LOSE,WIN};
+      fsm state = {IDLE,COUNTDOWN,GEN_QN,WAITINPUT,CHECKINPUT,CHECKINPUT2,CHECKMOTHERPOS,CHECKBILLYPOS,DELAY,LOSE,WIN};
       dff timer[28];
-      dff counter[2];      
+      dff counter[2]; 
+      counter ctr (#SIZE(1), #DIV(23));     
       pn_gen pn_gen;
       mother mother;
       billy billy;
@@ -43,18 +46,19 @@ module simplemode (
 
   
   sig buttoninput[4];
+  sig buttonoperatorinput[3];
   
   const ADD = 6b000000;
   const SUB = 6b000001;
   const MUL = 6b000010;
   const DIV = 6b100010;
   const CMPEQ = 6b110011;
-  const WINCON = d7;
+  const WINCON = d8;
   
   always {
     gameend = 0;
     timer.d = timer.q + 1;
-    pn_gen.seed = timer.q;
+    pn_gen.seed = 1337;
     pn_gen.next = 0;
     questiongenerator.randomnumber = pn_gen.num;
     
@@ -95,6 +99,12 @@ module simplemode (
     counter.d = counter.q;
     
     buttoninput = c{buttondiv, buttonmul, buttonsub, buttonadd};
+    buttonoperatorinput = c{buttona,buttonb,buttonc};
+    
+    if (&buttoninput){
+      gameend = 1;
+      state.d = state.IDLE;
+    }
     
     case (state.q){
       state.IDLE:
@@ -106,9 +116,13 @@ module simplemode (
         mother.difficulty = b11; // keep mother timer at 0
         billy.writeenable = 1;
         billy.writevalue = d2; // billy position offset
-        if (buttona == 1){
+        a_out = d11;
+        b_out = d13;
+        c_out = d5;
+        d_out = d15;
+        if ((|buttoninput) || (|buttonoperatorinput)){
           timer.d = 0;
-          counter.d = 3;
+          counter.d = d3;
           state.d = state.COUNTDOWN;
           
         }
@@ -148,7 +162,7 @@ module simplemode (
           counter.d = counter.q - 1;
         }
         if (counter.q == d0){
-          counter.d = 0;
+          counter.d = d0;
           state.d = state.GEN_QN;
         }
         
@@ -164,6 +178,9 @@ module simplemode (
           c.writeenable = 1;
           temp.writeenable = 1;
           state.d = state.WAITINPUT;
+        }
+        if (billy.pos == WINCON){
+          state.d = state.WIN;
         }
       
       state.WAITINPUT:
@@ -225,30 +242,58 @@ module simplemode (
       state.CHECKBILLYPOS:
         timer.d = 0;
         mother.writeenable = 1;
-        billy.writeenable = 1;
+        
         counter.d = counter.q + 1;
-        if (counter.q == d2){      
-          billy.writevalue = billy.pos + 1;
+        if (counter.q == d1){
           counter.d = 0;
+          billy.writeenable = 1;
+          billy.writevalue = billy.pos + 1;
         }
+        
         if (billy.pos == WINCON){
           state.d = state.WIN;
         }
         else{
+          state.d = state.DELAY;
+        }
+        
+      state.DELAY:
+        timer.d = timer.q + 1;
+        mother.writeenable = 1;
+        mother.difficulty = b11;
+        a_out = d19;
+        b_out = d1;
+        c_out = d21;
+        d_out = d11;
+        
+        if (timer.q == d20000000){
+          timer.d = 0;
           state.d = state.GEN_QN;
         }
+        
       
       state.CHECKMOTHERPOS:
-        timer.d = 0;
-        mother.writeenable = 1;
-        operator.writeenable = 1;
-        operator.writevalue = 6b111111;
+        timer.d = timer.q + 1;
+        if (ctr.value == d1){
+          a_out = d20;
+          b_out = d20;
+          c_out = d20;
+          d_out = d20;
+          operator_sig = 6b111111;
+        }
+        
+        if (timer.q == d20000000){
+          timer.d = 0;
+          operator.writeenable = 1;
+          operator.writevalue = 6b111111;
+          state.d = state.WAITINPUT;
+        }
+        
+        
         if (mother.pos == billy.pos){
           state.d = state.LOSE;
         }
-        else{
-          state.d = state.WAITINPUT;
-        }
+        
       
       state.WIN:
         timer.d = timer.q + 1;
@@ -259,7 +304,7 @@ module simplemode (
         d_out = d5;
         
         // do something
-        if (timer.q == d100000000){
+        if (timer.q == d150000000){
           gameend = 1;
           state.d = state.IDLE;
         }
@@ -273,7 +318,7 @@ module simplemode (
         d_out = d11;
         
         // do something
-        if (timer.q == d100000000){
+        if (timer.q == d150000000){
           gameend = 1;
           state.d = state.IDLE;
         }

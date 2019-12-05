@@ -17,10 +17,10 @@ module generatequestion_hard (
         d = 6;
       
       d1:
-        a = 1;
-        b = 2;
-        c = 5;
-        d = 8;
+        a = 9;
+        b = 1;
+        c = 3;
+        d = 4;
       
       d2:
         a = 1;
@@ -30,9 +30,9 @@ module generatequestion_hard (
       
       d3:
         a = 2;
-        b = 1;
-        c = 3;
-        d = 5;
+        b = 3;
+        c = 6;
+        d = 4;
       
       d4:
         a = 4;
@@ -41,10 +41,10 @@ module generatequestion_hard (
         d = 9;
       
       d5:
-        a = 3;
-        b = 1;
-        c = 5;
-        d = 8;
+        a = 9;
+        b = 7;
+        c = 2;
+        d = 4;
       
       d6:
         a = 2;
@@ -53,9 +53,9 @@ module generatequestion_hard (
         d = 8;
       
       d7:
-        a = 3;
+        a = 6;
         b = 2;
-        c = 1;
+        c = 7;
         d = 5;
       
       d8:
@@ -65,10 +65,10 @@ module generatequestion_hard (
         d = 4;
       
       d9:
-        a = 1;
-        b = 3;
-        c = 5;
-        d = 8;
+        a = 2;
+        b = 7;
+        c = 4;
+        d = 5;
       
       d10:
         a = 5;
@@ -96,15 +96,15 @@ module generatequestion_hard (
       
       d14:
         a = 4;
-        b = 2;
-        c = 8;
-        d = 1;
+        b = 1;
+        c = 2;
+        d = 7;
       
       d15:
-        a = 1;
-        b = 4;
-        c = 2;
-        d = 3;
+        a = 4;
+        b = 6;
+        c = 9;
+        d = 7;
       
       d16:
         a = 8;
@@ -119,10 +119,10 @@ module generatequestion_hard (
         d = 9;
       
       d18:
-        a = 1;
-        b = 8;
+        a = 8;
+        b = 9;
         c = 2;
-        d = 4;
+        d = 5;
       
       d19:
         a = 5;
@@ -131,9 +131,9 @@ module generatequestion_hard (
         d = 7;
       
       d20:
-        a = 3;
+        a = 4;
         b = 9;
-        c = 1;
+        c = 2;
         d = 7;
       
       d21:
@@ -149,9 +149,9 @@ module generatequestion_hard (
         d = 8;
       
       d23:
-        a = 2;
-        b = 9;
-        c = 1;
+        a = 3;
+        b = 4;
+        c = 9;
         d = 7;
       
       d24:
@@ -161,10 +161,10 @@ module generatequestion_hard (
         d = 9;
       
       d25:
-        a = 3;
+        a = 9;
         b = 2;
-        c = 1;
-        d = 5;
+        c = 3;
+        d = 6;
       
       d26:
         a = 6;
@@ -174,8 +174,8 @@ module generatequestion_hard (
       
       d27:
         a = 2;
-        b = 6;
-        c = 1;
+        b = 9;
+        c = 8;
         d = 7;
       
       d28:
@@ -197,15 +197,15 @@ module generatequestion_hard (
         d = 6;
       
       d31:
-        a = 3;
-        b = 1;
-        c = 2;
+        a = 7;
+        b = 4;
+        c = 9;
         d = 6;
       
       d32:
-        a = 8;
-        b = 1;
-        c = 3;
+        a = 3;
+        b = 7;
+        c = 9;
         d = 5;
       
       d33:
@@ -222,14 +222,14 @@ module generatequestion_hard (
       
       d35:
         a = 9;
-        b = 1;
-        c = 2;
+        b = 4;
+        c = 6;
         d = 6;
       
       d36:
-        a = 8;
-        b = 4;
-        c = 1;
+        a = 4;
+        b = 9;
+        c = 7;
         d = 2;
       
       d37:
@@ -257,15 +257,15 @@ module generatequestion_hard (
         d = 1;
       
       d41:
-        a = 4;
-        b = 1;
-        c = 3;
+        a = 5;
+        b = 2;
+        c = 6;
         d = 7;
       
       d42:
-        a = 2;
-        b = 1;
-        c = 3;
+        a = 3;
+        b = 5;
+        c = 8;
         d = 6;
       
       d43:
@@ -275,9 +275,9 @@ module generatequestion_hard (
         d = 4;
       
       d44:
-        a = 1;
+        a = 6;
         b = 7;
-        c = 2;
+        c = 4;
         d = 9;
       
       d45:
@@ -288,8 +288,8 @@ module generatequestion_hard (
       
       d46:
         a = 9;
-        b = 4;
-        c = 1;
+        b = 2;
+        c = 7;
         d = 5;
       
       d47:
@@ -305,9 +305,9 @@ module generatequestion_hard (
         d = 4;
       
       d49:
-        a = 7;
-        b = 1;
-        c = 2;
+        a = 2;
+        b = 5;
+        c = 6;
         d = 9;
       
       d50:
@@ -342,8 +342,8 @@ module generatequestion_hard (
       
       d55:
         a = 1;
-        b = 9;
-        c = 6;
+        b = 5;
+        c = 2;
         d = 4;
       
       d56:

@@ -44,11 +44,10 @@ module mojo_top (
     dff counter[28];
     dff timer[28];   
     .rst(rst){
-      fsm state = {IDLE, SIMPLEMODE, HARDMODE, TESTSIMPLE, TESTHARD};
+      fsm state = {IDLE, SIMPLEMODE, HARDMODE};
       simplemode simplemode;
       hardmode hardmode;   
-      testsimple testsimple; 
-      testhard testhard; 
+
     }
   }
   seven_seg seven_seg_a;
@@ -108,6 +107,8 @@ module mojo_top (
     simplemode.buttonmul = 0;
     simplemode.buttondiv = 0;
     simplemode.aluout = 0;
+    simplemode.buttonb = 0;
+    simplemode.buttonc = 0;
     
     hardmode.buttona = 0;
     hardmode.buttonb = 0;
@@ -118,23 +119,6 @@ module mojo_top (
     hardmode.buttonmul = 0;
     hardmode.aluout = 0;
     
-    testsimple.buttona = 0;
-    testsimple.buttonb = 0;
-    testsimple.buttonc = 0;
-    testsimple.buttonadd = 0;
-    testsimple.buttonsub = 0;
-    testsimple.buttonmul = 0;
-    testsimple.buttondiv = 0;
-    testsimple.aluout = 0;
-    
-    testhard.buttona = 0;
-    testhard.buttonb = 0;
-    testhard.buttonc = 0;
-    testhard.buttonadd = 0;
-    testhard.buttonsub = 0;
-    testhard.buttonmul = 0;
-    testhard.buttondiv = 0;
-    testhard.aluout = 0;
     
     counter.d = counter.q;
     timer.d = timer.q + 1;
@@ -159,25 +143,19 @@ module mojo_top (
         seven_seg_c.char = counter.q;
         seven_seg_d.char = counter.q;
 
-        simplemode.buttona = button_cond.buttonaout;
-        hardmode.buttonc = button_cond.buttoncout;
-        testsimple.buttonadd = button_cond.buttonaddout;
-        testhard.buttondiv = button_cond.buttondivout;
+        
         if (button_cond.buttonaout == 1){
           state.d = state.SIMPLEMODE;
         }
         if (button_cond.buttoncout == 1){
           state.d = state.HARDMODE;
         }
-        if (button_cond.buttonaddout == 1){
-          state.d = state.TESTSIMPLE;
-        }
-        if (button_cond.buttondivout == 1){
-          state.d = state.TESTHARD;
-        }
+
         
       state.SIMPLEMODE:
         simplemode.buttona = button_cond.buttonaout;
+        simplemode.buttonb = button_cond.buttonbout;
+        simplemode.buttonc = button_cond.buttoncout;
         simplemode.buttonadd = button_cond.buttonaddout;
         simplemode.buttonsub = button_cond.buttonsubout;
         simplemode.buttonmul = button_cond.buttonmulout;
@@ -229,62 +207,7 @@ module mojo_top (
           state.d = state.IDLE;
         }
         
-      state.TESTSIMPLE:
-        testsimple.buttona = button_cond.buttonaout;
-        testsimple.buttonb = button_cond.buttonbout;
-        testsimple.buttonc = button_cond.buttoncout;
-        testsimple.buttonadd = button_cond.buttonaddout;
-        testsimple.buttonsub = button_cond.buttonsubout;
-        testsimple.buttonmul = button_cond.buttonmulout;
-        testsimple.buttondiv = button_cond.buttondivout;
-        testsimple.aluout = alu.s;
-        alu.a = testsimple.alua;
-        alu.b = testsimple.alub;
-        alu.alufn = testsimple.alualufn;
-        gameend = testsimple.gameend;
-        
-        motherposled.position = testsimple.motherpos;
-        billyposled.position = testsimple.billypos;
-        seven_seg_a.char = testsimple.a_out;
-        seven_seg_b.char = testsimple.b_out;
-        seven_seg_c.char = testsimple.c_out;
-        seven_seg_d.char = testsimple.d_out;
-        
-        operator1led.opcode = testsimple.operator_sig;   
-        equalled = 1; 
-        
-        if (gameend == 1){
-          state.d = state.IDLE;
-        }
-        
-      state.TESTHARD:
       
-        testhard.buttona = button_cond.buttonaout;
-        testhard.buttonb = button_cond.buttonbout;
-        testhard.buttonc = button_cond.buttoncout;
-        testhard.buttonadd = button_cond.buttonaddout;
-        testhard.buttonsub = button_cond.buttonsubout;
-        testhard.buttonmul = button_cond.buttonmulout;
-        testhard.buttondiv = button_cond.buttondivout;
-        testhard.aluout = alu.s;
-        alu.a = testhard.alua;
-        alu.b = testhard.alub;
-        alu.alufn = testhard.alualufn;
-        
-        gameend = testhard.gameend;
-        motherposled.position = testhard.motherpos;
-        billyposled.position = testhard.billypos;
-        seven_seg_a.char = testhard.a_out;
-        seven_seg_b.char = testhard.b_out;
-        seven_seg_c.char = testhard.c_out;
-        seven_seg_d.char = testhard.d_out;
-        operator1led.opcode = testhard.operator1_out;
-        operator2led.opcode = testhard.operator2_out;
-        equalled = 1;
-                
-        if (gameend == 1){
-          state.d = state.IDLE;
-        }
         
         
 

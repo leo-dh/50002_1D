@@ -21,6 +21,12 @@ module seven_seg (
       d12: segs = 7b1110011; // P
       d13: segs = 7b1110111; // A
       d14: segs = 7b1111000; // t
+      d15: segs = 7b1101110; // y
+      d16: segs = 7b1110110; // H
+      d17: segs = 7b1010000; // r
+      d18: segs = 7b1011110; // d
+      d19: segs = 7b0110111; // n
+      d21: segs = 7b0111001; // c
 
       default: segs = 7b0000000;
     }

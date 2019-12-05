@@ -31,6 +31,7 @@ module hardmode (
       dff timer[30];
       dff counter[2];
       counter ctr (#SIZE(1), #DIV(24));
+      counter ctr2 (#SIZE(1), #DIV(23));
       pn_gen pn_gen;
       mother mother;
       billy billy;
@@ -49,6 +50,7 @@ module hardmode (
       registers divoutput1(#BITS(16));
       registers divoutput2(#BITS(16));
       registers divoutput3(#BITS(16));
+      registers divoutput4(#BITS(16));
       
     }
   }
@@ -69,7 +71,7 @@ module hardmode (
     gameend = 0;
     
     timer.d = timer.q + 1;
-    pn_gen.seed = timer.q;
+    pn_gen.seed = 1337;
     pn_gen.next = 0;
     questiongenerator.randomnumber = pn_gen.num;
     counter.d = counter.q;
@@ -83,11 +85,13 @@ module hardmode (
     divoutput1.writeenable = 1;
     divoutput2.writeenable = 1;
     divoutput3.writeenable = 1;
+    divoutput4.writeenable = 1;
     
     
     divoutput1.writevalue = a.readvalue/b.readvalue;
     divoutput2.writevalue = b.readvalue/c.readvalue;
-    divoutput3.writevalue = temp.readvalue/c.readvalue;
+    divoutput3.writevalue = a.readvalue/b.readvalue/c.readvalue;
+    divoutput4.writevalue = a.readvalue*b.readvalue/c.readvalue;
     
     mother.difficulty = b01;
     
@@ -128,6 +132,11 @@ module hardmode (
     tempb.writevalue = b.readvalue;
     tempc.writevalue = c.readvalue;
     
+    if (&buttonoperandinput){
+      gameend = 1;
+      state.d = state.IDLE;
+    }
+    
     
     case (state.q){
       
@@ -138,10 +147,15 @@ module hardmode (
         mother.writevalue = d0;
         billy.writeenable = 1;
         billy.writevalue = 2;
-        if (buttonc == 1){
-          counter.d = d3;
+        a_out = d16;
+        b_out = d13;
+        c_out = d17;
+        d_out = d18;
+        if ((|buttonoperandinput) || (|buttonoperatorinput)){
           timer.d = 0;
+          counter.d = 3;
           state.d = state.COUNTDOWN;
+          
         }
       
       state.COUNTDOWN:
@@ -405,7 +419,7 @@ module hardmode (
                 alua = temp.readvalue;
                 alub = c.readvalue;
                 alualufn = operator2.readvalue;
-                temp.writevalue = divoutput3.readvalue;
+                temp.writevalue = divoutput4.readvalue;
               default:
                 alua = temp.readvalue;
                 alub = c.readvalue;
@@ -464,14 +478,12 @@ module hardmode (
         alub = d.readvalue;
         mother.writeenable = 1;
         alualufn = CMPEQ;
-        operator1.writeenable = 1;
-        operator1.writevalue = 6b111111;
-        operator2.writeenable = 1;
-        operator2.writevalue = 6b111111;
-        if (aluout == 1){
+        
+        if (aluout == 1){          
           state.d = state.CHECKBILLYPOS;
         }
         else {
+          timer.d = 0;
           state.d = state.CHECKMOTHERPOS;
         }
       
@@ -488,21 +500,48 @@ module hardmode (
         }
       
       state.DELAY:
-        timer.d = 0;
+        timer.d = timer.q + 1;
         mother.writeenable = 1;
         mother.difficulty = b11;
-        if (!(|buttonoperatorinput)){
+        operator1.writeenable = 1;
+        operator1.writevalue = 6b111111;
+        operator2.writeenable = 1;
+        operator2.writevalue = 6b111111;
+        a_out = d19;
+        b_out = d1;
+        c_out = d21;
+        d_out = d11;
+        if (timer.q == d20000000){
+          timer.d = 0;
+          
           state.d = state.GEN_QN;
         }
       
       state.CHECKMOTHERPOS:
-        timer.d = 0;
+        timer.d = timer.q + 1;
+        if (ctr2.value == d1){
+          a_out = d20;
+          b_out = d20;
+          c_out = d20;
+          d_out = d20;
+          operator1_out = 6b111111;
+          operator2_out = 6b111111;
+        }
+        
+        if (timer.q == d20000000){
+          timer.d = 0;
+          operator1.writeenable = 1;
+          operator1.writevalue = 6b111111;
+          operator2.writeenable = 1;
+          operator2.writevalue = 6b111111;
+          state.d = state.SWAPPEDINPUT2;
+        }
         if (mother.pos == billy.pos){
           state.d = state.LOSE;
         }
-        else{
-          state.d = state.SWAPPEDINPUT2;
-        }
+      
+      
+      
       
       state.WIN:
         timer.d = timer.q + 1;
@@ -513,7 +552,7 @@ module hardmode (
         d_out = d5;
         
         // do something
-        if (timer.q == d150000000){
+        if (timer.q == d200000000){
           gameend = 1;
           state.d = state.IDLE;
         }
@@ -527,7 +566,7 @@ module hardmode (
         d_out = d11;
         
         // do something
-        if (timer.q == d150000000){
+        if (timer.q == d200000000){
           gameend = 1;
           state.d = state.IDLE;
         }

@@ -51,15 +51,21 @@ module hardmode_4 (
   reg [29:0] M_timer_d, M_timer_q = 1'h0;
   reg [1:0] M_counter_d, M_counter_q = 1'h0;
   wire [1-1:0] M_ctr_value;
-  counter_40 ctr (
+  counter_39 ctr (
     .clk(clk),
     .rst(rst),
     .value(M_ctr_value)
   );
+  wire [1-1:0] M_ctr2_value;
+  counter_28 ctr2 (
+    .clk(clk),
+    .rst(rst),
+    .value(M_ctr2_value)
+  );
   wire [32-1:0] M_pn_gen_num;
   reg [1-1:0] M_pn_gen_next;
   reg [32-1:0] M_pn_gen_seed;
-  pn_gen_30 pn_gen (
+  pn_gen_29 pn_gen (
     .clk(clk),
     .rst(rst),
     .next(M_pn_gen_next),
@@ -70,7 +76,7 @@ module hardmode_4 (
   reg [2-1:0] M_mother_difficulty;
   reg [1-1:0] M_mother_writeenable;
   reg [16-1:0] M_mother_writevalue;
-  mother_31 mother (
+  mother_30 mother (
     .clk(clk),
     .rst(rst),
     .difficulty(M_mother_difficulty),
@@ -81,7 +87,7 @@ module hardmode_4 (
   wire [16-1:0] M_billy_pos;
   reg [1-1:0] M_billy_writeenable;
   reg [16-1:0] M_billy_writevalue;
-  billy_32 billy (
+  billy_31 billy (
     .clk(clk),
     .rst(rst),
     .writeenable(M_billy_writeenable),
@@ -91,7 +97,7 @@ module hardmode_4 (
   wire [16-1:0] M_a_readvalue;
   reg [1-1:0] M_a_writeenable;
   reg [16-1:0] M_a_writevalue;
-  registers_33 a (
+  registers_32 a (
     .clk(clk),
     .rst(rst),
     .writeenable(M_a_writeenable),
@@ -101,7 +107,7 @@ module hardmode_4 (
   wire [16-1:0] M_b_readvalue;
   reg [1-1:0] M_b_writeenable;
   reg [16-1:0] M_b_writevalue;
-  registers_33 b (
+  registers_32 b (
     .clk(clk),
     .rst(rst),
     .writeenable(M_b_writeenable),
@@ -111,7 +117,7 @@ module hardmode_4 (
   wire [16-1:0] M_c_readvalue;
   reg [1-1:0] M_c_writeenable;
   reg [16-1:0] M_c_writevalue;
-  registers_33 c (
+  registers_32 c (
     .clk(clk),
     .rst(rst),
     .writeenable(M_c_writeenable),
@@ -121,7 +127,7 @@ module hardmode_4 (
   wire [16-1:0] M_d_readvalue;
   reg [1-1:0] M_d_writeenable;
   reg [16-1:0] M_d_writevalue;
-  registers_33 d (
+  registers_32 d (
     .clk(clk),
     .rst(rst),
     .writeenable(M_d_writeenable),
@@ -131,7 +137,7 @@ module hardmode_4 (
   wire [16-1:0] M_tempa_readvalue;
   reg [1-1:0] M_tempa_writeenable;
   reg [16-1:0] M_tempa_writevalue;
-  registers_33 tempa (
+  registers_32 tempa (
     .clk(clk),
     .rst(rst),
     .writeenable(M_tempa_writeenable),
@@ -141,7 +147,7 @@ module hardmode_4 (
   wire [16-1:0] M_tempb_readvalue;
   reg [1-1:0] M_tempb_writeenable;
   reg [16-1:0] M_tempb_writevalue;
-  registers_33 tempb (
+  registers_32 tempb (
     .clk(clk),
     .rst(rst),
     .writeenable(M_tempb_writeenable),
@@ -151,7 +157,7 @@ module hardmode_4 (
   wire [16-1:0] M_tempc_readvalue;
   reg [1-1:0] M_tempc_writeenable;
   reg [16-1:0] M_tempc_writevalue;
-  registers_33 tempc (
+  registers_32 tempc (
     .clk(clk),
     .rst(rst),
     .writeenable(M_tempc_writeenable),
@@ -161,7 +167,7 @@ module hardmode_4 (
   wire [16-1:0] M_temp_readvalue;
   reg [1-1:0] M_temp_writeenable;
   reg [16-1:0] M_temp_writevalue;
-  registers_33 temp (
+  registers_32 temp (
     .clk(clk),
     .rst(rst),
     .writeenable(M_temp_writeenable),
@@ -171,7 +177,7 @@ module hardmode_4 (
   wire [6-1:0] M_operator1_readvalue;
   reg [1-1:0] M_operator1_writeenable;
   reg [6-1:0] M_operator1_writevalue;
-  registers_37 operator1 (
+  registers_36 operator1 (
     .clk(clk),
     .rst(rst),
     .writeenable(M_operator1_writeenable),
@@ -181,7 +187,7 @@ module hardmode_4 (
   wire [6-1:0] M_operator2_readvalue;
   reg [1-1:0] M_operator2_writeenable;
   reg [6-1:0] M_operator2_writevalue;
-  registers_37 operator2 (
+  registers_36 operator2 (
     .clk(clk),
     .rst(rst),
     .writeenable(M_operator2_writeenable),
@@ -201,7 +207,7 @@ module hardmode_4 (
   wire [16-1:0] M_divoutput1_readvalue;
   reg [1-1:0] M_divoutput1_writeenable;
   reg [16-1:0] M_divoutput1_writevalue;
-  registers_33 divoutput1 (
+  registers_32 divoutput1 (
     .clk(clk),
     .rst(rst),
     .writeenable(M_divoutput1_writeenable),
@@ -211,7 +217,7 @@ module hardmode_4 (
   wire [16-1:0] M_divoutput2_readvalue;
   reg [1-1:0] M_divoutput2_writeenable;
   reg [16-1:0] M_divoutput2_writevalue;
-  registers_33 divoutput2 (
+  registers_32 divoutput2 (
     .clk(clk),
     .rst(rst),
     .writeenable(M_divoutput2_writeenable),
@@ -221,12 +227,22 @@ module hardmode_4 (
   wire [16-1:0] M_divoutput3_readvalue;
   reg [1-1:0] M_divoutput3_writeenable;
   reg [16-1:0] M_divoutput3_writevalue;
-  registers_33 divoutput3 (
+  registers_32 divoutput3 (
     .clk(clk),
     .rst(rst),
     .writeenable(M_divoutput3_writeenable),
     .writevalue(M_divoutput3_writevalue),
     .readvalue(M_divoutput3_readvalue)
+  );
+  wire [16-1:0] M_divoutput4_readvalue;
+  reg [1-1:0] M_divoutput4_writeenable;
+  reg [16-1:0] M_divoutput4_writevalue;
+  registers_32 divoutput4 (
+    .clk(clk),
+    .rst(rst),
+    .writeenable(M_divoutput4_writeenable),
+    .writevalue(M_divoutput4_writevalue),
+    .readvalue(M_divoutput4_readvalue)
   );
   
   wire [16-1:0] M_questiongenerator_a;
@@ -234,7 +250,7 @@ module hardmode_4 (
   wire [16-1:0] M_questiongenerator_c;
   wire [16-1:0] M_questiongenerator_d;
   reg [6-1:0] M_questiongenerator_randomnumber;
-  generatequestion_hard_58 questiongenerator (
+  generatequestion_hard_59 questiongenerator (
     .randomnumber(M_questiongenerator_randomnumber),
     .a(M_questiongenerator_a),
     .b(M_questiongenerator_b),
@@ -265,7 +281,7 @@ module hardmode_4 (
     
     gameend = 1'h0;
     M_timer_d = M_timer_q + 1'h1;
-    M_pn_gen_seed = M_timer_q;
+    M_pn_gen_seed = 11'h539;
     M_pn_gen_next = 1'h0;
     M_questiongenerator_randomnumber = M_pn_gen_num;
     M_counter_d = M_counter_q;
@@ -277,9 +293,11 @@ module hardmode_4 (
     M_divoutput1_writeenable = 1'h1;
     M_divoutput2_writeenable = 1'h1;
     M_divoutput3_writeenable = 1'h1;
+    M_divoutput4_writeenable = 1'h1;
     M_divoutput1_writevalue = M_a_readvalue / M_b_readvalue;
     M_divoutput2_writevalue = M_b_readvalue / M_c_readvalue;
-    M_divoutput3_writevalue = M_temp_readvalue / M_c_readvalue;
+    M_divoutput3_writevalue = M_a_readvalue / M_b_readvalue / M_c_readvalue;
+    M_divoutput4_writevalue = M_a_readvalue * M_b_readvalue / M_c_readvalue;
     M_mother_difficulty = 2'h1;
     motherpos = M_mother_pos;
     billypos = M_billy_pos - 2'h2;
@@ -315,6 +333,10 @@ module hardmode_4 (
     M_tempa_writevalue = M_a_readvalue;
     M_tempb_writevalue = M_b_readvalue;
     M_tempc_writevalue = M_c_readvalue;
+    if ((&buttonoperandinput)) begin
+      gameend = 1'h1;
+      M_state_d = IDLE_state;
+    end
     
     case (M_state_q)
       IDLE_state: begin
@@ -324,9 +346,13 @@ module hardmode_4 (
         M_mother_writevalue = 1'h0;
         M_billy_writeenable = 1'h1;
         M_billy_writevalue = 2'h2;
-        if (buttonc == 1'h1) begin
-          M_counter_d = 2'h3;
+        a_out = 5'h10;
+        b_out = 4'hd;
+        c_out = 5'h11;
+        d_out = 5'h12;
+        if (((|buttonoperandinput)) || ((|buttonoperatorinput))) begin
           M_timer_d = 1'h0;
+          M_counter_d = 2'h3;
           M_state_d = COUNTDOWN_state;
         end
       end
@@ -614,7 +640,7 @@ module hardmode_4 (
                 alua = M_temp_readvalue;
                 alub = M_c_readvalue;
                 alualufn = M_operator2_readvalue;
-                M_temp_writevalue = M_divoutput3_readvalue;
+                M_temp_writevalue = M_divoutput4_readvalue;
               end
               default: begin
                 alua = M_temp_readvalue;
@@ -679,13 +705,10 @@ module hardmode_4 (
         alub = M_d_readvalue;
         M_mother_writeenable = 1'h1;
         alualufn = 6'h33;
-        M_operator1_writeenable = 1'h1;
-        M_operator1_writevalue = 6'h3f;
-        M_operator2_writeenable = 1'h1;
-        M_operator2_writevalue = 6'h3f;
         if (aluout == 1'h1) begin
           M_state_d = CHECKBILLYPOS_state;
         end else begin
+          M_timer_d = 1'h0;
           M_state_d = CHECKMOTHERPOS_state;
         end
       end
@@ -701,19 +724,42 @@ module hardmode_4 (
         end
       end
       DELAY_state: begin
-        M_timer_d = 1'h0;
+        M_timer_d = M_timer_q + 1'h1;
         M_mother_writeenable = 1'h1;
         M_mother_difficulty = 2'h3;
-        if (!((|buttonoperatorinput))) begin
+        M_operator1_writeenable = 1'h1;
+        M_operator1_writevalue = 6'h3f;
+        M_operator2_writeenable = 1'h1;
+        M_operator2_writevalue = 6'h3f;
+        a_out = 5'h13;
+        b_out = 1'h1;
+        c_out = 5'h15;
+        d_out = 4'hb;
+        if (M_timer_q == 25'h1312d00) begin
+          M_timer_d = 1'h0;
           M_state_d = GEN_QN_state;
         end
       end
       CHECKMOTHERPOS_state: begin
-        M_timer_d = 1'h0;
+        M_timer_d = M_timer_q + 1'h1;
+        if (M_ctr2_value == 1'h1) begin
+          a_out = 5'h14;
+          b_out = 5'h14;
+          c_out = 5'h14;
+          d_out = 5'h14;
+          operator1_out = 6'h3f;
+          operator2_out = 6'h3f;
+        end
+        if (M_timer_q == 25'h1312d00) begin
+          M_timer_d = 1'h0;
+          M_operator1_writeenable = 1'h1;
+          M_operator1_writevalue = 6'h3f;
+          M_operator2_writeenable = 1'h1;
+          M_operator2_writevalue = 6'h3f;
+          M_state_d = SWAPPEDINPUT2_state;
+        end
         if (M_mother_pos == M_billy_pos) begin
           M_state_d = LOSE_state;
-        end else begin
-          M_state_d = SWAPPEDINPUT2_state;
         end
       end
       WIN_state: begin
@@ -723,7 +769,7 @@ module hardmode_4 (
         b_out = 4'hd;
         c_out = 3'h5;
         d_out = 3'h5;
-        if (M_timer_q == 28'h8f0d180) begin
+        if (M_timer_q == 28'hbebc200) begin
           gameend = 1'h1;
           M_state_d = IDLE_state;
         end
@@ -735,7 +781,7 @@ module hardmode_4 (
         b_out = 1'h0;
         c_out = 3'h5;
         d_out = 4'hb;
-        if (M_timer_q == 28'h8f0d180) begin
+        if (M_timer_q == 28'hbebc200) begin
           gameend = 1'h1;
           M_state_d = IDLE_state;
         end

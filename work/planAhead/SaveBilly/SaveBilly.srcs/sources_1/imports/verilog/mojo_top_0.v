@@ -81,13 +81,11 @@ module mojo_top_0 (
   );
   reg [27:0] M_counter_d, M_counter_q = 1'h0;
   reg [27:0] M_timer_d, M_timer_q = 1'h0;
-  localparam IDLE_state = 3'd0;
-  localparam SIMPLEMODE_state = 3'd1;
-  localparam HARDMODE_state = 3'd2;
-  localparam TESTSIMPLE_state = 3'd3;
-  localparam TESTHARD_state = 3'd4;
+  localparam IDLE_state = 2'd0;
+  localparam SIMPLEMODE_state = 2'd1;
+  localparam HARDMODE_state = 2'd2;
   
-  reg [2:0] M_state_d, M_state_q = IDLE_state;
+  reg [1:0] M_state_d, M_state_q = IDLE_state;
   wire [16-1:0] M_simplemode_motherpos;
   wire [16-1:0] M_simplemode_billypos;
   wire [16-1:0] M_simplemode_a_out;
@@ -104,6 +102,8 @@ module mojo_top_0 (
   reg [1-1:0] M_simplemode_buttonmul;
   reg [1-1:0] M_simplemode_buttondiv;
   reg [1-1:0] M_simplemode_buttona;
+  reg [1-1:0] M_simplemode_buttonb;
+  reg [1-1:0] M_simplemode_buttonc;
   reg [16-1:0] M_simplemode_aluout;
   simplemode_3 simplemode (
     .clk(clk),
@@ -113,6 +113,8 @@ module mojo_top_0 (
     .buttonmul(M_simplemode_buttonmul),
     .buttondiv(M_simplemode_buttondiv),
     .buttona(M_simplemode_buttona),
+    .buttonb(M_simplemode_buttonb),
+    .buttonc(M_simplemode_buttonc),
     .aluout(M_simplemode_aluout),
     .motherpos(M_simplemode_motherpos),
     .billypos(M_simplemode_billypos),
@@ -170,145 +172,59 @@ module mojo_top_0 (
     .alub(M_hardmode_alub),
     .alualufn(M_hardmode_alualufn)
   );
-  wire [16-1:0] M_testsimple_motherpos;
-  wire [16-1:0] M_testsimple_billypos;
-  wire [16-1:0] M_testsimple_a_out;
-  wire [16-1:0] M_testsimple_b_out;
-  wire [16-1:0] M_testsimple_c_out;
-  wire [16-1:0] M_testsimple_d_out;
-  wire [6-1:0] M_testsimple_operator_sig;
-  wire [1-1:0] M_testsimple_gameend;
-  wire [16-1:0] M_testsimple_alua;
-  wire [16-1:0] M_testsimple_alub;
-  wire [6-1:0] M_testsimple_alualufn;
-  reg [1-1:0] M_testsimple_buttonadd;
-  reg [1-1:0] M_testsimple_buttonsub;
-  reg [1-1:0] M_testsimple_buttonmul;
-  reg [1-1:0] M_testsimple_buttondiv;
-  reg [1-1:0] M_testsimple_buttona;
-  reg [1-1:0] M_testsimple_buttonb;
-  reg [1-1:0] M_testsimple_buttonc;
-  reg [16-1:0] M_testsimple_aluout;
-  testsimple_5 testsimple (
-    .clk(clk),
-    .rst(rst),
-    .buttonadd(M_testsimple_buttonadd),
-    .buttonsub(M_testsimple_buttonsub),
-    .buttonmul(M_testsimple_buttonmul),
-    .buttondiv(M_testsimple_buttondiv),
-    .buttona(M_testsimple_buttona),
-    .buttonb(M_testsimple_buttonb),
-    .buttonc(M_testsimple_buttonc),
-    .aluout(M_testsimple_aluout),
-    .motherpos(M_testsimple_motherpos),
-    .billypos(M_testsimple_billypos),
-    .a_out(M_testsimple_a_out),
-    .b_out(M_testsimple_b_out),
-    .c_out(M_testsimple_c_out),
-    .d_out(M_testsimple_d_out),
-    .operator_sig(M_testsimple_operator_sig),
-    .gameend(M_testsimple_gameend),
-    .alua(M_testsimple_alua),
-    .alub(M_testsimple_alub),
-    .alualufn(M_testsimple_alualufn)
-  );
-  wire [16-1:0] M_testhard_motherpos;
-  wire [16-1:0] M_testhard_billypos;
-  wire [16-1:0] M_testhard_a_out;
-  wire [16-1:0] M_testhard_b_out;
-  wire [16-1:0] M_testhard_c_out;
-  wire [16-1:0] M_testhard_d_out;
-  wire [6-1:0] M_testhard_operator1_out;
-  wire [6-1:0] M_testhard_operator2_out;
-  wire [1-1:0] M_testhard_gameend;
-  wire [16-1:0] M_testhard_alua;
-  wire [16-1:0] M_testhard_alub;
-  wire [6-1:0] M_testhard_alualufn;
-  reg [1-1:0] M_testhard_buttonadd;
-  reg [1-1:0] M_testhard_buttonsub;
-  reg [1-1:0] M_testhard_buttonmul;
-  reg [1-1:0] M_testhard_buttondiv;
-  reg [1-1:0] M_testhard_buttona;
-  reg [1-1:0] M_testhard_buttonb;
-  reg [1-1:0] M_testhard_buttonc;
-  reg [16-1:0] M_testhard_aluout;
-  testhard_6 testhard (
-    .clk(clk),
-    .rst(rst),
-    .buttonadd(M_testhard_buttonadd),
-    .buttonsub(M_testhard_buttonsub),
-    .buttonmul(M_testhard_buttonmul),
-    .buttondiv(M_testhard_buttondiv),
-    .buttona(M_testhard_buttona),
-    .buttonb(M_testhard_buttonb),
-    .buttonc(M_testhard_buttonc),
-    .aluout(M_testhard_aluout),
-    .motherpos(M_testhard_motherpos),
-    .billypos(M_testhard_billypos),
-    .a_out(M_testhard_a_out),
-    .b_out(M_testhard_b_out),
-    .c_out(M_testhard_c_out),
-    .d_out(M_testhard_d_out),
-    .operator1_out(M_testhard_operator1_out),
-    .operator2_out(M_testhard_operator2_out),
-    .gameend(M_testhard_gameend),
-    .alua(M_testhard_alua),
-    .alub(M_testhard_alub),
-    .alualufn(M_testhard_alualufn)
-  );
   
   wire [7-1:0] M_seven_seg_a_seg;
   reg [5-1:0] M_seven_seg_a_char;
-  seven_seg_7 seven_seg_a (
+  seven_seg_5 seven_seg_a (
     .char(M_seven_seg_a_char),
     .seg(M_seven_seg_a_seg)
   );
   
   wire [7-1:0] M_seven_seg_b_seg;
   reg [5-1:0] M_seven_seg_b_char;
-  seven_seg_7 seven_seg_b (
+  seven_seg_5 seven_seg_b (
     .char(M_seven_seg_b_char),
     .seg(M_seven_seg_b_seg)
   );
   
   wire [7-1:0] M_seven_seg_c_seg;
   reg [5-1:0] M_seven_seg_c_char;
-  seven_seg_7 seven_seg_c (
+  seven_seg_5 seven_seg_c (
     .char(M_seven_seg_c_char),
     .seg(M_seven_seg_c_seg)
   );
   
   wire [7-1:0] M_seven_seg_d_seg;
   reg [5-1:0] M_seven_seg_d_char;
-  seven_seg_7 seven_seg_d (
+  seven_seg_5 seven_seg_d (
     .char(M_seven_seg_d_char),
     .seg(M_seven_seg_d_seg)
   );
   
   wire [4-1:0] M_operator1led_led;
   reg [6-1:0] M_operator1led_opcode;
-  operatorled_11 operator1led (
+  operatorled_9 operator1led (
     .opcode(M_operator1led_opcode),
     .led(M_operator1led_led)
   );
   
   wire [4-1:0] M_operator2led_led;
   reg [6-1:0] M_operator2led_opcode;
-  operatorled_11 operator2led (
+  operatorled_9 operator2led (
     .opcode(M_operator2led_opcode),
     .led(M_operator2led_led)
   );
   
   wire [8-1:0] M_motherposled_led;
   reg [16-1:0] M_motherposled_position;
-  motherposled_13 motherposled (
+  motherposled_11 motherposled (
     .position(M_motherposled_position),
     .led(M_motherposled_led)
   );
   
   wire [7-1:0] M_billyposled_led;
   reg [16-1:0] M_billyposled_position;
-  billyposled_14 billyposled (
+  billyposled_12 billyposled (
     .position(M_billyposled_position),
     .led(M_billyposled_led)
   );
@@ -320,7 +236,7 @@ module mojo_top_0 (
   reg [6-1:0] M_alu_alufn;
   reg [16-1:0] M_alu_a;
   reg [16-1:0] M_alu_b;
-  alu_15 alu (
+  alu_13 alu (
     .alufn(M_alu_alufn),
     .a(M_alu_a),
     .b(M_alu_b),
@@ -372,6 +288,8 @@ module mojo_top_0 (
     M_simplemode_buttonmul = 1'h0;
     M_simplemode_buttondiv = 1'h0;
     M_simplemode_aluout = 1'h0;
+    M_simplemode_buttonb = 1'h0;
+    M_simplemode_buttonc = 1'h0;
     M_hardmode_buttona = 1'h0;
     M_hardmode_buttonb = 1'h0;
     M_hardmode_buttonc = 1'h0;
@@ -380,22 +298,6 @@ module mojo_top_0 (
     M_hardmode_buttondiv = 1'h0;
     M_hardmode_buttonmul = 1'h0;
     M_hardmode_aluout = 1'h0;
-    M_testsimple_buttona = 1'h0;
-    M_testsimple_buttonb = 1'h0;
-    M_testsimple_buttonc = 1'h0;
-    M_testsimple_buttonadd = 1'h0;
-    M_testsimple_buttonsub = 1'h0;
-    M_testsimple_buttonmul = 1'h0;
-    M_testsimple_buttondiv = 1'h0;
-    M_testsimple_aluout = 1'h0;
-    M_testhard_buttona = 1'h0;
-    M_testhard_buttonb = 1'h0;
-    M_testhard_buttonc = 1'h0;
-    M_testhard_buttonadd = 1'h0;
-    M_testhard_buttonsub = 1'h0;
-    M_testhard_buttonmul = 1'h0;
-    M_testhard_buttondiv = 1'h0;
-    M_testhard_aluout = 1'h0;
     M_counter_d = M_counter_q;
     M_timer_d = M_timer_q + 1'h1;
     M_alu_a = 1'h0;
@@ -415,25 +317,17 @@ module mojo_top_0 (
         M_seven_seg_b_char = M_counter_q;
         M_seven_seg_c_char = M_counter_q;
         M_seven_seg_d_char = M_counter_q;
-        M_simplemode_buttona = M_button_cond_buttonaout;
-        M_hardmode_buttonc = M_button_cond_buttoncout;
-        M_testsimple_buttonadd = M_button_cond_buttonaddout;
-        M_testhard_buttondiv = M_button_cond_buttondivout;
         if (M_button_cond_buttonaout == 1'h1) begin
           M_state_d = SIMPLEMODE_state;
         end
         if (M_button_cond_buttoncout == 1'h1) begin
           M_state_d = HARDMODE_state;
         end
-        if (M_button_cond_buttonaddout == 1'h1) begin
-          M_state_d = TESTSIMPLE_state;
-        end
-        if (M_button_cond_buttondivout == 1'h1) begin
-          M_state_d = TESTHARD_state;
-        end
       end
       SIMPLEMODE_state: begin
         M_simplemode_buttona = M_button_cond_buttonaout;
+        M_simplemode_buttonb = M_button_cond_buttonbout;
+        M_simplemode_buttonc = M_button_cond_buttoncout;
         M_simplemode_buttonadd = M_button_cond_buttonaddout;
         M_simplemode_buttonsub = M_button_cond_buttonsubout;
         M_simplemode_buttonmul = M_button_cond_buttonmulout;
@@ -476,57 +370,6 @@ module mojo_top_0 (
         M_seven_seg_d_char = M_hardmode_d_out;
         M_operator1led_opcode = M_hardmode_operator1_out;
         M_operator2led_opcode = M_hardmode_operator2_out;
-        equalled = 1'h1;
-        if (gameend == 1'h1) begin
-          M_state_d = IDLE_state;
-        end
-      end
-      TESTSIMPLE_state: begin
-        M_testsimple_buttona = M_button_cond_buttonaout;
-        M_testsimple_buttonb = M_button_cond_buttonbout;
-        M_testsimple_buttonc = M_button_cond_buttoncout;
-        M_testsimple_buttonadd = M_button_cond_buttonaddout;
-        M_testsimple_buttonsub = M_button_cond_buttonsubout;
-        M_testsimple_buttonmul = M_button_cond_buttonmulout;
-        M_testsimple_buttondiv = M_button_cond_buttondivout;
-        M_testsimple_aluout = M_alu_s;
-        M_alu_a = M_testsimple_alua;
-        M_alu_b = M_testsimple_alub;
-        M_alu_alufn = M_testsimple_alualufn;
-        gameend = M_testsimple_gameend;
-        M_motherposled_position = M_testsimple_motherpos;
-        M_billyposled_position = M_testsimple_billypos;
-        M_seven_seg_a_char = M_testsimple_a_out;
-        M_seven_seg_b_char = M_testsimple_b_out;
-        M_seven_seg_c_char = M_testsimple_c_out;
-        M_seven_seg_d_char = M_testsimple_d_out;
-        M_operator1led_opcode = M_testsimple_operator_sig;
-        equalled = 1'h1;
-        if (gameend == 1'h1) begin
-          M_state_d = IDLE_state;
-        end
-      end
-      TESTHARD_state: begin
-        M_testhard_buttona = M_button_cond_buttonaout;
-        M_testhard_buttonb = M_button_cond_buttonbout;
-        M_testhard_buttonc = M_button_cond_buttoncout;
-        M_testhard_buttonadd = M_button_cond_buttonaddout;
-        M_testhard_buttonsub = M_button_cond_buttonsubout;
-        M_testhard_buttonmul = M_button_cond_buttonmulout;
-        M_testhard_buttondiv = M_button_cond_buttondivout;
-        M_testhard_aluout = M_alu_s;
-        M_alu_a = M_testhard_alua;
-        M_alu_b = M_testhard_alub;
-        M_alu_alufn = M_testhard_alualufn;
-        gameend = M_testhard_gameend;
-        M_motherposled_position = M_testhard_motherpos;
-        M_billyposled_position = M_testhard_billypos;
-        M_seven_seg_a_char = M_testhard_a_out;
-        M_seven_seg_b_char = M_testhard_b_out;
-        M_seven_seg_c_char = M_testhard_c_out;
-        M_seven_seg_d_char = M_testhard_d_out;
-        M_operator1led_opcode = M_testhard_operator1_out;
-        M_operator2led_opcode = M_testhard_operator2_out;
         equalled = 1'h1;
         if (gameend == 1'h1) begin
           M_state_d = IDLE_state;
