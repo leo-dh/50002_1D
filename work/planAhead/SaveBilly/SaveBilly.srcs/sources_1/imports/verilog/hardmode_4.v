@@ -296,7 +296,7 @@ module hardmode_4 (
     M_divoutput4_writeenable = 1'h1;
     M_divoutput1_writevalue = M_a_readvalue / M_b_readvalue;
     M_divoutput2_writevalue = M_b_readvalue / M_c_readvalue;
-    M_divoutput3_writevalue = M_a_readvalue / M_b_readvalue / M_c_readvalue;
+    M_divoutput3_writevalue = M_a_readvalue / M_b_readvalue;
     M_divoutput4_writevalue = M_a_readvalue * M_b_readvalue / M_c_readvalue;
     M_mother_difficulty = 2'h1;
     motherpos = M_mother_pos;

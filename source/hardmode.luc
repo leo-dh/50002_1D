@@ -90,7 +90,7 @@ module hardmode (
     
     divoutput1.writevalue = a.readvalue/b.readvalue;
     divoutput2.writevalue = b.readvalue/c.readvalue;
-    divoutput3.writevalue = a.readvalue/b.readvalue/c.readvalue;
+    divoutput3.writevalue = a.readvalue/b.readvalue;
     divoutput4.writevalue = a.readvalue*b.readvalue/c.readvalue;
     
     mother.difficulty = b01;

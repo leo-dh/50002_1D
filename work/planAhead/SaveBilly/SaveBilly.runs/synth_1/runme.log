@@ -409,11 +409,11 @@ Synthesizing Unit <hardmode_4>.
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
     Found 16-bit subtractor for signal <billypos> created at line 303.
-    Found 2-bit subtractor for signal <M_counter_q[1]_GND_16_o_sub_22_OUT> created at line 390.
+    Found 2-bit subtractor for signal <M_counter_q[1]_GND_16_o_sub_21_OUT> created at line 390.
     Found 30-bit adder for signal <M_timer_q[29]_GND_16_o_add_0_OUT> created at line 283.
-    Found 16-bit adder for signal <M_billy_pos[15]_GND_16_o_add_142_OUT> created at line 719.
-    Found 16x16-bit multiplier for signal <n0232> created at line 300.
-    Found 16-bit comparator equal for signal <M_mother_pos[15]_M_billy_pos[15]_equal_161_o> created at line 761
+    Found 16-bit adder for signal <M_billy_pos[15]_GND_16_o_add_141_OUT> created at line 719.
+    Found 16x16-bit multiplier for signal <n0231> created at line 300.
+    Found 16-bit comparator equal for signal <M_mother_pos[15]_M_billy_pos[15]_equal_160_o> created at line 761
     Summary:
 	inferred   1 Multiplier(s).
 	inferred   4 Adder/Subtractor(s).
@@ -550,28 +550,28 @@ Macro Statistics
 # Multipliers                                          : 2
  16x16-bit multiplier                                  : 1
  8x8-bit multiplier                                    : 1
-# Adders/Subtractors                                   : 253
+# Adders/Subtractors                                   : 221
  16-bit adder                                          : 8
  16-bit subtractor                                     : 2
- 17-bit adder                                          : 14
+ 17-bit adder                                          : 12
  17-bit addsub                                         : 1
- 18-bit adder                                          : 14
- 19-bit adder                                          : 14
+ 18-bit adder                                          : 12
+ 19-bit adder                                          : 12
  2-bit addsub                                          : 1
  2-bit subtractor                                      : 1
- 20-bit adder                                          : 21
- 21-bit adder                                          : 14
- 22-bit adder                                          : 14
- 23-bit adder                                          : 14
- 24-bit adder                                          : 16
- 25-bit adder                                          : 15
- 26-bit adder                                          : 14
- 27-bit adder                                          : 14
- 28-bit adder                                          : 17
- 29-bit adder                                          : 14
- 30-bit adder                                          : 17
- 31-bit adder                                          : 14
- 32-bit adder                                          : 14
+ 20-bit adder                                          : 19
+ 21-bit adder                                          : 12
+ 22-bit adder                                          : 12
+ 23-bit adder                                          : 12
+ 24-bit adder                                          : 14
+ 25-bit adder                                          : 13
+ 26-bit adder                                          : 12
+ 27-bit adder                                          : 12
+ 28-bit adder                                          : 15
+ 29-bit adder                                          : 12
+ 30-bit adder                                          : 15
+ 31-bit adder                                          : 12
+ 32-bit adder                                          : 12
 # Registers                                            : 66
  1-bit register                                        : 7
  16-bit register                                       : 21
@@ -585,29 +585,29 @@ Macro Statistics
  32-bit register                                       : 8
  4-bit register                                        : 1
  6-bit register                                        : 3
-# Comparators                                          : 121
+# Comparators                                          : 104
  16-bit comparator equal                               : 2
- 16-bit comparator lessequal                           : 7
- 17-bit comparator lessequal                           : 7
- 18-bit comparator lessequal                           : 7
- 19-bit comparator lessequal                           : 7
- 20-bit comparator lessequal                           : 7
- 21-bit comparator lessequal                           : 7
- 22-bit comparator lessequal                           : 7
- 23-bit comparator lessequal                           : 7
- 24-bit comparator lessequal                           : 7
- 25-bit comparator lessequal                           : 7
- 26-bit comparator lessequal                           : 7
- 27-bit comparator lessequal                           : 7
- 28-bit comparator lessequal                           : 7
- 29-bit comparator lessequal                           : 7
- 30-bit comparator lessequal                           : 7
- 31-bit comparator lessequal                           : 7
- 32-bit comparator lessequal                           : 7
-# Multiplexers                                         : 1989
- 1-bit 2-to-1 multiplexer                              : 1728
+ 16-bit comparator lessequal                           : 6
+ 17-bit comparator lessequal                           : 6
+ 18-bit comparator lessequal                           : 6
+ 19-bit comparator lessequal                           : 6
+ 20-bit comparator lessequal                           : 6
+ 21-bit comparator lessequal                           : 6
+ 22-bit comparator lessequal                           : 6
+ 23-bit comparator lessequal                           : 6
+ 24-bit comparator lessequal                           : 6
+ 25-bit comparator lessequal                           : 6
+ 26-bit comparator lessequal                           : 6
+ 27-bit comparator lessequal                           : 6
+ 28-bit comparator lessequal                           : 6
+ 29-bit comparator lessequal                           : 6
+ 30-bit comparator lessequal                           : 6
+ 31-bit comparator lessequal                           : 6
+ 32-bit comparator lessequal                           : 6
+# Multiplexers                                         : 1748
+ 1-bit 2-to-1 multiplexer                              : 1488
  1-bit 4-to-1 multiplexer                              : 1
- 16-bit 2-to-1 multiplexer                             : 161
+ 16-bit 2-to-1 multiplexer                             : 160
  16-bit 4-to-1 multiplexer                             : 6
  2-bit 2-to-1 multiplexer                              : 10
  28-bit 2-to-1 multiplexer                             : 15
@@ -745,9 +745,9 @@ Macro Statistics
 # Multipliers                                          : 2
  16x16-bit multiplier                                  : 1
  8x8-bit multiplier                                    : 1
-# Adders/Subtractors                                   : 129
+# Adders/Subtractors                                   : 113
  16-bit adder                                          : 8
- 16-bit adder carry in                                 : 112
+ 16-bit adder carry in                                 : 96
  16-bit subtractor                                     : 2
  17-bit addsub                                         : 1
  2-bit addsub                                          : 1
@@ -761,29 +761,29 @@ Macro Statistics
  28-bit up counter                                     : 2
 # Registers                                            : 760
  Flip-Flops                                            : 760
-# Comparators                                          : 121
+# Comparators                                          : 104
  16-bit comparator equal                               : 2
- 16-bit comparator lessequal                           : 7
- 17-bit comparator lessequal                           : 7
- 18-bit comparator lessequal                           : 7
- 19-bit comparator lessequal                           : 7
- 20-bit comparator lessequal                           : 7
- 21-bit comparator lessequal                           : 7
- 22-bit comparator lessequal                           : 7
- 23-bit comparator lessequal                           : 7
- 24-bit comparator lessequal                           : 7
- 25-bit comparator lessequal                           : 7
- 26-bit comparator lessequal                           : 7
- 27-bit comparator lessequal                           : 7
- 28-bit comparator lessequal                           : 7
- 29-bit comparator lessequal                           : 7
- 30-bit comparator lessequal                           : 7
- 31-bit comparator lessequal                           : 7
- 32-bit comparator lessequal                           : 7
-# Multiplexers                                         : 1989
- 1-bit 2-to-1 multiplexer                              : 1728
+ 16-bit comparator lessequal                           : 6
+ 17-bit comparator lessequal                           : 6
+ 18-bit comparator lessequal                           : 6
+ 19-bit comparator lessequal                           : 6
+ 20-bit comparator lessequal                           : 6
+ 21-bit comparator lessequal                           : 6
+ 22-bit comparator lessequal                           : 6
+ 23-bit comparator lessequal                           : 6
+ 24-bit comparator lessequal                           : 6
+ 25-bit comparator lessequal                           : 6
+ 26-bit comparator lessequal                           : 6
+ 27-bit comparator lessequal                           : 6
+ 28-bit comparator lessequal                           : 6
+ 29-bit comparator lessequal                           : 6
+ 30-bit comparator lessequal                           : 6
+ 31-bit comparator lessequal                           : 6
+ 32-bit comparator lessequal                           : 6
+# Multiplexers                                         : 1748
+ 1-bit 2-to-1 multiplexer                              : 1488
  1-bit 4-to-1 multiplexer                              : 1
- 16-bit 2-to-1 multiplexer                             : 161
+ 16-bit 2-to-1 multiplexer                             : 160
  16-bit 4-to-1 multiplexer                             : 6
  2-bit 2-to-1 multiplexer                              : 10
  28-bit 2-to-1 multiplexer                             : 15
@@ -813,6 +813,7 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
+WARNING:Xst:1989 - Unit <hardmode_4>: instances <divoutput1>, <divoutput3> of unit <registers_32> are equivalent, second instance is removed
 Analyzing FSM <MFsm> for best encoding.
 Optimizing FSM <FSM_0> on signal <M_state_q[1:2]> with user encoding.
 -------------------
@@ -1005,54 +1006,46 @@ WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <hardmode/b/M_reg_q_
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <hardmode/b/M_reg_q_11> has a constant value of 0 in block <mojo_top_0>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <hardmode/b/M_reg_q_10> has a constant value of 0 in block <mojo_top_0>. This FF/Latch will be trimmed during the optimization process.
 INFO:Xst:2261 - The FF/Latch <simplemode/divoutput/M_reg_q_15> in Unit <mojo_top_0> is equivalent to the following 11 FFs/Latches, which will be removed : <simplemode/divoutput/M_reg_q_14> <simplemode/divoutput/M_reg_q_13> <simplemode/divoutput/M_reg_q_12> <simplemode/divoutput/M_reg_q_11> <simplemode/divoutput/M_reg_q_10> <simplemode/divoutput/M_reg_q_9> <simplemode/divoutput/M_reg_q_8> <simplemode/divoutput/M_reg_q_7> <simplemode/divoutput/M_reg_q_6> <simplemode/divoutput/M_reg_q_5> <simplemode/divoutput/M_reg_q_4> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_0> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_0> <hardmode/ctr2/M_ctr_q_0> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_1> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_1> <hardmode/ctr2/M_ctr_q_1> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_2> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_2> <hardmode/ctr2/M_ctr_q_2> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_3> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_3> <hardmode/ctr2/M_ctr_q_3> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_4> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_4> <hardmode/ctr2/M_ctr_q_4> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_5> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_5> <hardmode/ctr2/M_ctr_q_5> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_6> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_6> <hardmode/ctr2/M_ctr_q_6> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_7> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_7> <hardmode/ctr2/M_ctr_q_7> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_8> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_8> <hardmode/ctr2/M_ctr_q_8> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_9> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_9> <hardmode/ctr2/M_ctr_q_9> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_0> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_0> <hardmode/ctr/M_ctr_q_0> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_1> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_1> <hardmode/ctr/M_ctr_q_1> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_2> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_2> <hardmode/ctr/M_ctr_q_2> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_3> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_3> <hardmode/ctr/M_ctr_q_3> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_4> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_4> <hardmode/ctr/M_ctr_q_4> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_5> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_5> <hardmode/ctr/M_ctr_q_5> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_6> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_6> <hardmode/ctr/M_ctr_q_6> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_7> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_7> <hardmode/ctr/M_ctr_q_7> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_8> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_8> <hardmode/ctr/M_ctr_q_8> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_9> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_9> <hardmode/ctr/M_ctr_q_9> 
 INFO:Xst:2261 - The FF/Latch <hardmode/divoutput1/M_reg_q_4> in Unit <mojo_top_0> is equivalent to the following 11 FFs/Latches, which will be removed : <hardmode/divoutput1/M_reg_q_5> <hardmode/divoutput1/M_reg_q_6> <hardmode/divoutput1/M_reg_q_7> <hardmode/divoutput1/M_reg_q_8> <hardmode/divoutput1/M_reg_q_9> <hardmode/divoutput1/M_reg_q_10> <hardmode/divoutput1/M_reg_q_11> <hardmode/divoutput1/M_reg_q_12> <hardmode/divoutput1/M_reg_q_13> <hardmode/divoutput1/M_reg_q_14> <hardmode/divoutput1/M_reg_q_15> 
 INFO:Xst:2261 - The FF/Latch <hardmode/divoutput2/M_reg_q_4> in Unit <mojo_top_0> is equivalent to the following 11 FFs/Latches, which will be removed : <hardmode/divoutput2/M_reg_q_5> <hardmode/divoutput2/M_reg_q_6> <hardmode/divoutput2/M_reg_q_7> <hardmode/divoutput2/M_reg_q_8> <hardmode/divoutput2/M_reg_q_9> <hardmode/divoutput2/M_reg_q_10> <hardmode/divoutput2/M_reg_q_11> <hardmode/divoutput2/M_reg_q_12> <hardmode/divoutput2/M_reg_q_13> <hardmode/divoutput2/M_reg_q_14> <hardmode/divoutput2/M_reg_q_15> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_10> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_10> <hardmode/ctr2/M_ctr_q_10> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_11> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_11> <hardmode/ctr2/M_ctr_q_11> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_12> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_12> <hardmode/ctr2/M_ctr_q_12> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_13> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_13> <hardmode/ctr2/M_ctr_q_13> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_14> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_14> <hardmode/ctr2/M_ctr_q_14> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_20> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_20> <hardmode/ctr2/M_ctr_q_20> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_15> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_15> <hardmode/ctr2/M_ctr_q_15> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_21> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_21> <hardmode/ctr2/M_ctr_q_21> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_16> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_16> <hardmode/ctr2/M_ctr_q_16> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_22> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_22> <hardmode/ctr2/M_ctr_q_22> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_17> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_17> <hardmode/ctr2/M_ctr_q_17> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_23> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_23> <hardmode/ctr2/M_ctr_q_23> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_18> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_18> <hardmode/ctr2/M_ctr_q_18> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_19> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_19> <hardmode/ctr2/M_ctr_q_19> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_10> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_10> <hardmode/ctr/M_ctr_q_10> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_11> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_11> <hardmode/ctr/M_ctr_q_11> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_12> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_12> <hardmode/ctr/M_ctr_q_12> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_13> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_13> <hardmode/ctr/M_ctr_q_13> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_14> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_14> <hardmode/ctr/M_ctr_q_14> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_20> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_20> <hardmode/ctr/M_ctr_q_20> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_15> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_15> <hardmode/ctr/M_ctr_q_15> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_21> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_21> <hardmode/ctr/M_ctr_q_21> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_16> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_16> <hardmode/ctr/M_ctr_q_16> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_22> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_22> <hardmode/ctr/M_ctr_q_22> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_17> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_17> <hardmode/ctr/M_ctr_q_17> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_23> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_23> <hardmode/ctr/M_ctr_q_23> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_18> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_18> <hardmode/ctr/M_ctr_q_18> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_19> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_19> <hardmode/ctr/M_ctr_q_19> 
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 0) on block mojo_top_0, actual ratio is 85.
+Found area constraint ratio of 100 (+ 0) on block mojo_top_0, actual ratio is 77.
 FlipFlop M_state_q_FSM_FFd1 has been replicated 3 time(s)
 FlipFlop M_state_q_FSM_FFd2 has been replicated 3 time(s)
 FlipFlop hardmode/M_state_q_FSM_FFd1 has been replicated 3 time(s)
 FlipFlop hardmode/M_state_q_FSM_FFd2 has been replicated 3 time(s)
 FlipFlop hardmode/M_state_q_FSM_FFd3 has been replicated 3 time(s)
-FlipFlop hardmode/M_state_q_FSM_FFd4 has been replicated 2 time(s)
-FlipFlop hardmode/b/M_reg_q_0 has been replicated 1 time(s)
-FlipFlop hardmode/b/M_reg_q_1 has been replicated 1 time(s)
-FlipFlop hardmode/b/M_reg_q_2 has been replicated 1 time(s)
-FlipFlop hardmode/b/M_reg_q_3 has been replicated 1 time(s)
-FlipFlop hardmode/c/M_reg_q_0 has been replicated 1 time(s)
-FlipFlop hardmode/c/M_reg_q_1 has been replicated 1 time(s)
-FlipFlop hardmode/c/M_reg_q_2 has been replicated 1 time(s)
-FlipFlop hardmode/c/M_reg_q_3 has been replicated 1 time(s)
-FlipFlop simplemode/M_state_q_FSM_FFd1 has been replicated 1 time(s)
-FlipFlop simplemode/M_state_q_FSM_FFd2 has been replicated 1 time(s)
-FlipFlop simplemode/M_state_q_FSM_FFd3 has been replicated 1 time(s)
-FlipFlop simplemode/M_state_q_FSM_FFd4 has been replicated 2 time(s)
+FlipFlop hardmode/M_state_q_FSM_FFd4 has been replicated 1 time(s)
+FlipFlop simplemode/M_state_q_FSM_FFd1 has been replicated 2 time(s)
+FlipFlop simplemode/M_state_q_FSM_FFd2 has been replicated 2 time(s)
+FlipFlop simplemode/M_state_q_FSM_FFd3 has been replicated 2 time(s)
+FlipFlop simplemode/M_state_q_FSM_FFd4 has been replicated 1 time(s)
 FlipFlop simplemode/b/M_reg_q_0 has been replicated 1 time(s)
 FlipFlop simplemode/b/M_reg_q_1 has been replicated 1 time(s)
 FlipFlop simplemode/b/M_reg_q_2 has been replicated 1 time(s)
@@ -1074,8 +1067,8 @@ Unit <mojo_top_0> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 850
- Flip-Flops                                            : 850
+# Registers                                            : 827
+ Flip-Flops                                            : 827
 # Shift Registers                                      : 7
  2-bit shift register                                  : 7
 
@@ -1101,7 +1094,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 865   |
+clk                                | BUFGP                  | 842   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -1112,9 +1105,9 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 64.124ns (Maximum Frequency: 15.595MHz)
+   Minimum period: 66.062ns (Maximum Frequency: 15.137MHz)
    Minimum input arrival time before clock: 3.526ns
-   Maximum output required time after clock: 11.465ns
+   Maximum output required time after clock: 11.610ns
    Maximum combinational path delay: No path found
 
 =========================================================================

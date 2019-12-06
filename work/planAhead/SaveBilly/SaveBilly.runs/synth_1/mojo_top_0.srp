@@ -3,7 +3,7 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> Reading design: mojo_top_0.prj
 
@@ -455,11 +455,11 @@ Synthesizing Unit <hardmode_4>.
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
     Found 16-bit subtractor for signal <billypos> created at line 303.
-    Found 2-bit subtractor for signal <M_counter_q[1]_GND_16_o_sub_22_OUT> created at line 390.
+    Found 2-bit subtractor for signal <M_counter_q[1]_GND_16_o_sub_21_OUT> created at line 390.
     Found 30-bit adder for signal <M_timer_q[29]_GND_16_o_add_0_OUT> created at line 283.
-    Found 16-bit adder for signal <M_billy_pos[15]_GND_16_o_add_142_OUT> created at line 719.
-    Found 16x16-bit multiplier for signal <n0232> created at line 300.
-    Found 16-bit comparator equal for signal <M_mother_pos[15]_M_billy_pos[15]_equal_161_o> created at line 761
+    Found 16-bit adder for signal <M_billy_pos[15]_GND_16_o_add_141_OUT> created at line 719.
+    Found 16x16-bit multiplier for signal <n0231> created at line 300.
+    Found 16-bit comparator equal for signal <M_mother_pos[15]_M_billy_pos[15]_equal_160_o> created at line 761
     Summary:
 	inferred   1 Multiplier(s).
 	inferred   4 Adder/Subtractor(s).
@@ -596,28 +596,28 @@ Macro Statistics
 # Multipliers                                          : 2
  16x16-bit multiplier                                  : 1
  8x8-bit multiplier                                    : 1
-# Adders/Subtractors                                   : 253
+# Adders/Subtractors                                   : 221
  16-bit adder                                          : 8
  16-bit subtractor                                     : 2
- 17-bit adder                                          : 14
+ 17-bit adder                                          : 12
  17-bit addsub                                         : 1
- 18-bit adder                                          : 14
- 19-bit adder                                          : 14
+ 18-bit adder                                          : 12
+ 19-bit adder                                          : 12
  2-bit addsub                                          : 1
  2-bit subtractor                                      : 1
- 20-bit adder                                          : 21
- 21-bit adder                                          : 14
- 22-bit adder                                          : 14
- 23-bit adder                                          : 14
- 24-bit adder                                          : 16
- 25-bit adder                                          : 15
- 26-bit adder                                          : 14
- 27-bit adder                                          : 14
- 28-bit adder                                          : 17
- 29-bit adder                                          : 14
- 30-bit adder                                          : 17
- 31-bit adder                                          : 14
- 32-bit adder                                          : 14
+ 20-bit adder                                          : 19
+ 21-bit adder                                          : 12
+ 22-bit adder                                          : 12
+ 23-bit adder                                          : 12
+ 24-bit adder                                          : 14
+ 25-bit adder                                          : 13
+ 26-bit adder                                          : 12
+ 27-bit adder                                          : 12
+ 28-bit adder                                          : 15
+ 29-bit adder                                          : 12
+ 30-bit adder                                          : 15
+ 31-bit adder                                          : 12
+ 32-bit adder                                          : 12
 # Registers                                            : 66
  1-bit register                                        : 7
  16-bit register                                       : 21
@@ -631,29 +631,29 @@ Macro Statistics
  32-bit register                                       : 8
  4-bit register                                        : 1
  6-bit register                                        : 3
-# Comparators                                          : 121
+# Comparators                                          : 104
  16-bit comparator equal                               : 2
- 16-bit comparator lessequal                           : 7
- 17-bit comparator lessequal                           : 7
- 18-bit comparator lessequal                           : 7
- 19-bit comparator lessequal                           : 7
- 20-bit comparator lessequal                           : 7
- 21-bit comparator lessequal                           : 7
- 22-bit comparator lessequal                           : 7
- 23-bit comparator lessequal                           : 7
- 24-bit comparator lessequal                           : 7
- 25-bit comparator lessequal                           : 7
- 26-bit comparator lessequal                           : 7
- 27-bit comparator lessequal                           : 7
- 28-bit comparator lessequal                           : 7
- 29-bit comparator lessequal                           : 7
- 30-bit comparator lessequal                           : 7
- 31-bit comparator lessequal                           : 7
- 32-bit comparator lessequal                           : 7
-# Multiplexers                                         : 1989
- 1-bit 2-to-1 multiplexer                              : 1728
+ 16-bit comparator lessequal                           : 6
+ 17-bit comparator lessequal                           : 6
+ 18-bit comparator lessequal                           : 6
+ 19-bit comparator lessequal                           : 6
+ 20-bit comparator lessequal                           : 6
+ 21-bit comparator lessequal                           : 6
+ 22-bit comparator lessequal                           : 6
+ 23-bit comparator lessequal                           : 6
+ 24-bit comparator lessequal                           : 6
+ 25-bit comparator lessequal                           : 6
+ 26-bit comparator lessequal                           : 6
+ 27-bit comparator lessequal                           : 6
+ 28-bit comparator lessequal                           : 6
+ 29-bit comparator lessequal                           : 6
+ 30-bit comparator lessequal                           : 6
+ 31-bit comparator lessequal                           : 6
+ 32-bit comparator lessequal                           : 6
+# Multiplexers                                         : 1748
+ 1-bit 2-to-1 multiplexer                              : 1488
  1-bit 4-to-1 multiplexer                              : 1
- 16-bit 2-to-1 multiplexer                             : 161
+ 16-bit 2-to-1 multiplexer                             : 160
  16-bit 4-to-1 multiplexer                             : 6
  2-bit 2-to-1 multiplexer                              : 10
  28-bit 2-to-1 multiplexer                             : 15
@@ -791,9 +791,9 @@ Macro Statistics
 # Multipliers                                          : 2
  16x16-bit multiplier                                  : 1
  8x8-bit multiplier                                    : 1
-# Adders/Subtractors                                   : 129
+# Adders/Subtractors                                   : 113
  16-bit adder                                          : 8
- 16-bit adder carry in                                 : 112
+ 16-bit adder carry in                                 : 96
  16-bit subtractor                                     : 2
  17-bit addsub                                         : 1
  2-bit addsub                                          : 1
@@ -807,29 +807,29 @@ Macro Statistics
  28-bit up counter                                     : 2
 # Registers                                            : 760
  Flip-Flops                                            : 760
-# Comparators                                          : 121
+# Comparators                                          : 104
  16-bit comparator equal                               : 2
- 16-bit comparator lessequal                           : 7
- 17-bit comparator lessequal                           : 7
- 18-bit comparator lessequal                           : 7
- 19-bit comparator lessequal                           : 7
- 20-bit comparator lessequal                           : 7
- 21-bit comparator lessequal                           : 7
- 22-bit comparator lessequal                           : 7
- 23-bit comparator lessequal                           : 7
- 24-bit comparator lessequal                           : 7
- 25-bit comparator lessequal                           : 7
- 26-bit comparator lessequal                           : 7
- 27-bit comparator lessequal                           : 7
- 28-bit comparator lessequal                           : 7
- 29-bit comparator lessequal                           : 7
- 30-bit comparator lessequal                           : 7
- 31-bit comparator lessequal                           : 7
- 32-bit comparator lessequal                           : 7
-# Multiplexers                                         : 1989
- 1-bit 2-to-1 multiplexer                              : 1728
+ 16-bit comparator lessequal                           : 6
+ 17-bit comparator lessequal                           : 6
+ 18-bit comparator lessequal                           : 6
+ 19-bit comparator lessequal                           : 6
+ 20-bit comparator lessequal                           : 6
+ 21-bit comparator lessequal                           : 6
+ 22-bit comparator lessequal                           : 6
+ 23-bit comparator lessequal                           : 6
+ 24-bit comparator lessequal                           : 6
+ 25-bit comparator lessequal                           : 6
+ 26-bit comparator lessequal                           : 6
+ 27-bit comparator lessequal                           : 6
+ 28-bit comparator lessequal                           : 6
+ 29-bit comparator lessequal                           : 6
+ 30-bit comparator lessequal                           : 6
+ 31-bit comparator lessequal                           : 6
+ 32-bit comparator lessequal                           : 6
+# Multiplexers                                         : 1748
+ 1-bit 2-to-1 multiplexer                              : 1488
  1-bit 4-to-1 multiplexer                              : 1
- 16-bit 2-to-1 multiplexer                             : 161
+ 16-bit 2-to-1 multiplexer                             : 160
  16-bit 4-to-1 multiplexer                             : 6
  2-bit 2-to-1 multiplexer                              : 10
  28-bit 2-to-1 multiplexer                             : 15
@@ -859,6 +859,7 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
+WARNING:Xst:1989 - Unit <hardmode_4>: instances <divoutput1>, <divoutput3> of unit <registers_32> are equivalent, second instance is removed
 Analyzing FSM <MFsm> for best encoding.
 Optimizing FSM <FSM_0> on signal <M_state_q[1:2]> with user encoding.
 -------------------
@@ -1051,54 +1052,46 @@ WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <hardmode/b/M_reg_q_
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <hardmode/b/M_reg_q_11> has a constant value of 0 in block <mojo_top_0>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <hardmode/b/M_reg_q_10> has a constant value of 0 in block <mojo_top_0>. This FF/Latch will be trimmed during the optimization process.
 INFO:Xst:2261 - The FF/Latch <simplemode/divoutput/M_reg_q_15> in Unit <mojo_top_0> is equivalent to the following 11 FFs/Latches, which will be removed : <simplemode/divoutput/M_reg_q_14> <simplemode/divoutput/M_reg_q_13> <simplemode/divoutput/M_reg_q_12> <simplemode/divoutput/M_reg_q_11> <simplemode/divoutput/M_reg_q_10> <simplemode/divoutput/M_reg_q_9> <simplemode/divoutput/M_reg_q_8> <simplemode/divoutput/M_reg_q_7> <simplemode/divoutput/M_reg_q_6> <simplemode/divoutput/M_reg_q_5> <simplemode/divoutput/M_reg_q_4> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_0> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_0> <hardmode/ctr2/M_ctr_q_0> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_1> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_1> <hardmode/ctr2/M_ctr_q_1> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_2> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_2> <hardmode/ctr2/M_ctr_q_2> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_3> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_3> <hardmode/ctr2/M_ctr_q_3> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_4> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_4> <hardmode/ctr2/M_ctr_q_4> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_5> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_5> <hardmode/ctr2/M_ctr_q_5> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_6> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_6> <hardmode/ctr2/M_ctr_q_6> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_7> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_7> <hardmode/ctr2/M_ctr_q_7> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_8> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_8> <hardmode/ctr2/M_ctr_q_8> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_9> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_9> <hardmode/ctr2/M_ctr_q_9> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_0> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_0> <hardmode/ctr/M_ctr_q_0> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_1> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_1> <hardmode/ctr/M_ctr_q_1> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_2> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_2> <hardmode/ctr/M_ctr_q_2> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_3> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_3> <hardmode/ctr/M_ctr_q_3> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_4> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_4> <hardmode/ctr/M_ctr_q_4> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_5> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_5> <hardmode/ctr/M_ctr_q_5> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_6> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_6> <hardmode/ctr/M_ctr_q_6> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_7> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_7> <hardmode/ctr/M_ctr_q_7> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_8> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_8> <hardmode/ctr/M_ctr_q_8> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_9> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_9> <hardmode/ctr/M_ctr_q_9> 
 INFO:Xst:2261 - The FF/Latch <hardmode/divoutput1/M_reg_q_4> in Unit <mojo_top_0> is equivalent to the following 11 FFs/Latches, which will be removed : <hardmode/divoutput1/M_reg_q_5> <hardmode/divoutput1/M_reg_q_6> <hardmode/divoutput1/M_reg_q_7> <hardmode/divoutput1/M_reg_q_8> <hardmode/divoutput1/M_reg_q_9> <hardmode/divoutput1/M_reg_q_10> <hardmode/divoutput1/M_reg_q_11> <hardmode/divoutput1/M_reg_q_12> <hardmode/divoutput1/M_reg_q_13> <hardmode/divoutput1/M_reg_q_14> <hardmode/divoutput1/M_reg_q_15> 
 INFO:Xst:2261 - The FF/Latch <hardmode/divoutput2/M_reg_q_4> in Unit <mojo_top_0> is equivalent to the following 11 FFs/Latches, which will be removed : <hardmode/divoutput2/M_reg_q_5> <hardmode/divoutput2/M_reg_q_6> <hardmode/divoutput2/M_reg_q_7> <hardmode/divoutput2/M_reg_q_8> <hardmode/divoutput2/M_reg_q_9> <hardmode/divoutput2/M_reg_q_10> <hardmode/divoutput2/M_reg_q_11> <hardmode/divoutput2/M_reg_q_12> <hardmode/divoutput2/M_reg_q_13> <hardmode/divoutput2/M_reg_q_14> <hardmode/divoutput2/M_reg_q_15> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_10> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_10> <hardmode/ctr2/M_ctr_q_10> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_11> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_11> <hardmode/ctr2/M_ctr_q_11> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_12> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_12> <hardmode/ctr2/M_ctr_q_12> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_13> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_13> <hardmode/ctr2/M_ctr_q_13> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_14> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_14> <hardmode/ctr2/M_ctr_q_14> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_20> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_20> <hardmode/ctr2/M_ctr_q_20> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_15> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_15> <hardmode/ctr2/M_ctr_q_15> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_21> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_21> <hardmode/ctr2/M_ctr_q_21> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_16> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_16> <hardmode/ctr2/M_ctr_q_16> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_22> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_22> <hardmode/ctr2/M_ctr_q_22> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_17> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_17> <hardmode/ctr2/M_ctr_q_17> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_23> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_23> <hardmode/ctr2/M_ctr_q_23> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_18> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_18> <hardmode/ctr2/M_ctr_q_18> 
-INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_19> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr/M_ctr_q_19> <hardmode/ctr2/M_ctr_q_19> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_10> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_10> <hardmode/ctr/M_ctr_q_10> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_11> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_11> <hardmode/ctr/M_ctr_q_11> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_12> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_12> <hardmode/ctr/M_ctr_q_12> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_13> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_13> <hardmode/ctr/M_ctr_q_13> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_14> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_14> <hardmode/ctr/M_ctr_q_14> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_20> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_20> <hardmode/ctr/M_ctr_q_20> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_15> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_15> <hardmode/ctr/M_ctr_q_15> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_21> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_21> <hardmode/ctr/M_ctr_q_21> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_16> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_16> <hardmode/ctr/M_ctr_q_16> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_22> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_22> <hardmode/ctr/M_ctr_q_22> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_17> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_17> <hardmode/ctr/M_ctr_q_17> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_23> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_23> <hardmode/ctr/M_ctr_q_23> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_18> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_18> <hardmode/ctr/M_ctr_q_18> 
+INFO:Xst:2261 - The FF/Latch <simplemode/ctr/M_ctr_q_19> in Unit <mojo_top_0> is equivalent to the following 2 FFs/Latches, which will be removed : <hardmode/ctr2/M_ctr_q_19> <hardmode/ctr/M_ctr_q_19> 
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 0) on block mojo_top_0, actual ratio is 85.
+Found area constraint ratio of 100 (+ 0) on block mojo_top_0, actual ratio is 77.
 FlipFlop M_state_q_FSM_FFd1 has been replicated 3 time(s)
 FlipFlop M_state_q_FSM_FFd2 has been replicated 3 time(s)
 FlipFlop hardmode/M_state_q_FSM_FFd1 has been replicated 3 time(s)
 FlipFlop hardmode/M_state_q_FSM_FFd2 has been replicated 3 time(s)
 FlipFlop hardmode/M_state_q_FSM_FFd3 has been replicated 3 time(s)
-FlipFlop hardmode/M_state_q_FSM_FFd4 has been replicated 2 time(s)
-FlipFlop hardmode/b/M_reg_q_0 has been replicated 1 time(s)
-FlipFlop hardmode/b/M_reg_q_1 has been replicated 1 time(s)
-FlipFlop hardmode/b/M_reg_q_2 has been replicated 1 time(s)
-FlipFlop hardmode/b/M_reg_q_3 has been replicated 1 time(s)
-FlipFlop hardmode/c/M_reg_q_0 has been replicated 1 time(s)
-FlipFlop hardmode/c/M_reg_q_1 has been replicated 1 time(s)
-FlipFlop hardmode/c/M_reg_q_2 has been replicated 1 time(s)
-FlipFlop hardmode/c/M_reg_q_3 has been replicated 1 time(s)
-FlipFlop simplemode/M_state_q_FSM_FFd1 has been replicated 1 time(s)
-FlipFlop simplemode/M_state_q_FSM_FFd2 has been replicated 1 time(s)
-FlipFlop simplemode/M_state_q_FSM_FFd3 has been replicated 1 time(s)
-FlipFlop simplemode/M_state_q_FSM_FFd4 has been replicated 2 time(s)
+FlipFlop hardmode/M_state_q_FSM_FFd4 has been replicated 1 time(s)
+FlipFlop simplemode/M_state_q_FSM_FFd1 has been replicated 2 time(s)
+FlipFlop simplemode/M_state_q_FSM_FFd2 has been replicated 2 time(s)
+FlipFlop simplemode/M_state_q_FSM_FFd3 has been replicated 2 time(s)
+FlipFlop simplemode/M_state_q_FSM_FFd4 has been replicated 1 time(s)
 FlipFlop simplemode/b/M_reg_q_0 has been replicated 1 time(s)
 FlipFlop simplemode/b/M_reg_q_1 has been replicated 1 time(s)
 FlipFlop simplemode/b/M_reg_q_2 has been replicated 1 time(s)
@@ -1120,8 +1113,8 @@ Unit <mojo_top_0> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 850
- Flip-Flops                                            : 850
+# Registers                                            : 827
+ Flip-Flops                                            : 827
 # Shift Registers                                      : 7
  2-bit shift register                                  : 7
 
@@ -1146,24 +1139,24 @@ Top Level Output File Name         : mojo_top_0.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 6752
-#      GND                         : 31
-#      INV                         : 97
-#      LUT1                        : 414
-#      LUT2                        : 341
-#      LUT3                        : 420
-#      LUT4                        : 544
-#      LUT5                        : 1259
-#      LUT6                        : 893
-#      MUXCY                       : 1568
-#      MUXF7                       : 52
-#      VCC                         : 36
-#      XORCY                       : 1097
-# FlipFlops/Latches                : 857
+# BELS                             : 6257
+#      GND                         : 30
+#      INV                         : 89
+#      LUT1                        : 411
+#      LUT2                        : 335
+#      LUT3                        : 367
+#      LUT4                        : 465
+#      LUT5                        : 1080
+#      LUT6                        : 1002
+#      MUXCY                       : 1386
+#      MUXF7                       : 65
+#      VCC                         : 35
+#      XORCY                       : 992
+# FlipFlops/Latches                : 834
 #      FD                          : 7
 #      FDE                         : 263
-#      FDR                         : 175
-#      FDRE                        : 408
+#      FDR                         : 176
+#      FDRE                        : 384
 #      FDS                         : 4
 # Shift Registers                  : 7
 #      SRLC16E                     : 7
@@ -1183,18 +1176,18 @@ Selected Device : 6slx9tqg144-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             857  out of  11440     7%  
- Number of Slice LUTs:                 3975  out of   5720    69%  
-    Number used as Logic:              3968  out of   5720    69%  
+ Number of Slice Registers:             834  out of  11440     7%  
+ Number of Slice LUTs:                 3756  out of   5720    65%  
+    Number used as Logic:              3749  out of   5720    65%  
     Number used as Memory:                7  out of   1440     0%  
        Number used as SRL:                7
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   4314
-   Number with an unused Flip Flop:    3457  out of   4314    80%  
-   Number with an unused LUT:           339  out of   4314     7%  
-   Number of fully used LUT-FF pairs:   518  out of   4314    12%  
-   Number of unique control sets:        60
+ Number of LUT Flip Flop pairs used:   4075
+   Number with an unused Flip Flop:    3241  out of   4075    79%  
+   Number with an unused LUT:           319  out of   4075     7%  
+   Number of fully used LUT-FF pairs:   515  out of   4075    12%  
+   Number of unique control sets:        59
 
 IO Utilization: 
  Number of IOs:                          81
@@ -1225,7 +1218,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 865   |
+clk                                | BUFGP                  | 842   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -1236,9 +1229,9 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 64.124ns (Maximum Frequency: 15.595MHz)
+   Minimum period: 66.062ns (Maximum Frequency: 15.137MHz)
    Minimum input arrival time before clock: 3.526ns
-   Maximum output required time after clock: 11.465ns
+   Maximum output required time after clock: 11.610ns
    Maximum combinational path delay: No path found
 
 Timing Details:
@@ -1247,65 +1240,66 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 64.124ns (frequency: 15.595MHz)
-  Total number of paths / destination ports: 329470714400521490000000 / 2064
+  Clock period: 66.062ns (frequency: 15.137MHz)
+  Total number of paths / destination ports: 204259623881645070000000 / 2010
 -------------------------------------------------------------------------
-Delay:               64.124ns (Levels of Logic = 130)
-  Source:            hardmode/operator1/M_reg_q_0 (FF)
-  Destination:       hardmode/M_timer_q_29 (FF)
+Delay:               66.062ns (Levels of Logic = 122)
+  Source:            button_cond/button_condb/M_ctr_q_9 (FF)
+  Destination:       hardmode/Mmult_n0231 (DSP)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: hardmode/operator1/M_reg_q_0 to hardmode/M_timer_q_29
+  Data Path: button_cond/button_condb/M_ctr_q_9 to hardmode/Mmult_n0231
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q             7   0.525   1.365  M_reg_q_0 (M_reg_q_0)
-     end scope: 'hardmode/operator1:readvalue<0>'
-     LUT6:I0->O            1   0.254   0.682  Mmux_alub1011_SW0 (N76)
-     LUT5:I4->O            7   0.254   0.910  Mmux_alub1011 (Mmux_alub101)
-     end scope: 'hardmode:Mmux_alub101'
-     LUT6:I5->O            1   0.254   0.000  Mmux_M_alu_b83_SW1_F (N421)
-     MUXF7:I0->O           1   0.163   0.790  Mmux_M_alu_b83_SW1 (N207)
-     LUT6:I4->O            1   0.250   0.000  Mmux_M_alu_b84_F (N447)
-     MUXF7:I0->O         109   0.163   2.345  Mmux_M_alu_b84 (M_alu_b<1>)
-     begin scope: 'alu:b<1>'
-     begin scope: 'alu/division:b<1>'
-     begin scope: 'alu/division/a[15]_b[15]_div_14:b<1>'
-     LUT6:I4->O            1   0.250   0.910  Mmux_a[0]_GND_15_o_MUX_439_o141_SW0 (N173)
-     LUT5:I2->O            7   0.235   1.186  Mmux_a[0]_GND_15_o_MUX_439_o141 (a[13]_GND_15_o_MUX_426_o)
+     FDRE:C->Q             2   0.525   1.181  M_ctr_q_9 (M_ctr_q_9)
+     LUT6:I0->O            3   0.254   0.994  out3 (out2)
+     end scope: 'button_cond/button_condb:out2'
+     end scope: 'button_cond:out2'
+     LUT6:I3->O           16   0.235   1.410  Mmux_M_hardmode_buttonb11 (M_hardmode_buttonb)
+     begin scope: 'hardmode:buttonb'
+     LUT6:I3->O           11   0.235   1.039  Mmux_alub10221 (Mmux_alub1022)
+     end scope: 'hardmode:Mmux_alub1022'
+     LUT6:I5->O          115   0.254   2.255  Mmux_M_alu_b15 (M_alu_b<0>)
+     begin scope: 'alu:b<0>'
+     begin scope: 'alu/division:b<0>'
+     begin scope: 'alu/division/a[15]_b[15]_div_14:b<0>'
+     LUT6:I5->O            3   0.254   0.766  Mmux_a[0]_GND_15_o_MUX_381_o161 (a[15]_GND_15_o_MUX_366_o)
+     LUT5:I4->O            1   0.254   0.682  Mmux_a[0]_GND_15_o_MUX_439_o141_SW1 (N182)
+     LUT6:I5->O            7   0.254   1.186  Mmux_a[0]_GND_15_o_MUX_439_o141 (a[13]_GND_15_o_MUX_426_o)
      LUT4:I0->O            0   0.254   0.000  Mcompar_o<12>_lutdi (Mcompar_o<12>_lutdi)
      MUXCY:DI->O           1   0.181   0.000  Mcompar_o<12>_cy<0> (Mcompar_o<12>_cy<0>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<12>_cy<1> (Mcompar_o<12>_cy<1>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<12>_cy<2> (Mcompar_o<12>_cy<2>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<12>_cy<3> (Mcompar_o<12>_cy<3>)
-     MUXCY:CI->O          16   0.235   1.182  Mcompar_o<12>_cy<4> (o<12>)
+     MUXCY:CI->O          14   0.235   1.127  Mcompar_o<12>_cy<4> (o<12>)
      LUT5:I4->O            9   0.254   1.204  Mmux_a[0]_GND_15_o_MUX_495_o141 (a[13]_GND_15_o_MUX_482_o)
      LUT4:I1->O            1   0.235   0.000  Mcompar_o<11>_lut<1> (Mcompar_o<11>_lut<1>)
      MUXCY:S->O            1   0.215   0.000  Mcompar_o<11>_cy<1> (Mcompar_o<11>_cy<1>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<11>_cy<2> (Mcompar_o<11>_cy<2>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<11>_cy<3> (Mcompar_o<11>_cy<3>)
-     MUXCY:CI->O          21   0.235   1.310  Mcompar_o<11>_cy<4> (o<11>)
+     MUXCY:CI->O          25   0.235   1.403  Mcompar_o<11>_cy<4> (o<11>)
      LUT4:I3->O            6   0.254   1.152  Mmux_a[0]_GND_15_o_MUX_549_o141 (a[13]_GND_15_o_MUX_536_o)
      LUT4:I0->O            0   0.254   0.000  Mcompar_o<10>_lutdi1 (Mcompar_o<10>_lutdi1)
      MUXCY:DI->O           1   0.181   0.000  Mcompar_o<10>_cy<1> (Mcompar_o<10>_cy<1>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<10>_cy<2> (Mcompar_o<10>_cy<2>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<10>_cy<3> (Mcompar_o<10>_cy<3>)
-     MUXCY:CI->O          29   0.235   1.470  Mcompar_o<10>_cy<4> (o<10>)
+     MUXCY:CI->O          32   0.235   1.520  Mcompar_o<10>_cy<4> (o<10>)
      LUT3:I2->O            5   0.254   1.117  Mmux_a[0]_GND_15_o_MUX_601_o131 (a[12]_GND_15_o_MUX_589_o)
      LUT4:I0->O            0   0.254   0.000  Mcompar_o<9>_lutdi1 (Mcompar_o<9>_lutdi1)
      MUXCY:DI->O           1   0.181   0.000  Mcompar_o<9>_cy<1> (Mcompar_o<9>_cy<1>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<9>_cy<2> (Mcompar_o<9>_cy<2>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<9>_cy<3> (Mcompar_o<9>_cy<3>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<9>_cy<4> (Mcompar_o<9>_cy<4>)
-     MUXCY:CI->O          30   0.235   1.487  Mcompar_o<9>_cy<5> (o<9>)
+     MUXCY:CI->O          33   0.235   1.537  Mcompar_o<9>_cy<5> (o<9>)
      LUT5:I4->O            7   0.254   1.186  Mmux_a[0]_GND_15_o_MUX_651_o121 (a[11]_GND_15_o_MUX_640_o)
      LUT4:I0->O            0   0.254   0.000  Mcompar_o<8>_lutdi1 (Mcompar_o<8>_lutdi1)
      MUXCY:DI->O           1   0.181   0.000  Mcompar_o<8>_cy<1> (Mcompar_o<8>_cy<1>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<8>_cy<2> (Mcompar_o<8>_cy<2>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<8>_cy<3> (Mcompar_o<8>_cy<3>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<8>_cy<4> (Mcompar_o<8>_cy<4>)
-     MUXCY:CI->O          38   0.235   1.620  Mcompar_o<8>_cy<5> (o<8>)
+     MUXCY:CI->O          43   0.235   1.704  Mcompar_o<8>_cy<5> (o<8>)
      LUT3:I2->O            5   0.254   1.117  Mmux_a[0]_GND_15_o_MUX_699_o111 (a[10]_GND_15_o_MUX_689_o)
      LUT4:I0->O            0   0.254   0.000  Mcompar_o<7>_lutdi1 (Mcompar_o<7>_lutdi1)
      MUXCY:DI->O           1   0.181   0.000  Mcompar_o<7>_cy<1> (Mcompar_o<7>_cy<1>)
@@ -1343,7 +1337,7 @@ Delay:               64.124ns (Levels of Logic = 130)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<3>_cy<3> (Mcompar_o<3>_cy<3>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<3>_cy<4> (Mcompar_o<3>_cy<4>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<3>_cy<5> (Mcompar_o<3>_cy<5>)
-     MUXCY:CI->O          64   0.235   1.930  Mcompar_o<3>_cy<6> (o<3>)
+     MUXCY:CI->O          68   0.235   1.961  Mcompar_o<3>_cy<6> (o<3>)
      LUT5:I4->O            4   0.254   1.080  Mmux_a[0]_GND_15_o_MUX_909_o1111 (a[5]_GND_15_o_MUX_904_o)
      LUT4:I0->O            0   0.254   0.000  Mcompar_o<2>_lutdi1 (Mcompar_o<2>_lutdi1)
      MUXCY:DI->O           1   0.181   0.000  Mcompar_o<2>_cy<1> (Mcompar_o<2>_cy<1>)
@@ -1352,7 +1346,7 @@ Delay:               64.124ns (Levels of Logic = 130)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<2>_cy<4> (Mcompar_o<2>_cy<4>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<2>_cy<5> (Mcompar_o<2>_cy<5>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<2>_cy<6> (Mcompar_o<2>_cy<6>)
-     MUXCY:CI->O          46   0.235   1.754  Mcompar_o<2>_cy<7> (o<2>)
+     MUXCY:CI->O          51   0.235   1.829  Mcompar_o<2>_cy<7> (o<2>)
      LUT5:I4->O            4   0.254   1.080  Mmux_a[0]_GND_15_o_MUX_945_o1101 (a[4]_GND_15_o_MUX_941_o)
      LUT4:I0->O            0   0.254   0.000  Mcompar_o<1>_lutdi1 (Mcompar_o<1>_lutdi1)
      MUXCY:DI->O           1   0.181   0.000  Mcompar_o<1>_cy<1> (Mcompar_o<1>_cy<1>)
@@ -1361,7 +1355,7 @@ Delay:               64.124ns (Levels of Logic = 130)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<1>_cy<4> (Mcompar_o<1>_cy<4>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<1>_cy<5> (Mcompar_o<1>_cy<5>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<1>_cy<6> (Mcompar_o<1>_cy<6>)
-     MUXCY:CI->O          18   0.235   1.235  Mcompar_o<1>_cy<7> (o<1>)
+     MUXCY:CI->O          21   0.235   1.310  Mcompar_o<1>_cy<7> (o<1>)
      LUT3:I2->O            2   0.254   1.002  Mmux_n095081 (n0950<1>)
      LUT4:I0->O            0   0.254   0.000  Mcompar_o<0>_lutdi (Mcompar_o<0>_lutdi)
      MUXCY:DI->O           1   0.181   0.000  Mcompar_o<0>_cy<0> (Mcompar_o<0>_cy<0>)
@@ -1371,34 +1365,26 @@ Delay:               64.124ns (Levels of Logic = 130)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<0>_cy<4> (Mcompar_o<0>_cy<4>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<0>_cy<5> (Mcompar_o<0>_cy<5>)
      MUXCY:CI->O           1   0.023   0.000  Mcompar_o<0>_cy<6> (Mcompar_o<0>_cy<6>)
-     MUXCY:CI->O           8   0.235   0.944  Mcompar_o<0>_cy<7> (o<0>)
+     MUXCY:CI->O           6   0.235   0.876  Mcompar_o<0>_cy<7> (o<0>)
      end scope: 'alu/division/a[15]_b[15]_div_14:o<0>'
      LUT1:I0->O            1   0.254   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<0>_rt (Madd_a[15]_GND_32_o_add_6_OUT_cy<0>_rt)
      MUXCY:S->O            1   0.215   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<0> (Madd_a[15]_GND_32_o_add_6_OUT_cy<0>)
      MUXCY:CI->O           1   0.023   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<1> (Madd_a[15]_GND_32_o_add_6_OUT_cy<1>)
      MUXCY:CI->O           1   0.023   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<2> (Madd_a[15]_GND_32_o_add_6_OUT_cy<2>)
      MUXCY:CI->O           1   0.023   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<3> (Madd_a[15]_GND_32_o_add_6_OUT_cy<3>)
-     MUXCY:CI->O           1   0.023   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<4> (Madd_a[15]_GND_32_o_add_6_OUT_cy<4>)
-     MUXCY:CI->O           1   0.023   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<5> (Madd_a[15]_GND_32_o_add_6_OUT_cy<5>)
-     MUXCY:CI->O           1   0.023   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<6> (Madd_a[15]_GND_32_o_add_6_OUT_cy<6>)
-     MUXCY:CI->O           1   0.023   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<7> (Madd_a[15]_GND_32_o_add_6_OUT_cy<7>)
-     MUXCY:CI->O           1   0.023   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<8> (Madd_a[15]_GND_32_o_add_6_OUT_cy<8>)
-     MUXCY:CI->O           1   0.023   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<9> (Madd_a[15]_GND_32_o_add_6_OUT_cy<9>)
-     MUXCY:CI->O           1   0.023   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<10> (Madd_a[15]_GND_32_o_add_6_OUT_cy<10>)
-     MUXCY:CI->O           1   0.023   0.000  Madd_a[15]_GND_32_o_add_6_OUT_cy<11> (Madd_a[15]_GND_32_o_add_6_OUT_cy<11>)
-     XORCY:CI->O           3   0.206   0.766  Madd_a[15]_GND_32_o_add_6_OUT_xor<12> (a[15]_GND_32_o_add_6_OUT<12>)
-     end scope: 'alu/division:a[15]_GND_32_o_add_6_OUT<12>'
-     LUT6:I5->O            4   0.254   1.032  Mmux_s99 (s<12>)
-     end scope: 'alu:s<12>'
-     begin scope: 'hardmode:M_alu_s<12>'
-     LUT6:I3->O            8   0.235   0.944  aluout[15]_GND_16_o_equal_140_o<15>13_SW1 (N74)
-     LUT6:I5->O            9   0.254   0.976  aluout[15]_GND_16_o_equal_140_o<15>13 (aluout[15]_GND_16_o_equal_140_o<15>1)
-     LUT6:I5->O           16   0.254   1.182  _n0477_inv1 (_n0477_inv)
-     LUT4:I3->O            1   0.254   0.000  M_timer_q_29_rstpot (M_timer_q_29_rstpot)
-     FDR:D                     0.074          M_timer_q_29
+     XORCY:CI->O           2   0.206   0.726  Madd_a[15]_GND_32_o_add_6_OUT_xor<4> (a[15]_GND_32_o_add_6_OUT<4>)
+     end scope: 'alu/division:a[15]_GND_32_o_add_6_OUT<4>'
+     LUT6:I5->O            4   0.254   0.804  Mmux_s237 (Mmux_s236)
+     end scope: 'alu:Mmux_s236'
+     LUT6:I5->O            1   0.254   0.958  Mmux_M_hardmode_aluout111 (M_hardmode_aluout<4>)
+     begin scope: 'hardmode:aluout<4>'
+     LUT6:I2->O           12   0.254   1.069  aluout[15]_GND_16_o_equal_139_o<15>11 (aluout[15]_GND_16_o_equal_139_o<15>11)
+     LUT6:I5->O            8   0.254   1.052  Mmux_M_a_writevalue181 (Mmux_M_a_writevalue18)
+     LUT6:I4->O            2   0.250   0.725  Mmux_M_a_writevalue11 (M_a_writevalue<0>)
+     DSP48A1:B0                0.172          Mmult_n0231
     ----------------------------------------
-    Total                     64.124ns (17.473ns logic, 46.651ns route)
-                                       (27.2% logic, 72.8% route)
+    Total                     66.062ns (17.317ns logic, 48.745ns route)
+                                       (26.2% logic, 73.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
@@ -1423,30 +1409,28 @@ Offset:              3.526ns (Levels of Logic = 3)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 5777 / 52
+  Total number of paths / destination ports: 5910 / 52
 -------------------------------------------------------------------------
-Offset:              11.465ns (Levels of Logic = 8)
-  Source:            hardmode/M_state_q_FSM_FFd4 (FF)
-  Destination:       sevenseg_b<4> (PAD)
+Offset:              11.610ns (Levels of Logic = 6)
+  Source:            M_state_q_FSM_FFd2 (FF)
+  Destination:       sevenseg_b<6> (PAD)
   Source Clock:      clk rising
 
-  Data Path: hardmode/M_state_q_FSM_FFd4 to sevenseg_b<4>
+  Data Path: M_state_q_FSM_FFd2 to sevenseg_b<6>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q            117   0.525   2.691  M_state_q_FSM_FFd4 (M_state_q_FSM_FFd4)
-     end scope: 'hardmode:M_state_q_FSM_FFd4'
-     LUT5:I0->O            1   0.254   0.682  Mmux_M_seven_seg_b_char12 (Mmux_M_seven_seg_b_char11)
-     LUT6:I5->O            1   0.254   0.682  Mmux_M_seven_seg_b_char13 (Mmux_M_seven_seg_b_char12)
-     LUT6:I5->O            1   0.254   0.682  Mmux_M_seven_seg_b_char14 (Mmux_M_seven_seg_b_char13)
-     LUT5:I4->O            7   0.254   1.340  Mmux_M_seven_seg_b_char15 (M_seven_seg_b_char<0>)
-     begin scope: 'seven_seg_b:char<0>'
-     LUT5:I0->O            1   0.254   0.681  seg<4>1 (seg<4>)
-     end scope: 'seven_seg_b:seg<4>'
-     OBUF:I->O                 2.912          sevenseg_b_4_OBUF (sevenseg_b<4>)
+     FDR:C->Q            143   0.525   2.449  M_state_q_FSM_FFd2 (M_state_q_FSM_FFd2)
+     LUT2:I0->O           34   0.250   2.008  _n0179<1>1 (Mmux_M_seven_seg_b_char2)
+     LUT6:I0->O            1   0.254   0.682  Mmux_M_seven_seg_b_char23 (Mmux_M_seven_seg_b_char22)
+     LUT5:I4->O            7   0.254   1.340  Mmux_M_seven_seg_b_char26 (M_seven_seg_b_char<1>)
+     begin scope: 'seven_seg_b:char<1>'
+     LUT5:I0->O            1   0.254   0.681  seg<6>1 (seg<6>)
+     end scope: 'seven_seg_b:seg<6>'
+     OBUF:I->O                 2.912          sevenseg_b_6_OBUF (sevenseg_b<6>)
     ----------------------------------------
-    Total                     11.465ns (4.707ns logic, 6.758ns route)
-                                       (41.1% logic, 58.9% route)
+    Total                     11.610ns (4.449ns logic, 7.161ns route)
+                                       (38.3% logic, 61.7% route)
 
 =========================================================================
 
@@ -1458,20 +1442,20 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |   64.124|         |         |         |
+clk            |   66.062|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 71.00 secs
-Total CPU time to Xst completion: 71.42 secs
+Total REAL time to Xst completion: 41.00 secs
+Total CPU time to Xst completion: 40.82 secs
  
 --> 
 
-Total memory usage is 4563812 kilobytes
+Total memory usage is 4580516 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  152 (   0 filtered)
+Number of warnings :  153 (   0 filtered)
 Number of infos    :   41 (   0 filtered)
 
