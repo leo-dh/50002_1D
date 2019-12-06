@@ -1107,7 +1107,7 @@ Speed Grade: -2
 
    Minimum period: 66.062ns (Maximum Frequency: 15.137MHz)
    Minimum input arrival time before clock: 3.526ns
-   Maximum output required time after clock: 11.610ns
+   Maximum output required time after clock: 11.665ns
    Maximum combinational path delay: No path found
 
 =========================================================================

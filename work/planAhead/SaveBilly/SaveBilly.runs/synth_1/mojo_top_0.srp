@@ -3,7 +3,7 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.12 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> Reading design: mojo_top_0.prj
 
@@ -1139,15 +1139,15 @@ Top Level Output File Name         : mojo_top_0.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 6257
+# BELS                             : 6256
 #      GND                         : 30
 #      INV                         : 89
 #      LUT1                        : 411
-#      LUT2                        : 335
+#      LUT2                        : 305
 #      LUT3                        : 367
 #      LUT4                        : 465
 #      LUT5                        : 1080
-#      LUT6                        : 1002
+#      LUT6                        : 1031
 #      MUXCY                       : 1386
 #      MUXF7                       : 65
 #      VCC                         : 35
@@ -1177,16 +1177,16 @@ Selected Device : 6slx9tqg144-2
 
 Slice Logic Utilization: 
  Number of Slice Registers:             834  out of  11440     7%  
- Number of Slice LUTs:                 3756  out of   5720    65%  
-    Number used as Logic:              3749  out of   5720    65%  
+ Number of Slice LUTs:                 3755  out of   5720    65%  
+    Number used as Logic:              3748  out of   5720    65%  
     Number used as Memory:                7  out of   1440     0%  
        Number used as SRL:                7
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   4075
-   Number with an unused Flip Flop:    3241  out of   4075    79%  
-   Number with an unused LUT:           319  out of   4075     7%  
-   Number of fully used LUT-FF pairs:   515  out of   4075    12%  
+ Number of LUT Flip Flop pairs used:   4074
+   Number with an unused Flip Flop:    3240  out of   4074    79%  
+   Number with an unused LUT:           319  out of   4074     7%  
+   Number of fully used LUT-FF pairs:   515  out of   4074    12%  
    Number of unique control sets:        59
 
 IO Utilization: 
@@ -1231,7 +1231,7 @@ Speed Grade: -2
 
    Minimum period: 66.062ns (Maximum Frequency: 15.137MHz)
    Minimum input arrival time before clock: 3.526ns
-   Maximum output required time after clock: 11.610ns
+   Maximum output required time after clock: 11.665ns
    Maximum combinational path delay: No path found
 
 Timing Details:
@@ -1241,7 +1241,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
   Clock period: 66.062ns (frequency: 15.137MHz)
-  Total number of paths / destination ports: 204259623881645070000000 / 2010
+  Total number of paths / destination ports: 204259623881645140000000 / 2010
 -------------------------------------------------------------------------
 Delay:               66.062ns (Levels of Logic = 122)
   Source:            button_cond/button_condb/M_ctr_q_9 (FF)
@@ -1411,26 +1411,27 @@ Offset:              3.526ns (Levels of Logic = 3)
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
   Total number of paths / destination ports: 5910 / 52
 -------------------------------------------------------------------------
-Offset:              11.610ns (Levels of Logic = 6)
-  Source:            M_state_q_FSM_FFd2 (FF)
-  Destination:       sevenseg_b<6> (PAD)
+Offset:              11.665ns (Levels of Logic = 7)
+  Source:            hardmode/M_state_q_FSM_FFd1 (FF)
+  Destination:       sevenseg_b<5> (PAD)
   Source Clock:      clk rising
 
-  Data Path: M_state_q_FSM_FFd2 to sevenseg_b<6>
+  Data Path: hardmode/M_state_q_FSM_FFd1 to sevenseg_b<5>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q            143   0.525   2.449  M_state_q_FSM_FFd2 (M_state_q_FSM_FFd2)
-     LUT2:I0->O           34   0.250   2.008  _n0179<1>1 (Mmux_M_seven_seg_b_char2)
-     LUT6:I0->O            1   0.254   0.682  Mmux_M_seven_seg_b_char23 (Mmux_M_seven_seg_b_char22)
-     LUT5:I4->O            7   0.254   1.340  Mmux_M_seven_seg_b_char26 (M_seven_seg_b_char<1>)
-     begin scope: 'seven_seg_b:char<1>'
-     LUT5:I0->O            1   0.254   0.681  seg<6>1 (seg<6>)
-     end scope: 'seven_seg_b:seg<6>'
-     OBUF:I->O                 2.912          sevenseg_b_6_OBUF (sevenseg_b<6>)
+     FDR:C->Q            132   0.525   2.536  M_state_q_FSM_FFd1 (hardmode/M_state_q_FSM_FFd1)
+     LUT3:I0->O           19   0.235   1.716  Mmux_c_out221 (Mmux_c_out22)
+     end scope: 'hardmode:Mmux_c_out22'
+     LUT6:I0->O            1   0.254   0.958  Mmux_M_seven_seg_b_char53 (Mmux_M_seven_seg_b_char52)
+     LUT6:I2->O            7   0.254   1.340  Mmux_M_seven_seg_b_char54 (M_seven_seg_b_char<4>)
+     begin scope: 'seven_seg_b:char<4>'
+     LUT5:I0->O            1   0.254   0.681  seg<5>1 (seg<5>)
+     end scope: 'seven_seg_b:seg<5>'
+     OBUF:I->O                 2.912          sevenseg_b_5_OBUF (sevenseg_b<5>)
     ----------------------------------------
-    Total                     11.610ns (4.449ns logic, 7.161ns route)
-                                       (38.3% logic, 61.7% route)
+    Total                     11.665ns (4.434ns logic, 7.231ns route)
+                                       (38.0% logic, 62.0% route)
 
 =========================================================================
 
@@ -1448,12 +1449,12 @@ clk            |   66.062|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 41.00 secs
-Total CPU time to Xst completion: 40.82 secs
+Total REAL time to Xst completion: 25.00 secs
+Total CPU time to Xst completion: 25.07 secs
  
 --> 
 
-Total memory usage is 4580516 kilobytes
+Total memory usage is 4538916 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  153 (   0 filtered)
