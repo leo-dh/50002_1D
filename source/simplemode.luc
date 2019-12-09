@@ -26,7 +26,7 @@ module simplemode (
   ) {
   .clk (clk){
     .rst (rst){
-      fsm state = {IDLE,COUNTDOWN,GEN_QN,WAITINPUT,CHECKINPUT,CHECKINPUT2,CHECKMOTHERPOS,CHECKBILLYPOS,DELAY,LOSE,WIN};
+      fsm state = {IDLE,COUNTDOWN,GEN_QN,WAITINPUT,CHECKINPUT,CHECKINPUT2,CHECKMOTHERPOS,CHECKBILLYPOS,LOSE,WIN};
       dff timer[28];
       dff counter[2]; 
       counter ctr (#SIZE(1), #DIV(23));     
@@ -101,10 +101,6 @@ module simplemode (
     buttoninput = c{buttondiv, buttonmul, buttonsub, buttonadd};
     buttonoperatorinput = c{buttona,buttonb,buttonc};
     
-    if (&buttoninput){
-      gameend = 1;
-      state.d = state.IDLE;
-    }
     
     case (state.q){
       state.IDLE:
@@ -186,7 +182,10 @@ module simplemode (
       state.WAITINPUT:
         timer.d  = timer.q + 1;
         operator.writevalue = 6b111111;
-        if (mother.pos == billy.pos){
+        alua = mother.pos;
+        alub = billy.pos;
+        alualufn = CMPEQ;
+        if (aluout == 1){
           state.d = state.CHECKMOTHERPOS;
         }
         if (^buttoninput){
@@ -249,27 +248,16 @@ module simplemode (
           billy.writeenable = 1;
           billy.writevalue = billy.pos + 1;
         }
-        
-        if (billy.pos == WINCON){
+        alua = billy.pos;
+        alub = WINCON;
+        alualufn = CMPEQ;
+        if (aluout == 1){
           state.d = state.WIN;
         }
         else{
-          state.d = state.DELAY;
-        }
-        
-      state.DELAY:
-        timer.d = timer.q + 1;
-        mother.writeenable = 1;
-        mother.difficulty = b11;
-        a_out = d19;
-        b_out = d1;
-        c_out = d21;
-        d_out = d11;
-        
-        if (timer.q == d20000000){
-          timer.d = 0;
           state.d = state.GEN_QN;
         }
+        
         
       
       state.CHECKMOTHERPOS:
@@ -289,8 +277,10 @@ module simplemode (
           state.d = state.WAITINPUT;
         }
         
-        
-        if (mother.pos == billy.pos){
+        alua = mother.pos;
+        alub = billy.pos;
+        alualufn = CMPEQ;
+        if (aluout == 1){
           state.d = state.LOSE;
         }
         
